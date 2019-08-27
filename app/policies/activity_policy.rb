@@ -4,4 +4,8 @@ class ActivityPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def index?
+    @activities = policy_scope(Activity)
+  end
 end
