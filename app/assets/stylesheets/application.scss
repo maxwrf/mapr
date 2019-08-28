@@ -7,7 +7,14 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import 'daemonite-material/css/material';
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+// NEEDED TO AVOID ICON CONFLICT BETWEEN BOOTSTRAP AND MATERIAL
+.dropdown-toggle::after {
+  border: none;
+}

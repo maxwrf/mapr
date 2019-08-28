@@ -1,4 +1,5 @@
 import "bootstrap";
+import "daemonite-material/js/material.js";
 
 const test = () => {
   b1.classList.add("btn-primary");
