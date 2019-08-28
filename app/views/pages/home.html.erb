@@ -1,3 +1,53 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+<!--
+<form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">City</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Berlin">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Adults</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Children</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->
+
+<div class="container mb-2">
+    <h2 class="mt-2"> Select a city </h2>
+    <%= form_for(@plan) do |f| %>
+      <div class="form-group">
+        <%= f.label :city %>
+        <%= f.text_field :city, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :number_adults %>
+        <%= f.number_field :number_adults, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :number_children %>
+        <%= f.number_field :number_children, as: :integer, class: 'form-control' %>
+      </div>
+
+      <%= f.submit class: 'btn btn-primary' %>
+    <% end %>
+</div>
 

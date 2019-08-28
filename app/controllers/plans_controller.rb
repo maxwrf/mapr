@@ -13,4 +13,22 @@ class PlansController < ApplicationController
     @best_ever = ts[:best_ever]
     @record_distance = ts[:record_distance]
   end
+
+  def create
+    @plan = Plan.new(plan_params)
+    @user = current_user
+    @plan.user = @user
+    @plan.save
+    if @plan.save
+      redirect_to plans_path(@plan)
+    else
+      render 'pages/home'
+    end
+  end
+
+  private
+
+  def plan_params
+    params.require(:plan).permit(:city, :number_adults, :number_children)
+  end
 end

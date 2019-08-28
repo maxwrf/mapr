@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get "/test", to: 'plans#algorithm'
 
-  resources :plans, only: [:index] do
+  resources :plans, only: [:index, :create] do
     # see carl first if think need to edit below
     resources :activities, only: [ :index ]
     namespace :api, defaults: { format: :json } do
