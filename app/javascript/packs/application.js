@@ -1,5 +1,9 @@
 import "bootstrap";
 import "daemonite-material/js/material.js";
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { initMapbox } from '../plugins/init_mapbox';
+
+initMapbox();
 
 const test = () => {
   b1.classList.add("btn-primary");

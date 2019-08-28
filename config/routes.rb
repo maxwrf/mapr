@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # only for development purposes(max) -- delete for production
   get "/test", to: 'plans#algorithm'
 
-  resources :plans, only: [:index] do
+  resources :plans, only: [:index,:show] do
     # see carl first if think need to edit below
     resources :activities, only: [ :index ]
     namespace :api, defaults: { format: :json } do
