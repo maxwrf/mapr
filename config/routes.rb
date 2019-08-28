@@ -13,5 +13,4 @@ Rails.application.routes.draw do
       end
     end
   end
->>>>>>> 05499f3121a46fc292c2692b03b88ce9a0d14b79
 end
