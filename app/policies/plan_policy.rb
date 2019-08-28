@@ -8,4 +8,8 @@ class PlanPolicy < ApplicationPolicy
   def algorithm?
     true
   end
+
+  def show?
+    true
+  end
 end

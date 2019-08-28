@@ -13,4 +13,21 @@ class PlansController < ApplicationController
     @best_ever = ts[:best_ever]
     @record_distance = ts[:record_distance]
   end
+
+  def show
+    @plan = Plan.find(params[:id])
+    authorize @plan
+    activities = @plan.activities
+
+    # HERE ORDER THE ACTIVTIES IN THE OPTIMAL ORDER!!!!!
+    # TO DO
+    # IMORTANT
+
+    @markers = activities.map do |act|
+      {
+        lat: act.latitude,
+        lng: act.longitude
+      }
+    end
+  end
 end
