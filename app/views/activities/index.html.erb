@@ -1,0 +1,16 @@
+<h1>Activites (search/browse) Page</h1>
+
+<h2>test api calls</h2>
+<p id="b1" class="btn btn-secondary">b1</p>
+<p id="b2" class="btn btn-secondary">b2</p>
+<p id="b3" class="btn btn-secondary">b3</p>
+
+<h2>Test Results</h2>
+  <ul id="activities">
+    <% @activities.each do |activity| %>
+      <li><%= activity[:name] %><br>
+        <%= activity[:description] %><br>
+        <%= activity[:address] %></li><br>
+    <% end %>
+  </ul>
+
