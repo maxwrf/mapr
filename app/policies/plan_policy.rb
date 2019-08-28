@@ -4,4 +4,8 @@ class PlanPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def algorithm?
+    true
+  end
 end
