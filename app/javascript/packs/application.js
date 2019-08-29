@@ -4,8 +4,11 @@ import Picker from "pickerjs";
 import  "pickerjs/dist/picker.css";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
+import { init } from '../plugins/gmaps';
 
-initMapbox();
+init();
+
+// initMapbox();
 
 // const test = () => {
 //   b1.classList.add("btn-primary");

@@ -59,6 +59,7 @@ class PlansController < ApplicationController
 
     # let the algorithm do the work
     order = algorithm(coords, travel_mode)
+
     min_coords = order.map { |e| coords[e] }
 
     # SOMEHOW SEND THE travel_mode TO THE FRONT END it is currently set to cycle
