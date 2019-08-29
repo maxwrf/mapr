@@ -1,1 +1,44 @@
-edit.html.erb
+<div class="container">
+  <h1 class="text-center">Select your preferences!</h1>
+  <% form_for @plan do |f| -%>
+    <div class="row">
+      <div class="col">
+        <%= f.label :start_date_time %>
+        <%= f.text_field :start_date_time, class: 'form-control start-time', value:"10:00"  %>
+       </div>
+       <div class="col">
+        <%= f.label :end_date_time %>
+        <%= f.text_field :end_date_time, class: 'form-control end-time', value:"18:00"  %>
+        </div>
+     </div>
+    <div class="row">
+      <div class="col">
+        <%= f.label :start_address %>
+        <%= f.text_field :start_address, class: 'form-control', placeholder:"Berlin"  %>
+      </div>
+      <div class="col">
+        <%= f.label :end_address %>
+        <%= f.text_field :end_address, class: 'form-control', placeholder:"Berlin"  %>
+      </div>
+    </div>
+</div>
+  <% end -%>
+  <div>
+    <label for="fromGroupTransport"> Choose a transport way</label>
+    <div class="btn-group btn-group-lg btn-group-toggle my-3" data-toggle="buttons"id="fromGroupTransport">
+      <label class="btn btn-secondary active">
+      <input type="radio" name="permit_walk" id="option1" autocomplete="off" checked> Walk
+      </label>
+      <label class="btn btn-secondary">
+      <input type="radio" name="permit_car" id="option2" autocomplete="off"> Car
+      </label>
+      <label class="btn btn-secondary">
+      <input type="radio" name="permit_public_transport" id="option3" autocomplete="off">  public transportation
+      </label>
+      <label class="btn btn-secondary">
+      <input type="radio" name="permit_cycle" id="option4" autocomplete="off"> Cylce
+      </label>
+    </div>
+  </div>
+  <%= link_to "Select Category", test_path, class:"btn btn-primary"%>
+</div>

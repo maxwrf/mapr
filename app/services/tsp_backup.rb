@@ -1,5 +1,5 @@
-class TravellingSalesman
-  def run(sights, travel_matrix)
+#class TravellingSalesman
+  def run(sights)
   # sights = [[50.71, -50.23], [100.714, -100.234], [90.6, -90.9], [15.6, -4.9], [20.6, -20.9], [25.6, -30.9], [75.6, -40.9], [21.6, -20.9]]
   record_distance = Float::INFINITY
   best_ever = []
@@ -17,9 +17,8 @@ class TravellingSalesman
 
   100.times do
     # some loop
-    results = calc_fitness(population, sights, record_distance, fitness, best_ever, travel_matrix)
+    results = calc_fitness(population, sights, record_distance, fitness, best_ever)
     fitness = results[:fitness]
-
     print results[:current_best]
     puts results[:current_record]
     if results[:record_distance] < record_distance
@@ -29,6 +28,7 @@ class TravellingSalesman
 
     fitness = normalize_fitness(population, fitness)
     population = next_generation(population, fitness)
+
     # order = next_order(order)
     # break if order == "STOP"
 
@@ -44,11 +44,11 @@ class TravellingSalesman
 
   private
 
-  def calc_fitness(population, sights, record_distance, fitness, best_ever, travel_matrix)
+  def calc_fitness(population, sights, record_distance, fitness, best_ever)
     current_record = Float::INFINITY
     current_best = []
     population.each_with_index do |orderpop, index|
-      d = calc_distance(sights, orderpop, travel_matrix)
+      d = calc_distance(sights, orderpop)
       if d < record_distance
         record_distance = d
         best_ever = orderpop
@@ -56,7 +56,7 @@ class TravellingSalesman
         current_record = d
         current_best = population[index]
       end
-      fitness[index] = 1 / (d**8 + 1).to_f
+      fitness[index] = 1 / (d**8 + 1)
     end
     { fitness: fitness, record_distance: record_distance, best_ever: best_ever, current_record: current_record, current_best: current_best }
   end
@@ -119,18 +119,17 @@ class TravellingSalesman
     end
   end
 
-  def calc_distance(sights, order, travel_matrix)
+  def calc_distance(sights, order)
     sum = 0
 
     order.each_with_index do |i, index|
       break if index == order.length - 1
 
-      # city_a = sights[i]
-      # city_b = sights[order[index + 1]]
-      d = travel_matrix[i, order[index + 1]]
+      city_a = sights[i]
+      city_b = sights[order[index + 1]]
+      d = Geocoder::Calculations.distance_between(city_a, city_b)
       sum += d
     end
-
     return sum
   end
 
