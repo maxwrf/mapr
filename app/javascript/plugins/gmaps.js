@@ -143,12 +143,13 @@ const init = () => {
   var directionsDisplay = new google.maps.DirectionsRenderer();
   const mapElement = document.getElementById('map');
   const markers = JSON.parse(mapElement.dataset.markers);
+  const travelMode = JSON.parse(mapElement.dataset.travelmode).toUpperCase();
 
   const map = new google.maps.Map(document.getElementById("map"));
 
   directionsDisplay.setMap(map);
 
-  console.log("hello")
+  console.log(travelMode)
 
   let drop = markers.slice();
   drop.shift();
@@ -168,7 +169,7 @@ const init = () => {
     origin: new google.maps.LatLng(markers[0].lat, markers[0].lng),
     waypoints: waypts,
     destination: new google.maps.LatLng(markers[markers.length-1].lat, markers[markers.length-1].lng),
-    travelMode: google.maps.DirectionsTravelMode.DRIVING
+    travelMode: eval(`google.maps.DirectionsTravelMode.${travelMode}`)
   };
   directionsService.route(request, function(response, status) {
   //Check if request is successful.

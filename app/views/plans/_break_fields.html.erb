@@ -1,0 +1,15 @@
+<div class="row nested-fields">
+  <div class="col">
+    <%= f.label :preference_length %>
+    <%= f.number_field :preference_length, class: 'form-control', value:"1"  %>
+  </div>
+  <div class="col">
+    <%= f.label :preference_window_start %>
+    <%= f.text_field :preference_window_start, class: 'form-control break-start-time', value:"12:00"  %>
+  </div>
+  <div class="col">
+    <%= f.label :preference_window_end %>
+    <%= f.text_field :preference_window_end, class: 'form-control break-end-time', value:"15:00"  %>
+  </div>
+  <%= link_to_remove_association "remove break", f %>
+</div>
