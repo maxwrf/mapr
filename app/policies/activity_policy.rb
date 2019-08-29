@@ -8,4 +8,8 @@ class ActivityPolicy < ApplicationPolicy
   def index?
     @activities = policy_scope(Activity)
   end
+
+  def save_shortlist?
+    true
+  end
 end

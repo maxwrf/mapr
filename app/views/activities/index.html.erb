@@ -1,16 +1,23 @@
-<h1>Activites (search/browse) Page</h1>
-
-<h2>test api calls</h2>
-<p id="b1" class="btn btn-secondary">b1</p>
-<p id="b2" class="btn btn-secondary">b2</p>
-<p id="b3" class="btn btn-secondary">b3</p>
-
-<h2>Test Results</h2>
-  <ul id="activities">
-    <% @activities.each do |activity| %>
-      <li><%= activity[:name] %><br>
-        <%= activity[:description] %><br>
-        <%= activity[:address] %></li><br>
+<div class="grid-container">
+  <div class="bg-1 span2c">
+    <% @categories.each_with_index do |text, ind| %>
+    <p id="<%= ind %>" class="cat-btn btn btn-secondary"><%= text %></p>
     <% end %>
-  </ul>
+  </div>
+  <div class="bg-2"><h2>Test Results</h2>
+    <ul id="activities">
+    </ul>
+  </div>
+  <div class="bg-3">
+    <h4>SHORTLIST</h4>
+    <p id="submit_shortlist" class="btn btn-success">Continue with Shortlist</p>
+    <ul id="shortlist">
+    </ul>
+  </div>
+</div>
+
+
+
+
+
 
