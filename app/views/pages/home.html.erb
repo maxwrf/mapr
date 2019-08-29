@@ -1,3 +1,37 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= content_for(:navbar_class, "navbar-home") %>
+
+<div class="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="container mb-2 form-login">
+            <h2 class="mt-2 text-left">Plan your unique trip to the most amazing cities in the world.</h2>
+            <%= form_for(@plan) do |f| %>
+              <div class="form-group">
+                <%= f.label :City %>
+                <%= f.text_field :city, class: 'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :Date %>
+                <%= f.date_field :start_date_time, class: 'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :Adults %>
+                <%= f.number_field :number_adults, class: 'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :Children %>
+                <%= f.number_field :number_children, class: 'form-control' %>
+              </div>
+
+              <%= f.submit class: 'btn btn-primary bg-thematic' %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 

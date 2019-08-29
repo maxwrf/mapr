@@ -9,6 +9,14 @@ class PlanPolicy < ApplicationPolicy
     true
   end
 
+  def create?
+    true
+  end
+
+  def edit?
+    true
+  end
+
   def show?
     true
   end

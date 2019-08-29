@@ -1,5 +1,8 @@
 import "bootstrap";
 import "daemonite-material/js/material.js";
+import Picker from "pickerjs";
+import  "pickerjs/dist/picker.css";
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
 
 initMapbox();
@@ -24,3 +27,27 @@ initMapbox();
 //     });
 //   });
 // });
+
+const picker = document.querySelector('.start-time');
+
+if (picker) {
+  new Picker(document.querySelector('.start-time'), {
+    format: 'HH:mm',
+    headers: true,
+    text: {
+      title: 'Pick a time',
+    },
+  });
+
+
+  new Picker(document.querySelector('.end-time'), {
+    format: 'HH:mm',
+    headers: true,
+    text: {
+      title: 'Pick a time',
+    },
+  });
+
+}
+
+
