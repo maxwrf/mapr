@@ -14,6 +14,21 @@ class PlansController < ApplicationController
     @record_distance = ts[:record_distance]
   end
 
+  def edit
+    @plan = Plan.find(params[:id])
+    authorize @plan
+  end
+
+  def update
+    @plan = Plan.find(params[:id])
+    authorize @plan
+    if @plan.update(plan_params_edit)
+      redirect_to test_path
+    else
+      render :edit
+    end
+  end
+
   def show
     @plan = Plan.find(params[:id])
     authorize @plan
@@ -29,5 +44,12 @@ class PlansController < ApplicationController
         lng: act.longitude
       }
     end
+  end
+
+  private
+
+  def plan_params_edit
+    params.require(:plan).permit(:permit_walk, :permit_cycle, :permit_car, :permit_public_transport,
+      :stat_date_time, :end_date_time, :start_address, :end_address)
   end
 end

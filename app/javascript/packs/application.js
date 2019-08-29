@@ -1,5 +1,7 @@
 import "bootstrap";
 import "daemonite-material/js/material.js";
+import Picker from "pickerjs"
+import  "pickerjs/dist/picker.css"
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
 
@@ -24,4 +26,21 @@ b1.addEventListener("click", (event) => {
         `<li>${activity.name}<br>${activity.description}<br>${activity.address}</li><br>` );
     });
   });
+});
+
+new Picker(document.querySelector('.start-time'), {
+  format: 'HH:mm',
+  headers: true,
+  text: {
+    title: 'Pick a time',
+  },
+});
+
+
+new Picker(document.querySelector('.end-time'), {
+  format: 'HH:mm',
+  headers: true,
+  text: {
+    title: 'Pick a time',
+  },
 });
