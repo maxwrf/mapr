@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="text-center">Select your preferences!</h1>
-  <% form_for @plan do |f| -%>
+  <%=form_for @plan do |f| -%>
     <div class="row">
       <div class="col">
         <%= f.label :start_date_time %>
@@ -14,19 +14,45 @@
     <div class="row">
       <div class="col">
         <%= f.label :start_address %>
-        <%= f.text_field :start_address, class: 'form-control', placeholder:"Berlin"  %>
+        <%= f.text_field :start_address, class: 'form-control', id:"city-point"   %>
       </div>
       <div class="col">
         <%= f.label :end_address %>
-        <%= f.text_field :end_address, class: 'form-control', placeholder:"Berlin"  %>
+        <%= f.text_field :end_address, class: 'form-control', id:"end-point" %>
       </div>
     </div>
-</div>
-  <% end -%>
   <div>
-    <label for="fromGroupTransport"> Choose a transport way</label>
-    <div class="btn-group btn-group-lg btn-group-toggle my-3" data-toggle="buttons"id="fromGroupTransport">
-      <label class="btn btn-secondary active">
+    <h3>Choose your transport way</h3>
+    <div class="btn-group-lg btn-group-toggle my-3" data-toggle="buttons" id="fromGroupTransport">
+      <%= f.radio_button :permit_walk, 'walk', id:"option1", autocomplete:"off"%>
+      <%= f.label :permit_walk, 'walk', :value => 'walk', class:"btn btn-secondary bg-thematic-inv"%>
+      <%= f.radio_button :permit_car, 'car', id:"option2", autocomplete:"off" %>
+      <%= f.label :permit_car, 'car', :value => 'car', class:"btn btn-secondary bg-thematic-inv" %>
+      <%= f.radio_button :permit_cycle, 'cycle', id:"option3", autocomplete:"off" %>
+      <%= f.label :permit_cycle, 'cycle', :value => 'cycle', class:"btn btn-secondary bg-thematic-inv" %>
+      <%= f.radio_button :permit_public_transport, 'public_transport', id:"option3", autocomplete:"off" %>
+      <%= f.label :permit_public_transport, 'public_transport', :value => 'public_transport', class:"btn btn-secondary bg-thematic-inv" %>
+    </div>
+  </div>
+  <div>
+    <%= f.fields_for :breaks, @break do |fb| %>
+       <h3>Add a break</h3>
+       <%= render 'break_fields', f: fb %>
+    </div>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add break', f, :breaks %>
+    </div>
+      <%= f.submit  class: "btn btn-secondary my-3 bg-thematic"%>
+<% end %>
+</div>
+</div>
+
+
+
+
+
+<!--       <label class="btn btn-secondary active">
       <input type="radio" name="permit_walk" id="option1" autocomplete="off" checked> Walk
       </label>
       <label class="btn btn-secondary">
@@ -37,8 +63,4 @@
       </label>
       <label class="btn btn-secondary">
       <input type="radio" name="permit_cycle" id="option4" autocomplete="off"> Cylce
-      </label>
-    </div>
-  </div>
-  <%= link_to "Select Category", test_path, class:"btn btn-primary"%>
-</div>
+      </label> -->
