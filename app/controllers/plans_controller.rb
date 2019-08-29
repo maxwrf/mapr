@@ -3,30 +3,41 @@ require 'open-uri'
 # require 'matrix'
 
 class PlansController < ApplicationController
-  def algorithm
-    @plan = Plan.new
-    authorize @plan
-    sights = [[52.516207, 13.3760908], [52.5070031, 13.3890127], [52.4367962, 13.6324687], [52.4791258, 13.4398069], [52.5147146, 13.3797974]]
-    travel_mode = "transit" # options are [driving, walking, bicycling, transit] something else breaks
-    @travel_matrix = TravelMatrix.new.generate(sights, travel_mode)
-    ts = TravellingSalesman.new.run(sights, @travel_matrix)
-    @best_ever = ts[:best_ever]
+  def algorithm(sights, travel_mode)
+    @travel_matrix = TravelMatrix.generate(sights, travel_mode)
+    ts = TravellingSalesman.run(sights, @travel_matrix)
     @record_distance = ts[:record_distance]
+    return ts[:best_ever]
   end
 
   def show
     @plan = Plan.find(params[:id])
     authorize @plan
     activities = @plan.activities
+    coords = activities.map { |e| [e.latitude, e.longitude] }
 
-    # HERE ORDER THE ACTIVTIES IN THE OPTIMAL ORDER!!!!!
-    # TO DO
-    # IMORTANT
+    # retrieve travel mode
+    # options are [driving, walking, bicycling, transit] something else breaks google api
+    travel_mode = "walking" if @plan.permit_walk
+    travel_mode = "driving" if @plan.permit_car
+    travel_mode = "bicycling" if @plan.permit_cycle
+    travel_mode = "transit" if @permit_public_transport
 
-    @markers = activities.map do |act|
+    # look up coordinates for start and finish address
+    coords.unshift(Geocoder.search("Vinetastraße 6, Berlin").first.coordinates)
+    coords.push(Geocoder.search("Ernst-Thälmann-Park, 10405 Berlin, Germany").first.coordinates)
+
+    # let the algorithm do the work
+    order = algorithm(coords, travel_mode)
+    min_coords = order.map { |e| coords[e] }
+
+    # SOMEHOW SEND THE travel_mode TO THE FRONT END it is currently set to cycle
+
+    # set the markers and they are in correct order now!
+    @markers = min_coords.map do |e|
       {
-        lat: act.latitude,
-        lng: act.longitude
+        lat: e[0],
+        lng: e[1]
       }
     end
   end
