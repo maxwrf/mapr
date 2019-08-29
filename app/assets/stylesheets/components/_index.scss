@@ -4,23 +4,6 @@
 @import "navbar";
 @import "banner";
 @import "form";
+@import "button"
 
 
-.bg-thematic-inv {
-  color: white;
-  background-color: $thematic_inv;
-}
-
-.bg-thematic-inv:not(:disabled):not(.disabled).active {
-  color: white;
-  background-color: grey;
-}
-
-#fromGroupTransport {
-  input {
-    display: none;
-  }
-  label {
-    margin-right: 13px;
-  }
-}

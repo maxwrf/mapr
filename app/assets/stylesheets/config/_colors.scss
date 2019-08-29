@@ -44,6 +44,10 @@ $thematic-inv-blur: hsla(211,70%,26%,1);
   background-color: $thematic !important;
 }
 
+.bg-thematic-inv {
+  background-color: $thematic_inv !important;
+}
+
 .bg-header {
   background-color: $header !important;
 }
