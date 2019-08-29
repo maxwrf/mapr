@@ -21,3 +21,5 @@ b1.addEventListener("click", (event) => {
     });
   });
 });
+
+$('.exampleInputDatePicker1').pickdate();

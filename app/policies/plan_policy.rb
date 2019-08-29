@@ -8,4 +8,12 @@ class PlanPolicy < ApplicationPolicy
   def algorithm?
     true
   end
+
+  def create?
+    true
+  end
+
+  def edit?
+    true
+  end
 end

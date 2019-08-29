@@ -1,53 +1,39 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<!--
-<form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">City</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Berlin">
+<div class="banner">
+  <div class="banner-content text-center">
+    <h1>Plan your unique trip to the most amazing cities in the world.</h1>
+    <p>Our algorithm finds the fastest route around a busy city</p>
+    <%= link_to "Start now", new_user_session_path, class: "btn btn-lg btn-primary"  %>
   </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Adults</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Children</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form> -->
+</div>
+
+
+
 
 <div class="container mb-2">
     <h2 class="mt-2"> Select a city </h2>
     <%= form_for(@plan) do |f| %>
       <div class="form-group">
-        <%= f.label :city %>
+        <%= f.label :City %>
         <%= f.text_field :city, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :number_adults %>
+        <%= f.label :Date %>
+        <%= f.date_field :start_date_time, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :Adults %>
         <%= f.number_field :number_adults, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label :number_children %>
-        <%= f.number_field :number_children, as: :integer, class: 'form-control' %>
+        <%= f.label :Children %>
+        <%= f.number_field :number_children, class: 'form-control' %>
       </div>
 
       <%= f.submit class: 'btn btn-primary' %>
     <% end %>
 </div>
+
 

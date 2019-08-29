@@ -16,19 +16,27 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
+    authorize @plan
+
     @user = current_user
     @plan.user = @user
+    @plan.end_date_time = @plan.start_date_time
     @plan.save
     if @plan.save
-      redirect_to plans_path(@plan)
+      redirect_to edit_plan_path(@plan)
     else
       render 'pages/home'
     end
   end
 
+  def edit
+    @plan = Plan.find(params[:id])
+    authorize @plan
+  end
+
   private
 
   def plan_params
-    params.require(:plan).permit(:city, :number_adults, :number_children)
+    params.require(:plan).permit(:city, :start_date_time, :number_adults, :number_children)
   end
 end
