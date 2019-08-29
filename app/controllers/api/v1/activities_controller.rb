@@ -18,11 +18,14 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     already_in_db = Activity.where(plan_id: params[:plan_id])
     already_in_db.each do |activity|
       p activity[:id]
-      body.each do |shortlist|
+      on_shortlist = false
+      body.each do |shortlisted_place_id|
+        on_shortlist = true if activity[:place_id] == shortlisted_place_id
       end
+      activity.destroy if on_shortlist == false
     end
-
-
-    render json: {welcome: "hello"}
+    #render json: { status: "Destoyed" }
+    current_plan = Plan.find(params[:plan_id])
+    redirect_to plan(current_plan)
   end
 end
