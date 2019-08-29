@@ -14,6 +14,21 @@ class PlansController < ApplicationController
     @record_distance = ts[:record_distance]
   end
 
+  def create
+    @plan = Plan.new(plan_params)
+    authorize @plan
+
+    @user = current_user
+    @plan.user = @user
+    @plan.end_date_time = @plan.start_date_time
+    @plan.save
+    if @plan.save
+      redirect_to edit_plan_path(@plan)
+    else
+      render 'pages/home'
+    end
+  end
+
   def edit
     @plan = Plan.find(params[:id])
     authorize @plan
@@ -47,6 +62,10 @@ class PlansController < ApplicationController
   end
 
   private
+
+  def plan_params
+    params.require(:plan).permit(:city, :start_date_time, :number_adults, :number_children)
+  end
 
   def plan_params_edit
     params.require(:plan).permit(:permit_walk, :permit_cycle, :permit_car, :permit_public_transport,

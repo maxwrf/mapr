@@ -28,6 +28,7 @@ b1.addEventListener("click", (event) => {
   });
 });
 
+
 new Picker(document.querySelector('.start-time'), {
   format: 'HH:mm',
   headers: true,
