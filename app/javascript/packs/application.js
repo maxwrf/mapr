@@ -1,6 +1,8 @@
 
 import "bootstrap";
 import "daemonite-material/js/material.js";
+import Picker from "pickerjs";
+import  "pickerjs/dist/picker.css";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
 import {initAutocomplete, endAutocomplete}  from'../plugins/init_autocomplete.js';
@@ -28,4 +30,5 @@ if (activities) {
     });
   });
 };
+
 
