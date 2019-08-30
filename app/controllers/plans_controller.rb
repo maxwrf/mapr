@@ -98,7 +98,7 @@ class PlansController < ApplicationController
   end
 
   def plan_params_edit_categories
-    params.require(:plan).permit(:categories)
+    params.require(:plan).permit(categories: [])
   end
 
   # def break_params
