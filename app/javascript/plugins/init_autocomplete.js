@@ -14,5 +14,13 @@ const endAutocomplete = () => {
   }
 };
 
-export { initAutocomplete, endAutocomplete };
+
+const initPlaces = () => {
+if (document.getElementById('end-point') && document.getElementById('city-point')) {
+    initAutocomplete();
+    endAutocomplete();
+  }
+}
+
+export { initPlaces };
 

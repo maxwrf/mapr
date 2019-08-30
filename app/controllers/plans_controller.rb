@@ -49,20 +49,18 @@ class PlansController < ApplicationController
 
     # retrieve travel mode
     # options are [driving, walking, bicycling, transit] something else breaks google api
-    travel_mode = "walking" if @plan.permit_walk
-    travel_mode = "driving" if @plan.permit_car
-    travel_mode = "bicycling" if @plan.permit_cycle
-    travel_mode = "transit" if @permit_public_transport
+    @travel_mode = "walking" if @plan.permit_walk
+    @travel_mode = "driving" if @plan.permit_car
+    @travel_mode = "bicycling" if @plan.permit_cycle
+    @travel_mode = "transit" if @permit_public_transport
 
     # look up coordinates for start and finish address
     coords.unshift(Geocoder.search("Vinetastraße 6, Berlin").first.coordinates)
     coords.push(Geocoder.search("Ernst-Thälmann-Park, 10405 Berlin, Germany").first.coordinates)
 
     # let the algorithm do the work
-    order = algorithm(coords, travel_mode)
+    order = algorithm(coords, @travel_mode)
     min_coords = order.map { |e| coords[e] }
-
-    # SOMEHOW SEND THE travel_mode TO THE FRONT END it is currently set to cycle
 
     # set the markers and they are in correct order now!
     @markers = min_coords.map do |e|
