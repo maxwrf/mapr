@@ -64,10 +64,11 @@ class PlansController < ApplicationController
 
     # retrieve travel mode
     # options are [driving, walking, bicycling, transit] something else breaks google api
-    @travel_mode = "walking" if @plan.permit_walk
-    @travel_mode = "driving" if @plan.permit_car
-    @travel_mode = "bicycling" if @plan.permit_cycle
-    @travel_mode = "transit" if @permit_public_transport
+    # @travel_mode = "walking" if @plan.permit_walk
+    # @travel_mode = "driving" if @plan.permit_car
+    # @travel_mode = "bicycling" if @plan.permit_cycle
+    # @travel_mode = "transit" if @permit_public_transport
+    @travel_mode = "transit"
 
     # look up coordinates for start and finish address
     coords.unshift(Geocoder.search(@plan.start_address).first.coordinates)

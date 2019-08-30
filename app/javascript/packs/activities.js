@@ -15,23 +15,22 @@
     data.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
       activities.insertAdjacentHTML("beforeend",
-        `<li>${activity.name}
-         <br>${activity.average_rating}
-         <br>${activity.address}
-         <br>${activity.latitude}
-         <br>${activity.longitude}
-         <br>${activity.place_id}`);
+        `<li><b>${activity.name}</b>
+         <br><em>Rating: </em>${activity.average_rating}
+         <br><em>Address: </em>${activity.address}
+         <br><em>Location: </em>${activity.latitude} ${activity.longitude}
+         <br><em>Id: </em>${activity.place_id}`);
       if (shortlist.includes(activity.place_id)) {
         activities.insertAdjacentHTML("beforeend",
-        `<br><span id="${activity.place_id}" class="btn btn-warning">remove from shortlist</span>
-         </li><br>`);
+        `<br><span id="${activity.place_id}" class="btn btn-sm btn-warning">remove from shortlist</span>
+         <br><br></li>`);
         let button = document.getElementById(activity.place_id);
         button.addEventListener("click", handleRemoveFromShortlist);
       }
       else {
         activities.insertAdjacentHTML("beforeend",
-        `<br><span id="${activity.place_id}" class="on-shortlist btn btn-primary">add to shortlist</span>
-         </li><br>`);
+        `<br><span id="${activity.place_id}" class="on-shortlist btn btn-sm btn-primary">add to shortlist</span>
+         <br><br></li>`);
         let button = document.getElementById(activity.place_id);
         button.addEventListener("click", handleAddToShortlist);
       }
