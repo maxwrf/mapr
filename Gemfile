@@ -10,7 +10,7 @@ gem 'rails', '5.2.3'
 gem 'redis'
 gem 'pundit'
 gem "cocoon"
-gem 'acts-as-taggable-on', '~> 6.0'
+
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
@@ -31,6 +31,7 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
   gem 'faker'
+  gem 'httplog'
 end
 
 gem 'geocoder'
