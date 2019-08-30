@@ -16,22 +16,30 @@
   }
 }
 
-// .form-plan {
-//   background: white;
-//   margin-top: 50px;
-//   padding: 20px;
-//   border-radius: 5px;
-//   h1 {
-//     text-align: center;
-//     font-weight: bold;
-//     font-size: 25px;
-//     color: #666666;
-//     margin-bottom: 50px;
-//     margin-top: 0px;
-//   }
-//   .btn {
-//     width: 100%;
-//     padding: 10px;
-//     font-weight: bold;
-//   }
-// }
+.form-plan {
+  background: white;
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: 5px;
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    color: #666666;
+    margin-bottom: 50px;
+    margin-top: 0px;
+  }
+  .btn {
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+  }
+}
+
+.form-check {
+  padding: 0px;
+}
+
+.col-form-label {
+  display: none;
+}
