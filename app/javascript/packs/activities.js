@@ -11,7 +11,6 @@
   fetch("api/v1/activities?" + params)
   .then(response => response.json())
   .then((data) => {
-    console.log(data); // TODO: remove after dev
     activities.innerHTML = '';
     data.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
@@ -116,7 +115,7 @@ export const initializePage = () => {
         fetchActivities(params);
     });
     createSubmitShortlistButton()
-    cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
+    // cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
     fetchActivities("api/v1/activities?" + cat_buttons[0].innerText);
   });
 };
