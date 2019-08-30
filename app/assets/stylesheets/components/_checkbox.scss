@@ -12,6 +12,9 @@
   opacity: .4;
   flex: 0 0 30%;
   text-align: center;
+  width: 100%;
+  font-weight: bold;
+  font-size: 18px;
   &:hover {
     opacity: 1;
     cursor: pointer;
@@ -22,3 +25,8 @@
   opacity: 1;
   }
 }
+
+  .collection_check_boxes {
+    width: 100%;
+    padding: 0px 20px;
+  }
