@@ -4,7 +4,7 @@
         <h1 class="text-center">Choose categories</h1>
         <div class="form-plan ">
           <div class="col-xs-6">
-            <%= simple_form_for(@plan) do |f| %>
+            <%= simple_form_for(@plan, url: update_categories_plan_path(@plan)) do |f| %>
               <div class="category-choices">
                 <%= f.input :categories, collection: ['Museum', 'Park', 'Shopping', 'Art Gallery', 'Wildlife'], as: :check_boxes, input_html: { class: 'd-none'}, label_method: ->(item) { tag.div(item, class: 'category-choice') } %>
               </div>
