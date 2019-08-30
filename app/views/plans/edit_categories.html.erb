@@ -11,7 +11,7 @@
           </div>
         </div>
           <!-- Inject categories here -->
-        <%= simple_form_for(@plan) do |f| %>
+        <%= simple_form_for(@plan, url: update_categories_plan_path(@plan)) do |f| %>
           <%= f.input :categories, collection: ['museum', 'park', 'shopping', 'art gallery', 'wildlife'], as: :check_boxes, input_html: { class: 'd-none'}, label_method: ->(item) { tag.div(item, class: 'category-choice') } %>
           <%= f.submit "Save", class: "btn btn-primary"  %>
         <% end %>
