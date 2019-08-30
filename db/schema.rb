@@ -59,12 +59,12 @@ ActiveRecord::Schema.define(version: 2019_08_29_151909) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "categories"
     t.datetime "start_date_time"
     t.datetime "end_date_time"
     t.string "start_address"
     t.string "end_address"
     t.string "city"
+    t.string "categories"
     t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
