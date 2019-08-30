@@ -1,3 +1,4 @@
+
 import "bootstrap";
 import "daemonite-material/js/material.js";
 import Picker from "pickerjs";
@@ -6,8 +7,21 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
 import flatpickr from "flatpickr"
 import "flatpickr/dist/themes/airbnb.css"
+import { initGmap } from '../plugins/gmaps';
+import { initPlaces } from '../plugins/init_autocomplete.js';
+import {picker} from '../plugins/timepicker.js';
 
 // $('.exampleInputDatePicker1').pickdate();
+
+
+// import 'mapbox-gl/dist/mapbox-gl.css';
+// import { initMapbox } from '../plugins/init_mapbox';
+
+
+// initMapbox();
+initGmap();
+initPlaces();
+picker();
 
 $(document).ready(function(){
   $(".category-choice").click(function(){
@@ -19,8 +33,8 @@ flatpickr(".datepicker", {
   altInput: true
 });
 
-initMapbox();
 
+// CARL: PLEASE MOVE TO DIFFERENT FILE
 // const test = () => {
 //   b1.classList.add("btn-primary");
 //   b1.classList.remove("btn-secondary");
@@ -41,26 +55,17 @@ initMapbox();
 //     });
 //   });
 // });
-
-const picker = document.querySelector('.start-time');
-
-if (picker) {
-  new Picker(document.querySelector('.start-time'), {
-    format: 'HH:mm',
-    headers: true,
-    text: {
-      title: 'Pick a time',
-    },
-  });
-
-
-  new Picker(document.querySelector('.end-time'), {
-    format: 'HH:mm',
-    headers: true,
-    text: {
-      title: 'Pick a time',
-    },
-  });
-
-}
-
+// if (activities) {
+//   b1.addEventListener("click", (event) => {
+//     fetch("api/v1/activities")
+//     .then(response => response.json())
+//     .then((data) => {
+//       console.log(data);
+//       activities.innerHTML = '';
+//       data.forEach((activity) => {
+//         activities.insertAdjacentHTML("beforeend",
+//           `<li>${activity.name}<br>${activity.description}<br>${activity.address}</li><br>` );
+//       });
+//     });
+//   });
+// };

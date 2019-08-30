@@ -17,6 +17,10 @@ class PlanPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    true
+  end
+
   def show?
     true
   end

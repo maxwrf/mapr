@@ -1,5 +1,5 @@
 class TravellingSalesman
-  def run(sights, travel_matrix)
+  def self.run(sights, travel_matrix)
   # sights = [[50.71, -50.23], [100.714, -100.234], [90.6, -90.9], [15.6, -4.9], [20.6, -20.9], [25.6, -30.9], [75.6, -40.9], [21.6, -20.9]]
   record_distance = Float::INFINITY
   best_ever = []
@@ -12,7 +12,13 @@ class TravellingSalesman
   fitness = []
 
   population_size.times do
-    population << order.shuffle
+    new_order = []
+    new_order.push(order[0])
+    random_part = order[1..-2]
+    new_order.push(random_part.shuffle)
+    new_order.push(order[-1]).flatten
+    new_order.flatten!
+    population << new_order
   end
 
   100.times do
@@ -20,8 +26,8 @@ class TravellingSalesman
     results = calc_fitness(population, sights, record_distance, fitness, best_ever, travel_matrix)
     fitness = results[:fitness]
 
-    print results[:current_best]
-    puts results[:current_record]
+    # print results[:current_best]
+    # puts results[:current_record]
     if results[:record_distance] < record_distance
       best_ever = results[:best_ever]
       record_distance = results[:record_distance]
@@ -44,7 +50,7 @@ class TravellingSalesman
 
   private
 
-  def calc_fitness(population, sights, record_distance, fitness, best_ever, travel_matrix)
+  def self.calc_fitness(population, sights, record_distance, fitness, best_ever, travel_matrix)
     current_record = Float::INFINITY
     current_best = []
     population.each_with_index do |orderpop, index|
@@ -61,7 +67,7 @@ class TravellingSalesman
     { fitness: fitness, record_distance: record_distance, best_ever: best_ever, current_record: current_record, current_best: current_best }
   end
 
-  def normalize_fitness(population, fitness)
+  def self.normalize_fitness(population, fitness)
     sum = 0
     population.each_with_index do |_orderpop, index|
       sum += fitness[index]
@@ -71,7 +77,7 @@ class TravellingSalesman
     end
   end
 
-  def next_generation(population,fitness)
+  def self.next_generation(population,fitness)
     new_population = []
     population.each_with_index do |_orderpop, index|
       # new_population[index] = orderpop
@@ -84,20 +90,23 @@ class TravellingSalesman
     new_population
   end
 
-  def cross_over(order_a, order_b)
-    start = rand(order_a.length)
-    ending = rand((start + 1)..order_a.length)
-    new_order = order_a.slice(start..ending)
+  def self.cross_over(order_a, order_b)
+    start = rand(1..order_a.length - 2)
+    ending = rand((start + 1)..order_a.length - 2)
+    new_order = [order_a[0]]
+    new_order << order_a.slice(start..ending)
+    new_order.flatten!
     order_b.each do |i|
       sight = i
-      if new_order.include?(sight) == false
+      if new_order.include?(sight) == false && (sight != order_a[-1])
         new_order.push(sight)
       end
     end
+    new_order << order_a[-1]
     return new_order
   end
 
-  def pick_one(population,fitness)
+  def self.pick_one(population,fitness)
     index = 0
     r = rand
 
@@ -109,17 +118,17 @@ class TravellingSalesman
     population[index]
   end
 
-  def mutate(order, mutation_rate)
+  def self.mutate(order, mutation_rate)
     order.length.times do
       if rand < mutation_rate
-        index_a = rand(order.length)
-        index_b = rand(order.length)
+        index_a = rand(1..order.length - 2)
+        index_b = rand(1..order.length - 2)
         order = swap(order, index_a, index_b)
       end
     end
   end
 
-  def calc_distance(sights, order, travel_matrix)
+  def self.calc_distance(sights, order, travel_matrix)
     sum = 0
 
     order.each_with_index do |i, index|
@@ -134,7 +143,7 @@ class TravellingSalesman
     return sum
   end
 
-  def swap(order, index_a, index_b)
+  def self.swap(order, index_a, index_b)
     save = order[index_a]
     order[index_a] = order[index_b]
     order[index_b] = save

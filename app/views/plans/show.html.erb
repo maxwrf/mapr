@@ -1,5 +1,5 @@
 <h1>This is your itinerary</h1>
-<div class="container">
+<!-- <div class="container">
   <div
     class="mt-3 mb-3"
     id="map"
@@ -8,4 +8,17 @@
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
   ></div>
+  <div id="instructions"></div>
+</div> -->
+
+<div class="container">
+  <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+    data-travelmode="<%= @travel_mode.to_json %>"
+  ></div>
 </div>
+
+
