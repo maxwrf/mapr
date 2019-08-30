@@ -70,8 +70,8 @@ class PlansController < ApplicationController
     @travel_mode = "transit" if @permit_public_transport
 
     # look up coordinates for start and finish address
-    coords.unshift(Geocoder.search("Vinetastraße 6, Berlin").first.coordinates)
-    coords.push(Geocoder.search("Ernst-Thälmann-Park, 10405 Berlin, Germany").first.coordinates)
+    coords.unshift(Geocoder.search(@plan.start_address).first.coordinates)
+    coords.push(Geocoder.search(@plan.end_address).first.coordinates)
 
     # let the algorithm do the work
     order = algorithm(coords, @travel_mode)
@@ -98,7 +98,7 @@ class PlansController < ApplicationController
   end
 
   def plan_params_edit_categories
-    params.require(:plan).permit(:categories)
+    params.require(:plan).permit(categories: [])
   end
 
   # def break_params

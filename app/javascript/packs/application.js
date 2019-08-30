@@ -1,4 +1,3 @@
-
 import { initializePage } from "./activities";
 import "bootstrap";
 import "daemonite-material/js/material.js";
@@ -17,6 +16,11 @@ import {picker} from '../plugins/timepicker.js';
 
 // import 'mapbox-gl/dist/mapbox-gl.css';
 // import { initMapbox } from '../plugins/init_mapbox';
+$(document).ready(function(){
+  $(".category-choice").click(function(){
+    $(this).toggleClass("active");
+  });
+});
 
 
 // initMapbox();
@@ -24,11 +28,6 @@ initGmap();
 initPlaces();
 picker();
 
-$(document).ready(function(){
-  $(".category-choice").click(function(){
-    $(this).toggleClass("active");
-  });
-});
 
 flatpickr(".datepicker", {
   altInput: true

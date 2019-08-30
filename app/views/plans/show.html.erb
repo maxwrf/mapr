@@ -1,4 +1,4 @@
-<h1>This is your itinerary</h1>
+<h1>This is your itinerary for your plan: <%= "#{@plan.name}" %></h1>
 <!-- <div class="container">
   <div
     class="mt-3 mb-3"
@@ -11,14 +11,69 @@
   <div id="instructions"></div>
 </div> -->
 
-<div class="container">
-  <div
-    id="map"
-    style="width: 100%;
-    height: 600px;"
-    data-markers="<%= @markers.to_json %>"
-    data-travelmode="<%= @travel_mode.to_json %>"
-  ></div>
+
+
+
+
+<ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
+  <li class="nav-item">
+    <a aria-controls="home" aria-selected="true" class="nav-link active" data-toggle="tab" href="#home" id="home-tab" role="tab">Overview</a>
+  </li>
+  <li class="nav-item">
+    <a aria-controls="profile" aria-selected="false" class="nav-link" data-toggle="tab" href="#profile" id="profile-tab" role="tab">Step by Step directions</a>
+  </li>
+  <li class="nav-item">
+    <a aria-controls="contact" aria-selected="false" class="nav-link" data-toggle="tab" href="#contact" id="contact-tab" role="tab">Activities</a>
+  </li>
+</ul>
+<div class="tab-content" id="justifiedTabContent">
+  <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
+    <div class="container">
+      <div
+        id="mapall"
+        style="width: 100%; height: 600px;"
+        data-markers="<%= @markers.to_json %>"
+        data-travelmode="<%= @travel_mode.to_json %>"
+      ></div>
+    </div>
+  </div>
+
+  <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
+    <div class="container">
+      <% @markers.each_with_index do |marker, index|  %>
+        <% break if index == @markers.length - 1  %>
+        <div class="container mt-4 mb-2">
+          <h4 mb-2 mt-4><%= "Step #{index + 1}" %></h4>
+            <div class="row">
+              <% markers = [marker, @markers[index + 1]] %>
+              <div
+                class="map col-8"
+                id="<%= "map#{index}" %>"
+                style= " height: 400px;"
+                data-markers="<%= markers.to_json %>"
+                data-travelmode="<%= @travel_mode.to_json %>"
+              ></div>
+              <div
+                class="instructions col-2"
+                id="<%= "instructions#{index}" %>"
+                style= " height: 400px;"
+              ></div>
+            </div>
+            <div class="row"><ul id="<%= "instructionsteps#{index}" %>"></ul></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">
+    <div class="container">
+      <ul>
+        <% @plan.activities.each do |e| %>
+          <li><%= e.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
 
 
