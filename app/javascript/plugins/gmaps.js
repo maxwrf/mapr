@@ -138,14 +138,16 @@ import GMaps from 'gmaps/gmaps.js';
 //   });
 // }
 
-const init = () => {
+const initOverall = () => {
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer();
-  const mapElement = document.getElementById('map');
+  const mapElement = document.getElementById('mapall');
   const markers = JSON.parse(mapElement.dataset.markers);
-  const travelMode = JSON.parse(mapElement.dataset.travelmode).toUpperCase();
+  let travelMode = JSON.parse(mapElement.dataset.travelmode).toUpperCase();
+  if (travelMode == "TRANSIT") {travelMode = "DRIVING"}
 
-  const map = new google.maps.Map(document.getElementById("map"));
+  const map = new google.maps.Map(document.getElementById(`mapall`));
+
 
   directionsDisplay.setMap(map);
 
@@ -174,16 +176,60 @@ const init = () => {
   directionsService.route(request, function(response, status) {
   //Check if request is successful.
   if (status == google.maps.DirectionsStatus.OK) {
+    directionsDisplay.setDirections(response); //Display the directions result
+    // response.routes[0].legs.forEach((leg) => {console.log(leg.start_address); console.log(leg.end_address); console.log(leg.distance); console.log(leg.duration); console.log(leg.steps);})
+  }
+});
+}
+
+const init = (mapElement, index) => {
+  var directionsService = new google.maps.DirectionsService();
+  var directionsDisplay = new google.maps.DirectionsRenderer();
+  // const mapElement = document.getElementById('map');
+  const markers = JSON.parse(mapElement.dataset.markers);
+  const travelMode = JSON.parse(mapElement.dataset.travelmode).toUpperCase();
+
+  const map = new google.maps.Map(document.getElementById(`map${index}`, {
+          center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+          zoom: 8,
+          gestureHandling: 'cooperative'
+        }));
+
+  directionsDisplay.setMap(map);
+
+  console.log(travelMode)
+
+  var request = {
+    origin: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+    // waypoints: waypts,
+    destination: new google.maps.LatLng(markers[markers.length-1].lat, markers[markers.length-1].lng),
+    travelMode: eval(`google.maps.DirectionsTravelMode.${travelMode}`)
+  };
+  directionsService.route(request, function(response, status) {
+  //Check if request is successful.
+  if (status == google.maps.DirectionsStatus.OK) {
 
     directionsDisplay.setDirections(response); //Display the directions result
-    response.routes[0].legs.forEach((leg) => {console.log(leg.start_address); console.log(leg.end_address); console.log(leg.distance); console.log(leg.duration); console.log(leg.steps);})
+    const instructions = document.getElementById(`instructions${index}`)
+
+    instructions.innerHTML = `${response.routes[0].legs[0].start_address} => ${response.routes[0].legs[0].end_address}<ul></ul>`;
+    const steps = document.getElementById(`instructionsteps${index}`)
+    response.routes[0].legs[0].steps.forEach((step) => {steps.insertAdjacentHTML('beforeend', `<li>${step.instructions}</li>`)})
   }
 });
 }
 
 const initGmap = () => {
-  const mapElement = document.getElementById('map');
-  if (mapElement) {init()};
+  const mapElementAll = document.getElementById(`mapall`);
+  if (mapElementAll) {initOverall(mapElementAll)};
+  const mapElements = document.getElementsByClassName('map');
+  if (mapElements) {
+    var index;
+    for (index = 0; index < mapElements.length; ++index) {
+      const mapElement = document.getElementById(`map${index}`);
+      init(mapElement, index);
+    }
+  };
 }
 
 export { initGmap };
