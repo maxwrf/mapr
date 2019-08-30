@@ -20,4 +20,12 @@ class PlanPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def edit_categories?
+    true
+  end
+
+  def update_categories?
+    true
+  end
 end

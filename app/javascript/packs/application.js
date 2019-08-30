@@ -4,6 +4,20 @@ import Picker from "pickerjs";
 import  "pickerjs/dist/picker.css";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
+import flatpickr from "flatpickr"
+import "flatpickr/dist/themes/airbnb.css"
+
+// $('.exampleInputDatePicker1').pickdate();
+
+$(document).ready(function(){
+  $(".category-choice").click(function(){
+    $(this).toggleClass("active");
+  });
+});
+
+flatpickr(".datepicker", {
+  altInput: true
+});
 
 initMapbox();
 
