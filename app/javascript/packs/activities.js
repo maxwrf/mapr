@@ -1,4 +1,4 @@
- const NEXT_STEP_ENDPOINT = ""; // TODO set to final stage realtive path
+ const NEXT_STEP_ENDPOINT = "/plans/:id"; // TODO set to final stage realtive path
  const activities = document.getElementById("activities");
  const cat_buttons = document.querySelectorAll('.cat-btn');
  const shortlistList = document.getElementById('shortlist');
@@ -96,10 +96,10 @@
     })
     .then(response => response.json())
     .then((data) => {
-      console.log(`Shortlist save response = ${data.status}`);
-      window.location.pathname = goto_url;
+      console.log(`Shortlist save response = ${data.plan_id}`);
+      goto_url = goto_url.replace(':id', data.plan_id)
+      window.location.pathname = '/';
     })
-    .catch(error => alert(error));
 };
 
  const createSubmitShortlistButton = () => {

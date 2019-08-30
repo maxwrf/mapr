@@ -7,11 +7,16 @@ class ActivitiesController < ApplicationController
     # TODO: this will still be populated with old api results if
     # shortlist was NOT SAVED (which clears non-shortlited items
     # in the process)
+
     # EITHER need to clear the db now... = losing shortlist if
     # return to page
+    @already_saved.destroy_all
+
     # OR some method of cleanup, i.e. could additionally marked
     # saved with a 'saved=true' and delete those that don't have
     # at this stage (before loading page)
+    # ...<here>
+
     plan = Plan.find(params[:plan_id])
     @categories = plan[:categories].split(',')
   end
