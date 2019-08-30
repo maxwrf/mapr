@@ -1,6 +1,6 @@
 import Picker from "pickerjs"
 import  "pickerjs/dist/picker.css"
- const picker =() => {
+ const pickerInit =() => {
 new Picker(document.querySelector('.start-time'), {
   format: 'HH:mm',
   headers: true,
@@ -34,5 +34,11 @@ new Picker(document.querySelector('.break-end-time'), {
   },
 });
 };
+
+const picker = () => {
+  if (document.querySelector('.break-start-time') && document.querySelector('.start-time')) {
+    pickerInit();
+  }
+}
 
 export { picker};

@@ -174,10 +174,16 @@ const init = () => {
   directionsService.route(request, function(response, status) {
   //Check if request is successful.
   if (status == google.maps.DirectionsStatus.OK) {
-    console.log(status);
+
     directionsDisplay.setDirections(response); //Display the directions result
+    response.routes[0].legs.forEach((leg) => {console.log(leg.start_address); console.log(leg.end_address); console.log(leg.distance); console.log(leg.duration); console.log(leg.steps);})
   }
 });
 }
 
-export { init };
+const initGmap = () => {
+  const mapElement = document.getElementById('map');
+  if (mapElement) {init()};
+}
+
+export { initGmap };
