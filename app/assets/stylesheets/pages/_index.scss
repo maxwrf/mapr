@@ -6,7 +6,7 @@
   display: grid;
   grid-template: 25% 75% / 75% 25%;
   div{
-    border: 1px solid black;
+    border: 0px solid black;
   }
 }
 
@@ -28,10 +28,6 @@
 
 .bg-3 {
   background-colour: #aaa;
-}
-
-h2 {
-  color: red;
 }
 
 
