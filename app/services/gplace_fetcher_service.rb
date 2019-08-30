@@ -1,7 +1,7 @@
-require 'faker' # dev
-require 'json'  # dev
-require 'open-uri'
-require 'httplog' # dev. MUST be after open-uri
+# # require 'faker' # dev
+# require 'json'  # dev
+# require 'open-uri'
+# # require 'httplog' # dev. MUST be after open-uri
 
 # PARAMS should be universal for all possible apis
 # it'S the job of the string builder to map to google spec

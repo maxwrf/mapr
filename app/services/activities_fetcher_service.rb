@@ -1,4 +1,4 @@
-require 'json' # dev
+# require 'json' # dev
 
 class ActivitiesFetcherService
   def fetch(num_activities, params)
