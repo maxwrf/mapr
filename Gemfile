@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+fsource 'https://rubygems.org'
 ruby '2.6.3'
 
 gem 'bootsnap', require: false
@@ -11,6 +11,7 @@ gem 'redis'
 gem 'pundit'
 gem "cocoon"
 
+gem 'faker'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
@@ -30,7 +31,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
-  gem 'faker'
+
   gem 'httplog'
 end
 
