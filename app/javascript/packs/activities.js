@@ -98,7 +98,7 @@
     .then((data) => {
       console.log(`Shortlist save response = ${data.plan_id}`);
       goto_url = goto_url.replace(':id', data.plan_id)
-      window.location.pathname = '/';
+      window.location.pathname = goto_url;
     })
 };
 
@@ -115,7 +115,7 @@ export const initializePage = () => {
         fetchActivities(params);
     });
     createSubmitShortlistButton()
-    // cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
-    fetchActivities("api/v1/activities?" + cat_buttons[0].innerText);
+    //cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
   });
+  fetchActivities("api/v1/activities?" + cat_buttons[0].innerText);
 };

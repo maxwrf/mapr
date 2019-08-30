@@ -11,7 +11,7 @@ class ActivitiesFetcherService
 
     activities = api_fetcher.fetch(num_activities, params)
     already_in_db = Activity.where(plan_id: params[:plan_id])
-    #binding.pry
+    puts 'HELLLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOoo'
     activities.each do |activity|
       p "INITIAL COUNT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! = #{already_in_db.count}"
         if already_in_db.find_by(place_id: activity[:place_id])
