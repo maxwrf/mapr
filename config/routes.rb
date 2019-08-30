@@ -3,8 +3,14 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :plans, only: [:index] do
+  # only for development purposes(max) -- delete for production
+  get "/test", to: 'plans#algorithm'
+
+  resources :plans, only: [:index, :new, :create, :edit, :update, :show] do
     # see carl first if think need to edit below
+    get "/edit_categories", to: 'plans#edit_categories'
+    patch "/update_categories", to: 'plans#update_categories'
+
     resources :activities, only: [ :index ]
     namespace :api, defaults: { format: :json } do
       namespace :v1 do

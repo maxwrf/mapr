@@ -47,17 +47,6 @@ ActiveRecord::Schema.define(version: 2019_08_29_151909) do
     t.index ["plan_id"], name: "index_breaks_on_plan_id"
   end
 
-  create_table "days", force: :cascade do |t|
-    t.bigint "plan_id"
-    t.datetime "start_date_time"
-    t.datetime "end_date_time"
-    t.string "start_address"
-    t.string "end_address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["plan_id"], name: "index_days_on_plan_id"
-  end
-
   create_table "plans", force: :cascade do |t|
     t.integer "number_adults"
     t.integer "number_children"
@@ -70,6 +59,11 @@ ActiveRecord::Schema.define(version: 2019_08_29_151909) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "start_date_time"
+    t.datetime "end_date_time"
+    t.string "start_address"
+    t.string "end_address"
+    t.string "city"
     t.string "categories"
     t.index ["user_id"], name: "index_plans_on_user_id"
   end
@@ -99,7 +93,6 @@ ActiveRecord::Schema.define(version: 2019_08_29_151909) do
 
   add_foreign_key "activities", "plans"
   add_foreign_key "breaks", "plans"
-  add_foreign_key "days", "plans"
   add_foreign_key "plans", "users"
   add_foreign_key "transports", "plans"
 end

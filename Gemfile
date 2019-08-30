@@ -9,6 +9,7 @@ gem 'puma'
 gem 'rails', '5.2.3'
 gem 'redis'
 gem 'pundit'
+gem "cocoon"
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'sassc-rails'
@@ -30,3 +31,7 @@ group :development, :test do
   gem 'faker'
   gem 'httplog'
 end
+
+gem 'geocoder'
+
+# gem 'dotenv-rails', groups: [:development, :test]
