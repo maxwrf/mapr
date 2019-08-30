@@ -19,5 +19,6 @@ class ActivitiesController < ApplicationController
 
     plan = Plan.find(params[:plan_id])
     @categories = plan[:categories].split(',')
+    @categories.delete_at(0) #correction for initial comma in list
   end
 end
