@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <div class="form-post">
+      <div class="form-plan">
         <h1>Write a post</h1>
         <div class="row">
           <div class="col-xs-6">
@@ -12,18 +12,10 @@
         </div>
           <!-- Inject categories here -->
         <%= simple_form_for(@plan) do |f| %>
-          <div class="custom-control custom-checkbox category-choices">
-            <input type="checkbox" class="custom-control-input hidden" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">
-              <i class="fa fa-check"></i>
-            </label>
-          </div>
-
-
+          <%= f.input :categories, collection: ['museum', 'park', 'shopping', 'art gallery', 'wildlife'], as: :check_boxes, input_html: { class: 'd-none'}, label_method: ->(item) { tag.div(item, class: 'category-choice') } %>
           <%= f.submit "Save", class: "btn btn-primary"  %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
