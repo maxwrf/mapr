@@ -35,13 +35,13 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     authorize @plan
     if @plan.update(plan_params_edit)
-      redirect_to plan_activities_path(@plan)
+      redirect_to  plan_edit_categories_path(@plan)
     else
       render :edit
     end
   end
 
-    def edit_categories
+  def edit_categories
     @plan = Plan.find(params[:plan_id])
     authorize @plan
   end
@@ -49,12 +49,10 @@ class PlansController < ApplicationController
   def update_categories
     @plan = Plan.find(params[:id])
     authorize @plan
-    if @plan.update(category_params.join(', '))
-      raise
-      #@plan.update(categories: plan_params_edit_categories[:categories].join(‘, ’))
+    if @plan.update(category_params)
       redirect_to plan_activities_path(@plan)
     else
-      render :edit
+      render :edit_categories
     end
   end
 
@@ -96,11 +94,12 @@ class PlansController < ApplicationController
 
   def plan_params_edit
     params.require(:plan).permit(:permit_walk, :permit_cycle, :permit_car, :permit_public_transport,
-      :stat_date_time, :end_date_time, :start_address, :end_address, breaks_attributes: [:preference_length, :preference_window_end, :preference_window_start])
+      :start_date_time, :end_date_time, :start_address, :end_address,  breaks_attributes: [:preference_length, :preference_window_end, :preference_window_start])
   end
 
   def category_params
-    params.require(:plan).permit(categories: [])
+    params[:plan][:categories] = params[:plan][:categories].join(',')
+    params.require(:plan).permit(:categories)
   end
   # def break_params
   #   params.require(:break).permit(:preference_length, :preference_window_end, :preference_window_start)
