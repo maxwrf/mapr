@@ -41,6 +41,21 @@ class PlansController < ApplicationController
     end
   end
 
+  def edit_categories
+    @plan = Plan.find(params[:plan_id])
+    authorize @plan
+  end
+
+  def update_categories
+    @plan = Plan.find(params[:id])
+    authorize @plan
+    if @plan.update(plan_params_edit)
+      redirect_to test_path
+    else
+      render :edit
+    end
+  end
+
   def show
     @plan = Plan.find(params[:id])
     authorize @plan
@@ -80,6 +95,10 @@ class PlansController < ApplicationController
   def plan_params_edit
     params.require(:plan).permit(:permit_walk, :permit_cycle, :permit_car, :permit_public_transport,
       :stat_date_time, :end_date_time, :start_address, :end_address, breaks_attributes: [:preference_length, :preference_window_end, :preference_window_start])
+  end
+
+  def plan_params_edit_categories
+    params.require(:plan).permit(:categories)
   end
 
   # def break_params
