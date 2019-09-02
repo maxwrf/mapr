@@ -19,7 +19,8 @@ class GplaceTextFetcherService < ApisFetcherService
         address: item['formatted_address'],
         longitude: item['geometry']['location']['lng'],
         latitude: item['geometry']['location']['lat'],
-        place_id: item['place_id']
+        place_id: item['place_id'],
+        image_ref: item['photos'][0]['photo_reference']
       }
       activities << Activity.new(details)
     end
