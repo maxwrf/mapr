@@ -10,6 +10,7 @@ import { initGmap } from '../plugins/gmaps';
 import { initPlaces } from '../plugins/init_autocomplete.js';
 import { picker } from '../plugins/timepicker.js';
 import { AosInit } from '../plugins/aos.js'
+// import { initMapStyle } from '../plugins/mapstyle.js'
 
 $(document).ready(function(){
   $(".category-choice").click(function(){
@@ -23,6 +24,7 @@ initPlaces();
 picker();
 initPicker();
 AosInit();
+// initMapStyle();
 
 const activities_page = document.getElementById("activities_page");
 if (activities_page) {
