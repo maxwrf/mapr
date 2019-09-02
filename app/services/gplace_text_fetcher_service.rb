@@ -1,10 +1,7 @@
-# require 'faker' # dev
-# require 'json'  # dev
-# require 'open-uri'
-# require 'httplog' # dev. MUST be after open-uri
+require 'open-uri' # MUST include else cause 500. ??? not clear why?
 
 # PARAMS should be universal for all possible apis
-# it'S the job of the string builder to map to google spec
+# it's the job of the string builder to map to google spec
 
 class GplaceTextFetcherService < ApisFetcherService
   def initialize
@@ -36,15 +33,13 @@ class GplaceTextFetcherService < ApisFetcherService
       p "Google places api call failed => #{res['status']}"
       return -1
     end
-     #p res
     res
   end
 
   def map_params(params)
     @api_params << map_category_params(params)
     @api_params << "key=#{ENV['GOOGLE_API_KEY']}"
-    @api_params << 'radius=2000' #TODO: how we doing this?
-    #@api_params << 'type=museum' # too restrictive, prefer keyword    @api_params << map_location_params(params)
+    @api_params << 'radius=2000' # TODO: how we doing this?
     @api_params << map_location_params(params)
   end
 
