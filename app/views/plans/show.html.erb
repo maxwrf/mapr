@@ -59,15 +59,13 @@
     <div class="container">
         <% @plan.activities.each do |activity| %>
           <!-- CARD FOR EACH ACTIVITY -->
-          <div class="card mt-4 mb-3">
+          <div class="card mt-4 mb-3" data-aos="fade-up">
             <img class="card-img-top" src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><%= activity.name %></h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <p class="card-text"><small class="text-muted">Category</small></p>
-              <div class="btn btn-primary">
-                <%= link_to "Delete", plan_activity_path(@plan, activity), method: :delete, data: { confirm: "Are you sure?" } %>
-              </div>
+                <%= link_to "Delete", plan_activity_path(@plan, activity), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
             </div>
           </div>
         <% end %>
