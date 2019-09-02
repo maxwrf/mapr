@@ -94,6 +94,10 @@ class PlansController < ApplicationController
   end
 
   def plan_params_edit
+    params[:permit_walk] = true if params[:permit_walk] == 1
+    params[:permit_car] = true if params[:permit_car] == 1
+    params[:permit_public_transport] = true if params[:permit_public_transport] == 1
+    params[:permit_cycle] = true if params[:permit_cycle] == 1
     params.require(:plan).permit(:permit_walk, :permit_cycle, :permit_car, :permit_public_transport,
       :start_date_time, :end_date_time, :start_address, :end_address,  breaks_attributes: [:preference_length, :preference_window_end, :preference_window_start])
   end
