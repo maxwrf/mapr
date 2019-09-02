@@ -21,4 +21,13 @@ class ActivitiesController < ApplicationController
     @categories = plan[:categories].split(',')
     @categories.delete_at(0) #correction for initial comma in list
   end
+
+  def destroy
+    @plan = Plan.find(params[:plan_id])
+    @activity = Activity.find(params[:id])
+    authorize @activity
+    binding.pry
+    @activity.destroy
+    redirect_to plan_path(@plan)
+  end
 end

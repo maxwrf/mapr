@@ -1,20 +1,10 @@
 <h1>This is your itinerary for your plan: <%= "#{@plan.name}" %></h1>
-<!-- <div class="container">
-  <div
-    class="mt-3 mb-3"
-    id="map"
-    style="width: 100%;
-    height: 600px;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  ></div>
-  <div id="instructions"></div>
-</div> -->
 
 
 
 
 
+<!-- navbar -->
 <ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
   <li class="nav-item">
     <a aria-controls="home" aria-selected="true" class="nav-link active" data-toggle="tab" href="#home" id="home-tab" role="tab">Overview</a>
@@ -67,11 +57,20 @@
 
   <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">
     <div class="container">
-      <ul>
-        <% @plan.activities.each do |e| %>
-          <li><%= e.name %></li>
+        <% @plan.activities.each do |activity| %>
+          <!-- CARD FOR EACH ACTIVITY -->
+          <div class="card mt-4 mb-3">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= activity.name %></h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Category</small></p>
+              <div class="btn btn-primary">
+                <%= link_to "Delete", plan_activity_path(@plan, activity), method: :delete, data: { confirm: "Are you sure?" } %>
+              </div>
+            </div>
+          </div>
         <% end %>
-      </ul>
     </div>
   </div>
 </div>

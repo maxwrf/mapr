@@ -35,7 +35,7 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     authorize @plan
     if @plan.update(plan_params_edit)
-      redirect_to  plan_edit_categories_path(@plan)
+      redirect_to plan_edit_categories_path(@plan)
     else
       render :edit
     end
