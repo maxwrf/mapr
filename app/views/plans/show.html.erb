@@ -1,9 +1,6 @@
 <h1>This is your itinerary for your plan: <%= "#{@plan.name}" %></h1>
 
 
-
-
-
 <!-- navbar -->
 <ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
   <li class="nav-item">
@@ -16,7 +13,11 @@
     <a aria-controls="contact" aria-selected="false" class="nav-link" data-toggle="tab" href="#contact" id="contact-tab" role="tab">Activities</a>
   </li>
 </ul>
+
+<!-- navbar TABS -->
 <div class="tab-content" id="justifiedTabContent">
+
+  <!-- TAB OVERVIEW -->
   <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
     <div class="container">
       <div
@@ -28,49 +29,157 @@
     </div>
   </div>
 
+  <!-- TAB STEP BY STEP NAVIGATION -->
   <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
     <div class="container">
-      <% @markers.each_with_index do |marker, index|  %>
-        <% break if index == @markers.length - 1  %>
-        <div class="container mt-4 mb-2">
-          <h4 mb-2 mt-4><%= "Step #{index + 1}" %></h4>
-            <div class="row">
-              <% markers = [marker, @markers[index + 1]] %>
-              <div
-                class="map col-8"
-                id="<%= "map#{index}" %>"
-                style= " height: 400px;"
-                data-markers="<%= markers.to_json %>"
-                data-travelmode="<%= @travel_mode.to_json %>"
-              ></div>
-              <div
-                class="instructions col-2"
-                id="<%= "instructions#{index}" %>"
-                style= " height: 400px;"
-              ></div>
-            </div>
-            <div class="row"><ul id="<%= "instructionsteps#{index}" %>"></ul></div>
-        </div>
-      <% end %>
-    </div>
-  </div>
 
+      <!-- Carousel shell for different navigation steps -->
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+      <!-- Looping through each maker which is an array of ordered coordinates -->
+        <% @markers.each_with_index do |marker, index|  %>
+          <% break if index == @markers.length - 1  %>
+              <!-- Declare carousel items -->
+              <% if index.zero? %>
+                <div class="carousel-item active">
+              <% else %>
+                <div class="carousel-item">
+              <% end %>
+                  <!-- the content of each carousel item is nested in a container -->
+                  <div class="container mt-4 mb-2">
+                    <!-- progress bar -->
+                    <div class="stepper-horiz">
+                      <!-- Create progress bar items that have been done / visited -->
+                      <% counter = 0 %>
+                      <% (index + 1).times do %>
+                      <div class="stepper done">
+                        <div class="stepper-icon"><i class="material-icons">check</i></div>
+                        <% if  @ordered_activities[counter].nil? %>
+                          <span class="stepper-text">Home</span>
+                        <% else %>
+                          <span class="stepper-text"><%= @ordered_activities[counter].name %></span>
+                      <% end %>
+                      </div>
+                      <% counter += 1 %>
+                      <% end %>
+
+                      <!-- Add porgress bar items which have not been done / visited -->
+                      <% (@markers.length - 2 - index).times do %>
+                      <div class="stepper active">
+                        <div class="stepper-icon"><i class="material-icons">access_time</i></div>
+                        <% if  @ordered_activities[counter].nil? %>
+                          <span class="stepper-text">Home></span>
+                        <% else %>
+                          <span class="stepper-text"><%= @ordered_activities[counter].name %></span>
+                        <% end %>
+                      </div>
+                      <% counter += 1 %>
+                      <% end %>
+                    </div>
+                    <!-- end of the progress bar -->
+
+                  <!-- card map-->
+                    <% markers = [marker, @markers[index + 1]] %>
+                    <!-- the actual content of one carousel slide is displayed on a card -->
+                    <div class="card mb-3">
+                      <!-- GMAPS -->
+                      <div
+                          class="map card-img-top"
+                          id="<%= "map#{index}" %>"
+                          style= " height: 400px;"
+                          data-markers="<%= markers.to_json %>"
+                          data-travelmode="<%= @travel_mode.to_json %>"
+                        ></div>
+                      <!-- card body -->
+                      <div class="card-body">
+                        <!-- Card header with visit ("Activity") and the required time -->
+                        <div class="d-flex justify-content-between align-items-center">
+                          <!-- Visit destination ("Activity") -->
+                          <% unless  index == @markers.length - 2 %>
+                            <div class="card-title align-self-center mb-0"><h3><%= "Visit: #{@ordered_activities[index].name}" %></h3></div>
+                          <% else %>
+                            <div class="card-title align-self-center mb-0"><h3 class="align-self-center">Going back home</h3></div>
+                          <% end %>
+                          <!-- Travel time -->
+                          <span class="badge badge-pill badge-primary p-1 w-25 text-center align-self-center" id="<%= "time#{index}" %>"></span>
+                        </div>
+                        <!-- Start address -->
+                        <h6 class="start card-text" id="<%= "start#{index}" %>"></h6>
+                        <!-- Destination address  -->
+                        <h6 class="end card-text" id="<%= "end#{index}" %>"></h6>
+                        <!-- Instrcution steps -->
+                        <div class="card-text"><ul id="<%= "instructionsteps#{index}" %>"></ul></div>
+                        <!-- TBD -->
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <!-- Info related to visit ("Activity") -->
+                        <% unless  index == @markers.length - 2 %>
+                          <div class="d-flex align-items-end justify-content-between">
+                            <!-- A link to the activities tab for mroe information -->
+                            <a href="#" class="btn btn-primary">Learn more on <%= @ordered_activities[index].name %></a>
+                            <!-- An image of the activity / "visit" -->
+                            <img src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80/" alt="..." class="img-thumbnail w-25">
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <!-- end of card -->
+                  </div>
+                  <!-- end of container -->
+                </div>
+                <!-- end of carousel item -->
+                <!-- FROM THIS POINT ONWARDS SUBLIME DOES NOT MATCH DIVS CORRECTLY AS TWO DIIFERENT ONES ARE OPENED BY A RUBY IF CLOSE BUT THEY ARE ONLY ONCE CLOSED AS ONLY ONE WILL MAKE IT TO THE DOM -->
+              </div>
+              <!-- end of inner carousel  -->
+        <% end %>
+        <!-- end of loop through the markers (coordinates of activities ordered) -->
+
+          <!-- carousell navigation control -->
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <!-- end of caorusel controls -->
+    </div>
+    <!-- end of wrapping container -->
+  </div>
+  <!-- end of navbar item -->
+
+
+  <!-- activities tab -->
   <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">
     <div class="container">
+        <!-- activities have been ordered and should be displayed one by one -->
         <% @ordered_activities.each do |activity| %>
           <!-- CARD FOR EACH ACTIVITY -->
           <div class="card mt-4 mb-3" data-aos="fade-up">
+            <!-- picture of each activity -->
             <img class="card-img-top" src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="Card image cap">
             <div class="card-body">
+              <!-- activity name -->
               <h5 class="card-title"><%= activity.name %></h5>
+              <!-- TBD -->
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <!-- Category -->
               <p class="card-text"><small class="text-muted">Category</small></p>
+              <!-- Possibility to delete card which redirects to plans show page -->
                 <%= link_to "Delete", plan_activity_path(@plan, activity), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
             </div>
+            <!-- end of card body -->
           </div>
+          <!-- end of card -->
         <% end %>
+        <!-- end of loop through the array of ordered activities -->
     </div>
+    <!-- end of wrapping container -->
   </div>
+  <!-- end of tab -->
 </div>
+<!-- end of entire navbar content -->
 
 

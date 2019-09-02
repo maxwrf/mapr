@@ -176,9 +176,15 @@ const init = (mapElement, index) => {
   if (status == google.maps.DirectionsStatus.OK) {
 
     directionsDisplay.setDirections(response); //Display the directions result
-    const instructions = document.getElementById(`instructions${index}`)
 
-    instructions.innerHTML = `${response.routes[0].legs[0].start_address} => ${response.routes[0].legs[0].end_address}<ul></ul>`;
+    const start = document.getElementById(`start${index}`)
+    const end = document.getElementById(`end${index}`)
+    const time = document.getElementById(`time${index}`)
+    start.innerHTML = `Start: ${response.routes[0].legs[0].start_address}`;
+    end.innerHTML = `To: ${response.routes[0].legs[0].end_address}`;
+    time.innerHTML = `Travel duration: ${response.routes[0].legs[0].duration.text}`;
+
+
     const steps = document.getElementById(`instructionsteps${index}`)
     response.routes[0].legs[0].steps.forEach((step) => {steps.insertAdjacentHTML('beforeend', `<li>${step.instructions}</li>`)})
   }

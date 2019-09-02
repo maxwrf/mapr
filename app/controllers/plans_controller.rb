@@ -85,7 +85,6 @@ class PlansController < ApplicationController
         @ordered_activities << activities[num - 1]
       end
     end
-    binding.pry
   end
 
   private
