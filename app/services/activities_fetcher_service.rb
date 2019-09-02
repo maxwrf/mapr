@@ -1,5 +1,3 @@
-# require 'json' # dev
-
 class ActivitiesFetcherService
   def fetch(num_activities, params)
     api_fetcher = case params[:src]
@@ -11,9 +9,8 @@ class ActivitiesFetcherService
 
     activities = api_fetcher.fetch(num_activities, params)
     already_in_db = Activity.where(plan_id: params[:plan_id])
-    puts 'HELLLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOoo'
-    activities.each do |activity|
-      p "INITIAL COUNT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! = #{already_in_db.count}"
+    ActiveRecord::Base.logger.silence do
+      activities.each do |activity|
         if already_in_db.find_by(place_id: activity[:place_id])
           p "NOT SAVED - already in db"
         else
@@ -23,4 +20,6 @@ class ActivitiesFetcherService
         end
       end
     end
+    activities
+  end
 end

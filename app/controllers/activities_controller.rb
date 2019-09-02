@@ -10,7 +10,9 @@ class ActivitiesController < ApplicationController
 
     # EITHER need to clear the db now... = losing shortlist if
     # return to page
-    @already_saved.destroy_all
+    ActiveRecord::Base.logger.silence do
+      @already_saved.destroy_all
+    end
 
     # OR some method of cleanup, i.e. could additionally marked
     # saved with a 'saved=true' and delete those that don't have

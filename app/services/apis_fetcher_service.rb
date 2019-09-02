@@ -1,15 +1,8 @@
-# require 'faker' # dev
-# require 'json'  # dev
-# require 'open-uri'
-# require 'httplog' # dev. MUST be after open-uri
-
 # PARAMS should be universal for all possible apis
 # it'S the job of the string builder to map to google spec
 
 class ApisFetcherService
-
-  # TODO remove TEST_PARAMS before production
-  def fetch(num_results, params = @TEST_PARAMS)
+  def fetch(num_results, params)
     query_url = build_query_url(params)
     api_response = fetch_from_api(query_url)
     results = api_response_to_activities(api_response)

@@ -1,7 +1,4 @@
-# # require 'faker' # dev
-# require 'json'  # dev
-# require 'open-uri'
-# # require 'httplog' # dev. MUST be after open-uri
+require 'open-uri' # MUST include else cause 500. ??? not clear why?
 
 # PARAMS should be universal for all possible apis
 # it'S the job of the string builder to map to google spec
