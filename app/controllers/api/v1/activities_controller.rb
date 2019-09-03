@@ -24,7 +24,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     render json: { details: details, html: html }
   end
 
-  def details
+  def search
     @activity = Activity.new
     authorize @activity
     #fetcher = ActivitiesFetcherService.new

@@ -27,7 +27,6 @@
   });
 };
 
-
 const createAddToShortlistButton = (target) => {
   target.innerHTML = 'Shortlist <i class="fas fa-plus-square"></i>';
   target.classList.remove('btn-warning');
@@ -39,7 +38,6 @@ const createAddToShortlistButton = (target) => {
   card.classList.add('off-list');
 };
 
-
 const addToShortlist = (placeId) => {
   console.log(`Adding ${ placeId }`);
   const activity = activityIndex[placeId];
@@ -49,7 +47,6 @@ const addToShortlist = (placeId) => {
          <br>${ activity.average_rating }</li><br>`);
   const cardButton = document.getElementById(`b_${ placeId }`);
   createRemoveFromShortlistButton(cardButton);
-
 };
 
 const handleAddToShortlist = (event) => {
@@ -127,6 +124,7 @@ const fetchDetails = (place_id) => {
 const handleSearchSubmit = (event) => {
   const tempConstantSearch = 'Berliner Unterwelten'
   const endpoint = `api/v1/search?q=${tempConstantSearch}`
+  console.log(endpoint)
   fetch(endpoint)
   .then(response => response.json())
   .then((data) => {
