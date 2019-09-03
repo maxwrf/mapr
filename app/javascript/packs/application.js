@@ -9,6 +9,8 @@ import { initGmap } from '../plugins/gmaps';
 import { initPlaces } from '../plugins/init_autocomplete.js';
 import {picker} from '../plugins/timepicker.js';
 import { initPicker } from '../plugins/flatpickr';
+import { initTopFunction } from '../plugins/button_scroll';
+
 
 $(document).ready(function(){
   $(".category-choice").click(function(){
@@ -21,6 +23,7 @@ initMapbox();
 initGmap();
 initPlaces();
 picker();
+initTopFunction();
 
 const activities_page = document.getElementById("activities_page");
 if (activities_page) {

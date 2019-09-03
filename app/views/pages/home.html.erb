@@ -16,17 +16,28 @@
                 <%= f.label :Date %>
                 <%= f.text_field :start_date_time, class: 'form-control datepicker' %>
               </div>
-
-              <div class="form-group">
-                <%= f.label :Adults %>
-                <%= f.number_field :number_adults, in: 0.0..20.0, step: 1.0, class: 'form-control' %>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <%= f.label :Adults %>
+                    <div class="num d-flex">
+                      <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();event.preventDefault()">-</button>
+                      <%= f.number_field :number_adults, in: 0.0..20.0, step: 1.0, placeholder: "0", class: 'form-control' %>
+                      <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();event.preventDefault()">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <%= f.label :Children %>
+                    <div class="num d-flex">
+                      <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();event.preventDefault()">-</button>
+                      <%= f.number_field :number_children, in: 0.0..20.0, step: 1.0, placeholder: "0", class: 'form-control' %>
+                       <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();event.preventDefault()">+</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              <div class="form-group">
-                <%= f.label :Children %>
-                <%= f.number_field :number_children, in: 0.0..20.0, step: 1.0, class: 'form-control' %>
-              </div>
-
               <%= f.submit class: 'btn btn-primary bg-thematic' %>
             <% end %>
         </div>
@@ -36,44 +47,53 @@
 </div>
 
 
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <%= image_tag("choosing", class: "h-50") %>
-    </div>
-    <div class="col-sm">
-      <%= image_tag("robot", class: "h-50") %>
-    </div>
-    <div class="col-sm">
-      <%= image_tag("map_2", class: "h-50") %>
-    </div>
-  </div>
-</div> -->
+<!-- How it works -->
 
-<div class="container">
-  <div class="row justify-content-start">
+<!-- <i class="material-icons icon-hiw col-thematic-inv">looks_one</i> -->
+<!-- <i class="material-icons icon-hiw col-thematic-inv">looks_two</i> -->
+<!-- <i class="material-icons icon-hiw col-thematic-inv">looks_3</i> -->
+<div class="section-steps container mt-5 mb-5">
+  <h2 class="font-weight-bold col-thematic-inv text-center"><span>How it works</span></h2>
+  <div class="row mb-5 align-items-center">
     <div class="col-6">
-      <%= image_tag("choosing", class: "h-50") %>
-      <i class="material-icons">looks_one</i>
+      <%= image_tag("choosing", class: "picture") %>
+    </div>
+    <div class="col-6">
+      <h4 class="col-thematic">Step 1</h4>
+      <h3 class="col-text-primary font-weight-bold">Select your favorite sight</h3>
+      <p class="col-text-secondary mt-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     </div>
   </div>
-  <div class="row justify-content-end">
+  <div class="row mb-5 align-items-center">
     <div class="col-6">
-      <%= image_tag("robot", class: "h-50") %>
-      <i class="material-icons">looks_two</i>
+      <h4 class="col-thematic text-right">Step 2</h4>
+      <h3 class="col-text-primary font-weight-bold text-right">Robot time</h3>
+      <p class="col-text-secondary mt-4 text-right">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div class="col-6">
+      <%= image_tag("robot", class: "picture") %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-6 justify-content-start">
-      <%= image_tag("map_2", class: "h-50") %>
-      <i class="material-icons">looks_3</i>
+  <div class="row align-items-center">
+    <div class="col-6">
+      <%= image_tag("map_2", class: "picture") %>
+    </div>
+    <div class="col-6">
+      <h4 class="col-thematic">Step 2</h4>
+      <h3 class="col-text-primary font-weight-bold">Enjoy your day plan</h3>
+      <p class="col-text-secondary mt-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     </div>
   </div>
 </div>
 
 
+<!-- Testimonials -->
 
-<div class="wrapper mt-5 mb-5">
+<div class="section-steps container">
+  <h2 class="font-weight-bold col-thematic-inv text-center mt-5"><span>Our customers love us</span></h2>
+</div>
+
+<div class="wrapper mt-5">
   <div class="one"><img class="d-block w-100 photo" src="https://images.unsplash.com/photo-1500154040473-d91a2e21a6ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2104&q=80" alt="First slide">
     <div class="text_adj">
       <h3>Leonard, 24</h3>
@@ -165,3 +185,11 @@
     </div>
   </div>
 </div>
+
+<!-- Scroll up button -->
+<div class="container d-flex justify-content-center">
+  <button type="button" class="btn btn-primary bg-thematic p-4 m-5" id="scroll-top-btn" title="Go to top">Plan your trip now</button>
+</div>
+
+
+
