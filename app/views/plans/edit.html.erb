@@ -1,6 +1,8 @@
+<div class="section-steps container">
+  <h2 class="font-weight-bold col-thematic-inv text-center mt-2"><span>Select preferences for your trip</span></h2>
+</div>
 <div class="container">
-  <h2 class="text-center header-pref" style="margin-bottom: 20px; margin-top: 10px;"> Select your preferences for your trip</h2>
-  <%=form_for @plan do |f| -%>‚
+  <%=form_for @plan do |f| -%>
     <div class="row">
       <div class="col from-pref mx-2">
         <%= f.label :start_date_time %>
@@ -16,7 +18,7 @@
           <p class="mb-4 head-label">Travel by:</p>
           <div class="btn-group-lg btn-group-toggle "    id="fromGroupTransport">
             <div>
-              <div class="col d-flex justify-content-around"">
+              <div class="col d-flex justify-content-around">
                 <%= f.check_box :permit_walk, class:"js-value-updater", id:"option1" %>
                 <%= f.label :permit_walk, 'directions_walk', class:"btn btn-secondary js-btn material-icons"%>
                 <%= f.check_box :permit_car, class:"js-value-updater", id:"option2"%>
@@ -32,17 +34,19 @@
           </div>
       </div>
     </div>
-  <div class="my-2">
-    <%= f.fields_for :breaks, @break do |fb| %>
-       <h3>Add a break</h3>
-       <%= render 'break_fields', f: fb %>
-  </div>
-    <% end %>
-  <div class="links">
-    <%= link_to_add_association 'add_comment', f, :breaks, class:"material-icons col-thematic" %>
+  <div class="from-pref mt-3">
+    <div class="my-2">
+      <%= f.fields_for :breaks, @break do |fb| %>
+         <h3>Add a break</h3>
+         <%= render 'break_fields', f: fb %>
+    </div>
+      <% end %>
+    <div class="links">
+      <%= link_to_add_association 'add_comment', f, :breaks, class:"material-icons col-thematic" %>
+    </div>
   </div>
   <div class="d-flex justify-content-end ">
-  <%= f.submit 'Select your categories',  class: "btn btn-primary my-3 "%>
+  <%= f.submit 'Select your categories',  class: "btn btn-primary bg-thematic mt-4"%>
   </div>
   <% end %>
 </div>
