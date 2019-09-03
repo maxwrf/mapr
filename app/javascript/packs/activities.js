@@ -21,6 +21,8 @@
       else {
         createAddToShortlistButton(cardButton);
       }
+      const card = document.getElementById(activity.place_id);
+      card.addEventListener('click', handleShowDetails);
     });
   });
 };
@@ -84,8 +86,6 @@ const removeFromShortlist = (placeId) => {
   createAddToShortlistButton(cardButton);
 };
 
-
-
  const saveShortlist = (goto_url) => {
   fetch("api/v1/shortlist/save", {
       method: 'POST',
@@ -103,6 +103,10 @@ const removeFromShortlist = (placeId) => {
   submitShortlistButton.addEventListener("click", (event) => {
     saveShortlist(NEXT_STEP_ENDPOINT);
   });
+};
+
+const handleShowDetails = (event) => {
+  window.alert(event.currentTarget.id);
 };
 
 export const initializePage = () => {
