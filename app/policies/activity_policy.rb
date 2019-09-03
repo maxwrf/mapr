@@ -16,4 +16,8 @@ class ActivityPolicy < ApplicationPolicy
   def details?
     true
   end
+
+  def search?
+    true
+  end
 end

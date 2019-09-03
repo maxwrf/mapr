@@ -124,7 +124,19 @@ const fetchDetails = (place_id) => {
   });
 }
 
+const handleSearchSubmit = (event) => {
+  const tempConstantSearch = 'Berliner Unterwelten'
+  const endpoint = `api/v1/search?q=${tempConstantSearch}`
+  fetch(endpoint)
+  .then(response => response.json())
+  .then((data) => {
+    window.alert(`search response => ${data.activities}`);
+  });
+}
+
 export const initializePage = () => {
+  const searchSubmit = document.getElementById('searchSubmit');
+  searchSubmit.addEventListener("click", handleSearchSubmit);
   cat_buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
       let params = `q=${event.currentTarget.innerText}`;

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :activities, only: [ :index]
         get 'details', to: 'activities#details'
+        get 'search', to: 'activities#search'
         post 'shortlist/save', to: 'activities#save_shortlist'
       end
     end
