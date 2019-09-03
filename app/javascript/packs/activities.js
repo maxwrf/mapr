@@ -11,81 +11,79 @@
   fetch("api/v1/activities?" + params)
   .then(response => response.json())
   .then((data) => {
-    activities.innerHTML = '';
-    data.forEach((activity) => {
+    activities.innerHTML = data.html;
+    data.activities.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
-      activities.insertAdjacentHTML("beforeend",
-        `<li><b>${activity.name}</b>
-         <br><em>Rating: </em>${activity.average_rating}
-         <br><em>Address: </em>${activity.address}
-         <br><em>Location: </em>${activity.latitude} ${activity.longitude}
-         <br><em>Id: </em>${activity.place_id}`);
+      const cardButton = document.getElementById(`b_${ activity.place_id}`);
       if (shortlist.includes(activity.place_id)) {
-        activities.insertAdjacentHTML("beforeend",
-        `<br><span id="${activity.place_id}" class="btn btn-sm btn-warning">remove from shortlist</span>
-         <br><br></li>`);
-        let button = document.getElementById(activity.place_id);
-        button.addEventListener("click", handleRemoveFromShortlist);
+        createRemoveFromShortlistButton(cardButton);
       }
       else {
-        activities.insertAdjacentHTML("beforeend",
-        `<br><span id="${activity.place_id}" class="on-shortlist btn btn-sm btn-primary">add to shortlist</span>
-         <br><br></li>`);
-        let button = document.getElementById(activity.place_id);
-        button.addEventListener("click", handleAddToShortlist);
+        createAddToShortlistButton(cardButton);
       }
+      const card = document.getElementById(activity.place_id);
+      card.addEventListener('click', handleShowDetails);
     });
   });
 };
 
- const handleAddToShortlist = (event) => {
-  addToShortlist(event.currentTarget.id);
+
+const createAddToShortlistButton = (target) => {
+  target.innerHTML = 'Shortlist <i class="fas fa-plus-square"></i>';
+  target.classList.remove('btn-warning');
+  target.classList.add('btn-primary');
+  target.removeEventListener('click', handleRemoveFromShortlist);
+  target.addEventListener('click', handleAddToShortlist);
+  const card = document.getElementById(target.dataset.placeId);
+  card.classList.remove('on-list');
+  card.classList.add('off-list');
 };
 
- const addToShortlist = (placeId) => {
-  console.log(`Adding ${placeId}`);
+
+const addToShortlist = (placeId) => {
+  console.log(`Adding ${ placeId }`);
   const activity = activityIndex[placeId];
   shortlist.push(placeId)
   shortlistList.insertAdjacentHTML("beforeend",
-        `<li id="s_${placeId}">${activity.name}
-         <br>${activity.average_rating}</li><br>`);
-  const activityMainCardButton = document.getElementById(placeId);
-  createRemoveFromShortlistButton(activityMainCardButton);
-  activityMainCardButton.removeEventListener('click', handleAddToShortlist);
-  activityMainCardButton.addEventListener('click', handleRemoveFromShortlist);
+        `<li id="s_${ placeId }">${ activity.name }
+         <br>${ activity.average_rating }</li><br>`);
+  const cardButton = document.getElementById(`b_${ placeId }`);
+  createRemoveFromShortlistButton(cardButton);
+
 };
 
- const createRemoveFromShortlistButton = (target) => {
-  target.innerHTML = '';
-  target.insertAdjacentHTML("beforeend", 'remove from shortlist');
-  target.classList.remove('off-list', 'btn-primary');
-  target.classList.add('on-list', 'btn-warning');
+const handleAddToShortlist = (event) => {
+  addToShortlist(event.currentTarget.dataset.placeId);
 };
 
- const handleRemoveFromShortlist = (event) => {
-          removeFromShortlist(event.currentTarget.id);
+// when on shortlist
+
+const createRemoveFromShortlistButton = (target) => {
+  target.innerHTML = '<i class="far fa-trash-alt"></i>';
+  target.classList.remove('btn-primary');
+  target.classList.add('btn-warning');
+  target.removeEventListener('click', handleAddToShortlist);
+  target.addEventListener('click', handleRemoveFromShortlist);
+  const card = document.getElementById(target.dataset.placeId);
+  card.classList.remove('off-list');
+  card.classList.add('on-list');
 };
 
- const removeFromShortlist = (placeId) => {
-  console.log(`Removing ${placeId}`);
+const handleRemoveFromShortlist = (event) => {
+  removeFromShortlist(event.currentTarget.dataset.placeId);
+};
+
+const removeFromShortlist = (placeId) => {
+  console.log(`Removing ${ placeId }`);
   const activity = activityIndex[placeId];
   const index = shortlist.indexOf(placeId);
   if (index > -1) {
      shortlist.splice(index, 1);
   }
-  const activityShortlistCard = document.getElementById(`s_${placeId}`);
+  const activityShortlistCard = document.getElementById(`s_${ placeId }`);
   activityShortlistCard.parentNode.removeChild(activityShortlistCard);
-  const activityMainCardButton = document.getElementById(placeId);
-  createAddToShortlistButton(activityMainCardButton);
-  activityMainCardButton.removeEventListener('click', handleRemoveFromShortlist);
-  activityMainCardButton.addEventListener('click', handleAddToShortlist);
-};
-
- const createAddToShortlistButton = (target) => {
-  target.innerHTML = '';
-  target.insertAdjacentHTML("beforeend", 'add to shortlist');
-  target.classList.remove('on-list', 'btn-warning');
-  target.classList.add('off-list', 'btn-primary');
+  const cardButton = document.getElementById(`b_${ placeId }`);
+  createAddToShortlistButton(cardButton);
 };
 
  const saveShortlist = (goto_url) => {
@@ -107,6 +105,25 @@
   });
 };
 
+const handleShowDetails = (event) => {
+  // ignore event if shortlist button was clicked
+  const excludeId = `b_${event.currentTarget.id}`;
+  if (event.target.id != excludeId) {
+    fetchDetails(event.currentTarget.id);
+  }
+};
+
+const fetchDetails = (place_id) => {
+  const endpoint = `api/v1/details?place_id=${place_id}`
+  fetch(endpoint)
+  .then(response => response.json())
+  .then((data) => {
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.innerHTML = data.html;
+    $('#modal').modal();
+  });
+}
+
 export const initializePage = () => {
   cat_buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -116,5 +133,5 @@ export const initializePage = () => {
     createSubmitShortlistButton()
     //cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
   });
-  fetchActivities("api/v1/activities?" + cat_buttons[0].innerText);
+  fetchActivities("api/v1/activities?q=" + cat_buttons[0].innerText);
 };

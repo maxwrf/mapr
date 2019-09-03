@@ -1,24 +1,31 @@
-<div id="activities_page" class="grid-container">
-  <div class="bg-1 span2c">
-    <% @categories.each_with_index do |text, ind| %>
-    <p id="<%= ind %>" class="cat-btn btn btn-secondary"><%= text %></p>
-    <% end %>
-  </div>
-  <div class="bg-2">
-    <br>
-    <h3>RESULTS</h3>
-    <ul id="activities">
-    </ul>
-  </div>
-  <div class="bg-3">
-    <p id="submit_shortlist" class="btn btn-success">Continue to Itinerary</p>
-    <br>
-    <br>
-    <h3>SHORTLIST</h3>
 
-    <ul id="shortlist">
-    </ul>
+<div id="activities_page" class="activities-page-container">
+  <div class="grid-container">
+    <div class='activities-page-subcontainer'>
+      <% @categories.each_with_index do |text, ind| %>
+      <p id="<%= ind %>" class="cat-btn btn btn-secondary"><%= text %></p>
+      <% end %>
+    </div>
+    <div class='activities-page-subcontainer'>
+      <p id="submit_shortlist" class="btn btn-success">Continue to Itinerary</p>
+    </div>
+    <div class='activities-page-subcontainer'>
+      <h3>ACTIVITIES</h3>
+      <ul id="activities">
+      </ul>
+    </div>
+    <div class='activities-page-subcontainer'>
+      <h3>SHORTLIST</h3>
+      <div class="d-flex flex-column">
+      <%= render partial: 'activities/shortlisted_activity_card.html.erb' %>
+      <%= render partial: 'activities/shortlisted_activity_card.html.erb' %>
+      <%= render partial: 'activities/shortlisted_activity_card.html.erb' %>
+      <ul id="shortlist">
+      </ul>
+      </div>
+    </div>
   </div>
+  <div id="modal-container"></div>
 </div>
 
 
