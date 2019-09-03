@@ -1,10 +1,7 @@
-# require 'faker' # dev
-# require 'json'  # dev
-# require 'open-uri'
-# require 'httplog' # dev. MUST be after open-uri
+require 'open-uri' # MUST include else cause 500. ??? not clear why?
 
 # PARAMS should be universal for all possible apis
-# it'S the job of the string builder to map to google spec
+# it's the job of the string builder to map to google spec
 
 class GplaceTextFetcherService < ApisFetcherService
   def initialize
@@ -13,9 +10,9 @@ class GplaceTextFetcherService < ApisFetcherService
 
   private
 
-  def api_response_to_activities(res)
+  def build_app_data(res)
     activities = []
-    res['results'].each do |item|
+    res['results'].each_with_index do |item, ind|
       details = {
         name: item['name'],
         average_rating: item['rating'].to_f,
@@ -24,6 +21,8 @@ class GplaceTextFetcherService < ApisFetcherService
         latitude: item['geometry']['location']['lat'],
         place_id: item['place_id']
       }
+      # not all activities have photo data, if they do it's inside single ele array
+      details[:image_ref] = item['photos'][0]['photo_reference'] if item['photos']
       activities << Activity.new(details)
     end
     activities
@@ -36,15 +35,13 @@ class GplaceTextFetcherService < ApisFetcherService
       p "Google places api call failed => #{res['status']}"
       return -1
     end
-     #p res
     res
   end
 
   def map_params(params)
     @api_params << map_category_params(params)
     @api_params << "key=#{ENV['GOOGLE_API_KEY']}"
-    @api_params << 'radius=2000' #TODO: how we doing this?
-    #@api_params << 'type=museum' # too restrictive, prefer keyword    @api_params << map_location_params(params)
+    @api_params << 'radius=2000' # TODO: how we doing this?
     @api_params << map_location_params(params)
   end
 

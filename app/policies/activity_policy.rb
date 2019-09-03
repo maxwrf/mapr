@@ -16,4 +16,12 @@ class ActivityPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def details?
+    true
+  end
+
+  def search?
+    true
+  end
 end

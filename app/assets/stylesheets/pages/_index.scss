@@ -1,33 +1,48 @@
 // Import page-specific CSS files here.
 @import "home";
 
-.grid-container {
-  width: 100%;
-  display: grid;
-  grid-template: 25% 75% / 75% 25%;
-  div{
-    border: 0px solid black;
+#activities_page {
+
+  .activities-page-container {
+    margin: 30px 0px;
   }
+
+  .grid-container {
+    width: 100%;
+    display: grid;
+    grid-template: 25% 75% / 75% 25%;
+  }
+
+  .current-cat {
+    color: red;
+  }
+
+  .shortlisted-activity-card {
+    height: 100px;
+    radius: 5px;
+    color: #fff;
+    background-size: cover;
+    background-position: center;
+    h5 {
+      font-size: 18px;
+    }
+  }
+
+  .activities-page-subcontainer {
+    margin: 20px;
+  }
+
+  .shortlist-card-remove-button {
+    width: 20px;
+    .btn {
+      padding: 10px;
+      min-width: 2rem;
+    }
+  }
+
+  .on-list {
+     box-shadow: 15px 15px 0px 0px #0E7C3C;
+     border: 5px solid #0E7C3C;
+  }
+
 }
-
-.current-cat {
-  color: red;
-}
-
-.span2c {
-  grid-column: 1 / 3;
-}
-
-.bg-1 {
-  background-colour: #eee;
-}
-
-.bg-2 {
-  background-colour: #ccc;
-}
-
-.bg-3 {
-  background-colour: #aaa;
-}
-
-

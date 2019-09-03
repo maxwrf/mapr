@@ -1,20 +1,27 @@
-.bg-thematic-inv {
-  color: white;
-  background-color: $thematic_inv;
-}
-
-.bg-thematic-inv:not(:disabled):not(.disabled).active {
-  color: white;
-  background-color: grey;
-}
-
 #fromGroupTransport {
    input {
     display: none;
   }
-
   label {
     margin-right: 13px;
   }
+}
+
+.btn-secondary {
+  background-color: #FF9F1C;
+}
+
+.btn-primary {
+  background-color: #05C8A6;
+}
+
+.js-btn {
+    width: 120px;
+    height: 80px;
+    font-size: 40px !important ;
+    padding: 18px;
+    background-color: white;
+    color: #05C8A6;
+
 }
 
