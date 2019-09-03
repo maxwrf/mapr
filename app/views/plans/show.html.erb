@@ -54,7 +54,7 @@
                       <% counter = 0 %>
                       <% (index + 1).times do %>
                       <div class="stepper done">
-                        <div class="stepper-icon"><i class="material-icons">check</i></div>
+                        <div class="stepper-icon bg-secondary"><i class="material-icons">check</i></div>
                         <% if  @ordered_activities[counter].nil? %>
                           <span class="stepper-text">Home</span>
                         <% else %>
@@ -64,12 +64,12 @@
                       <% counter += 1 %>
                       <% end %>
 
-                      <!-- Add porgress bar items which have not been done / visited -->
+                      <!-- Add progress bar items which have not been done / visited -->
                       <% (@markers.length - 2 - index).times do %>
                       <div class="stepper active">
                         <div class="stepper-icon"><i class="material-icons">access_time</i></div>
                         <% if  @ordered_activities[counter].nil? %>
-                          <span class="stepper-text">Home></span>
+                          <span class="stepper-text">Home</span>
                         <% else %>
                           <span class="stepper-text"><%= @ordered_activities[counter].name %></span>
                         <% end %>
@@ -116,7 +116,7 @@
                         <% unless  index == @markers.length - 2 %>
                           <div class="d-flex align-items-end justify-content-between">
                             <!-- A link to the activities tab for mroe information -->
-                            <a href="#" class="btn btn-primary">Learn more on <%= @ordered_activities[index].name %></a>
+                            <a href="#" class="btn btn-primary more-info">Learn more on <%= @ordered_activities[index].name %></a>
                             <!-- An image of the activity / "visit" -->
                             <img src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80/" alt="..." class="img-thumbnail w-25">
                           </div>
