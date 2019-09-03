@@ -21,6 +21,8 @@
       else {
         createAddToShortlistButton(cardButton);
       }
+      const card = document.getElementById(activity.place_id);
+      card.addEventListener('click', handleShowDetails);
     });
   });
 };
@@ -84,8 +86,6 @@ const removeFromShortlist = (placeId) => {
   createAddToShortlistButton(cardButton);
 };
 
-
-
  const saveShortlist = (goto_url) => {
   fetch("api/v1/shortlist/save", {
       method: 'POST',
@@ -105,6 +105,25 @@ const removeFromShortlist = (placeId) => {
   });
 };
 
+const handleShowDetails = (event) => {
+  // ignore event if shortlist button was clicked
+  const excludeId = `b_${event.currentTarget.id}`;
+  if (event.target.id != excludeId) {
+    fetchDetails(event.currentTarget.id);
+  }
+};
+
+const fetchDetails = (place_id) => {
+  const endpoint = `api/v1/details?place_id=${place_id}`
+  fetch(endpoint)
+  .then(response => response.json())
+  .then((data) => {
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.innerHTML = data.html;
+    $('#modal').modal();
+  });
+}
+
 export const initializePage = () => {
   cat_buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -114,5 +133,5 @@ export const initializePage = () => {
     createSubmitShortlistButton()
     //cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
   });
-  fetchActivities("api/v1/activities?" + cat_buttons[0].innerText);
+  fetchActivities("api/v1/activities?q=" + cat_buttons[0].innerText);
 };

@@ -5,12 +5,24 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     # e.g. url http://localhost:3000/plans/1/api/v1/activities
     @activities = policy_scope(Activity)
     fetcher = ActivitiesFetcherService.new
-    @activities = fetcher.fetch(5, params)
+    @activities = fetcher.fetch(params)
     html = render_to_string partial: 'activities/activity_cards.html.erb', locals: { activities: @activities }
     render json: { activities: @activities, html: html }
 
     # option instead of json...
     #
+  end
+
+  def details
+    @activity = Activity.new
+    authorize @activity
+    fetcher = ActivitiesFetcherService.new
+    params[:action] = 'details'
+    details = fetcher.fetch(params)
+    #binding.pry
+    html = render_to_string partial: 'activities/activity_details.html.erb', locals: { data: details }
+    # render json: { activities: @activities, html: html }
+    render json: { details: details, html: html }
   end
 
   def save_shortlist

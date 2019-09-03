@@ -10,7 +10,7 @@ class GplaceTextFetcherService < ApisFetcherService
 
   private
 
-  def api_response_to_activities(res)
+  def build_app_data(res)
     activities = []
     res['results'].each_with_index do |item, ind|
       details = {
