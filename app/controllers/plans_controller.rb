@@ -3,13 +3,6 @@ require 'open-uri'
 # require 'matrix'
 
 class PlansController < ApplicationController
-  def algorithm(sights, travel_mode)
-    @travel_matrix = TravelMatrix.generate(sights, travel_mode)
-    ts = TravellingSalesman.run(sights, @travel_matrix)
-    @record_distance = ts[:record_distance]
-    return ts[:best_ever]
-  end
-
   def create
     @plan = Plan.new(plan_params)
     authorize @plan
@@ -35,7 +28,7 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     authorize @plan
     if @plan.update(plan_params_edit)
-      redirect_to  plan_edit_categories_path(@plan)
+      redirect_to plan_edit_categories_path(@plan)
     else
       render :edit
     end
@@ -85,9 +78,23 @@ class PlansController < ApplicationController
         lng: e[1]
       }
     end
+
+    @ordered_activities = []
+    order.each_with_index do |num, i|
+      unless i.zero? || i == order.length - 1
+        @ordered_activities << activities[num - 1]
+      end
+    end
   end
 
   private
+
+  def algorithm(sights, travel_mode)
+    @travel_matrix = TravelMatrix.generate(sights, travel_mode)
+    ts = TravellingSalesman.run(sights, @travel_matrix)
+    @record_distance = ts[:record_distance]
+    return ts[:best_ever]
+  end
 
   def plan_params
     params.require(:plan).permit(:city, :start_date_time, :number_adults, :number_children)

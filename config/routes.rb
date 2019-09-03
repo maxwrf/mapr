@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get '/edit_categories', to: 'plans#edit_categories'
     # patch "/update_categories", to: 'plans#update_categories'
 
-    resources :activities, only: [ :index ]
+    resources :activities, only: [ :index, :destroy ]
     namespace :api, defaults: { format: :json } do
       namespace :v1 do
         resources :activities, only: [ :index]
