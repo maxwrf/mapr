@@ -13,6 +13,16 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     #
   end
 
+  def details
+    @activity = Activity.new
+    authorize @activity
+    # fetcher = ActivitiesFetcherService.new
+    # @activities = fetcher.fetch(5, params)
+    # html = render_to_string partial: 'activities/activity_cards.html.erb', locals: { activities: @activities }
+    # render json: { activities: @activities, html: html }
+    render json: { details: "test details", html: "test html" }
+  end
+
   def save_shortlist
     # IMPORTANT! once saved further saves are UNRELIABE.
     # Beause saving detroys all activities not on the shortlist, further

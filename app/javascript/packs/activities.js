@@ -106,8 +106,18 @@ const removeFromShortlist = (placeId) => {
 };
 
 const handleShowDetails = (event) => {
-  window.alert(event.currentTarget.id);
+  // window.alert(event.currentTarget.id);
+  fetchDetails(event.currentTarget.id)
 };
+
+const fetchDetails = (place_id) => {
+  const endpoint = `api/v1/details?place_id=${place_id}`
+  fetch(endpoint)
+  .then(response => response.json())
+  .then((data) => {
+    console.log(data)
+  });
+}
 
 export const initializePage = () => {
   cat_buttons.forEach((button) => {
@@ -118,5 +128,5 @@ export const initializePage = () => {
     createSubmitShortlistButton()
     //cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
   });
-  fetchActivities("api/v1/activities?" + cat_buttons[0].innerText);
+  fetchActivities("api/v1/activities?q=" + cat_buttons[0].innerText);
 };
