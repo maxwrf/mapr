@@ -4,12 +4,12 @@
 class ApisFetcherService
   def fetch(params)
     query_url = build_query_url(params)
-    #p "=====> build_query_url (DONE)"
-    #p query_url
+    p "=====> build_query_url (DONE)"
+    p query_url
     api_response = fetch_from_api(query_url)
-    #p "=====> fetch_from_api (DONE)"
+    p "=====> fetch_from_api (DONE)"
     results = build_app_data(api_response)
-    #p "=====> api_response_to_activities (DONE)"
+    p "=====> api_response_to_activities (DONE)"
     results
   end
 
@@ -25,6 +25,19 @@ class ApisFetcherService
     @api_params.join('&')
   end
 
+  def map_city_to_lat_lng(city)
+    city = 'berlin' if city.nil?
+    value = case city.downcase
+            when 'berlin'
+              '52.52,13.4050'
+            when 'london'
+              '51.5074,0.1278'
+            when 'paris'
+              '48.8566,2.3522'
+            end
+    value
+  end
+
   # CHILD METHODS ---------
   # def api_response_to_activities(res)
   # end
@@ -36,8 +49,5 @@ class ApisFetcherService
   # end
 
   # def map_category_params(params)
-  # end
-
-  # def map_location_params(params)
   # end
 end

@@ -20,7 +20,7 @@ class GplaceDetailsService < ApisFetcherService
     if res.nil?
       p 'Google Places (Place Details) api call failed => empty reponse'
       return -1
-    elsif res['status'] == 'INVALID_REQUEST'
+    elsif res['status'] != 'OK'
       p "Google Places (Place Details) api call failed => #{res['status']}"
       return -1
     end

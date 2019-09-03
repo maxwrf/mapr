@@ -11,7 +11,17 @@
   fetch("api/v1/activities?" + params)
   .then(response => response.json())
   .then((data) => {
+    actionActivitiesData(data);
+  });
+};
+
+const actionActivitiesData = (data, insert = false) => {
+  if (insert) {
+    activities.insertAdjacentHTML('afterbegin', data.html);
+  }
+  else {
     activities.innerHTML = data.html;
+  }
     data.activities.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
       const cardButton = document.getElementById(`b_${ activity.place_id}`);
@@ -24,7 +34,6 @@
       const card = document.getElementById(activity.place_id);
       card.addEventListener('click', handleShowDetails);
     });
-  });
 };
 
 const createAddToShortlistButton = (target) => {
@@ -128,7 +137,8 @@ const handleSearchSubmit = (event) => {
   fetch(endpoint)
   .then(response => response.json())
   .then((data) => {
-    window.alert(`search response => ${data.activities}`);
+    //window.alert(`search response => ${data.activities}`);
+    actionActivitiesData(data, false);
   });
 }
 
