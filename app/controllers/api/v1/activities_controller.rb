@@ -18,9 +18,9 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     authorize @activity
     # fetcher = ActivitiesFetcherService.new
     # @activities = fetcher.fetch(5, params)
-    # html = render_to_string partial: 'activities/activity_cards.html.erb', locals: { activities: @activities }
+    html = render_to_string partial: 'activities/activity_details.html.erb'
     # render json: { activities: @activities, html: html }
-    render json: { details: "test details", html: "test html" }
+    render json: { details: "test details", html: html }
   end
 
   def save_shortlist
