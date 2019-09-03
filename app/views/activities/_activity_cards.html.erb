@@ -7,9 +7,12 @@
 
   <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
     <div id="<%= activity.place_id %>" class="card activity-card">
-      <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
-      <% p img_src %>
-      <img class="card-img-top" src="<%= img_src %>" alt="Card image cap">
+      <% if activity.image_ref %>
+        <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
+      <% else %>
+        <% img_src = image_path('card_image_placeholder.jpeg') %>
+      <% end %>
+      <img class="card-img-top" src="<%= img_src %>" alt="">
       <div class="card-body">
         <h5 class="card-title"><%= activity[:name] %></h5>
         <p class="card-rating">
