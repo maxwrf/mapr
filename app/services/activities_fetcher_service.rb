@@ -12,9 +12,9 @@ class ActivitiesFetcherService
     ActiveRecord::Base.logger.silence do
       activities.each do |activity|
         if already_in_db.find_by(place_id: activity[:place_id])
-          p "NOT SAVED - already in db"
+          # p "NOT SAVED - already in db"
         else
-          p "SAVING... new item (for this plan)"
+          # p "SAVING... new item (for this plan)"
           activity.plan_id = params[:plan_id]
           activity.save!
         end
