@@ -106,8 +106,11 @@ const removeFromShortlist = (placeId) => {
 };
 
 const handleShowDetails = (event) => {
-  // window.alert(event.currentTarget.id);
-  fetchDetails(event.currentTarget.id)
+  // ignore event if shortlist button was clicked
+  const excludeId = `b_${event.currentTarget.id}`;
+  if (event.target.id != excludeId) {
+    fetchDetails(event.currentTarget.id);
+  }
 };
 
 const fetchDetails = (place_id) => {
@@ -115,7 +118,6 @@ const fetchDetails = (place_id) => {
   fetch(endpoint)
   .then(response => response.json())
   .then((data) => {
-    console.log(data);
     const modalContainer = document.getElementById('modal-container');
     modalContainer.innerHTML = data.html;
     $('#modal').modal();
