@@ -6,10 +6,11 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     @activities = policy_scope(Activity)
     fetcher = ActivitiesFetcherService.new
     @activities = fetcher.fetch(5, params)
-    render json: @activities
+    html = render_to_string partial: 'activities/activity_cards.html.erb', locals: { activities: @activities }
+    render json: { activities: @activities, html: html }
 
     # option instead of json...
-    # render partial: '', collection: @activities
+    #
   end
 
   def save_shortlist

@@ -12,16 +12,17 @@ class GplaceTextFetcherService < ApisFetcherService
 
   def api_response_to_activities(res)
     activities = []
-    res['results'].each do |item|
+    res['results'].each_with_index do |item, ind|
       details = {
         name: item['name'],
         average_rating: item['rating'].to_f,
         address: item['formatted_address'],
         longitude: item['geometry']['location']['lng'],
         latitude: item['geometry']['location']['lat'],
-        place_id: item['place_id'],
-        image_ref: item['photos'][0]['photo_reference']
+        place_id: item['place_id']
       }
+      # not all activities have photo data, if they do it's inside single ele array
+      details[:image_ref] = item['photos'][0]['photo_reference'] if item['photos']
       activities << Activity.new(details)
     end
     activities

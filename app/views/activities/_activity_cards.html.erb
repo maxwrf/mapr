@@ -1,0 +1,33 @@
+
+<div class="row">
+  <% @activities.each do |activity| %>
+
+  <% full_stars = activity[:average_rating].to_i %>
+  <% half_star = true if activity[:average_rating] - full_stars >= 0.5 %>
+
+  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+    <div id="<%= activity.place_id %>" class="card activity-card">
+      <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
+      <% p img_src %>
+      <img class="card-img-top" src="<%= img_src %>" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= activity[:name] %></h5>
+        <p class="card-rating">
+          <%= activity[:average_rating] %>
+          <% full_stars.times do %>
+          <i class="fas fa-star"></i>
+          <% end %>
+          <% if half_star %>
+          <i class="fas fa-star-half"></i>
+          <% end %>
+        </p>
+        <p id="b_<%= activity.place_id %>" class="btn btn-sm btn-primary" data-place-id='<%= activity.place_id %>'><i class="fas fa-plus-square"></i></p>
+      </div>
+    </div>
+  </div>
+
+  <% end %>
+</div>
+
+
+

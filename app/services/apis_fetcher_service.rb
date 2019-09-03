@@ -4,8 +4,11 @@
 class ApisFetcherService
   def fetch(num_results, params)
     query_url = build_query_url(params)
+    p "=====> build_query_url (DONE)"
     api_response = fetch_from_api(query_url)
+    p "=====> fetch_from_api (DONE)"
     results = api_response_to_activities(api_response)
+    p "=====> api_response_to_activities (DONE)"
     results
   end
 
