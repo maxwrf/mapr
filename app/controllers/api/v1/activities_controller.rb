@@ -20,10 +20,20 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     fetcher = ActivitiesFetcherService.new
     params[:action] = 'details'
     details = fetcher.fetch(params)
-    #binding.pry
     html = render_to_string partial: 'activities/activity_details.html.erb', locals: { data: details }
-    # render json: { activities: @activities, html: html }
     render json: { details: details, html: html }
+  end
+
+  def details
+    @activity = Activity.new
+    authorize @activity
+    #fetcher = ActivitiesFetcherService.new
+    #params[:action] = 'details'
+    #details = fetcher.fetch(params)
+    #binding.pry
+    #html = render_to_string partial: 'activities/activity_details.html.erb', locals: { data: details }
+    # render json: { activities: @activities, html: html }
+    render json: { activities: 'aaa', html: 'bbb' }
   end
 
   def save_shortlist

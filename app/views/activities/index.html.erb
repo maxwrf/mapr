@@ -1,7 +1,7 @@
-
 <div id="activities_page" class="activities-page-container">
   <div class="grid-container">
     <div class='activities-page-subcontainer'>
+      <p id='searchSubmit' class='cat-btn btn btn-secondary'>search for 'Berlin Unterwelt</p>
       <% @categories.each_with_index do |text, ind| %>
       <p id="<%= ind %>" class="cat-btn btn btn-secondary"><%= text %></p>
       <% end %>
