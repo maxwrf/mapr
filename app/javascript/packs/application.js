@@ -23,7 +23,7 @@ initMapbox();
 initGmap();
 initPlaces();
 picker();
-initTopFunction();
+// initTopFunction();
 classGiver();
 
 const activities_page = document.getElementById("activities_page");
