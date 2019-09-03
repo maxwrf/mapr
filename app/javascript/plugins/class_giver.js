@@ -1,8 +1,12 @@
 const addClass = (event) => {
   event.currentTarget.classList.toggle('active');
-  const number = event.currentTarget.classList[3].split("-")[1];
+  const number = event.currentTarget.classList[4].split("-")[1];
   const inputToChange = document.querySelector(`.input-${number}`);
-  inputToChange.value = 1;
+  if (inputToChange.value == 0) {
+    inputToChange.value = 1 }
+  else {
+    inputToChange.value = 0
+  } ;
 };
 
 const classGiver = () => {
