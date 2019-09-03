@@ -3,16 +3,17 @@ require 'open-uri' # MUST include else cause 500. ??? not clear why?
 # PARAMS should be universal for all possible apis
 # it's the job of the string builder to map to google spec
 
-class GplaceTextFetcherService < ApisFetcherService
+class GplaceFindPlaceService < ApisFetcherService
   def initialize
-    @BASE_API_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json?"
+    @BASE_API_URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?"
   end
 
   private
 
   def build_app_data(res)
     activities = []
-    res['results'].each_with_index do |item, ind|
+    # returns with candidates array (only 1 entry each time?)
+    res['candidates'].each_with_index do |item, ind|
       details = {
         name: item['name'],
         average_rating: item['rating'].to_f,
@@ -31,26 +32,22 @@ class GplaceTextFetcherService < ApisFetcherService
   def fetch_from_api(url)
     res = JSON.parse(open(url).read)
     if res.nil?
-      p 'Google Places (Text Search) api call failed => empty reponse'
+      p 'Google Places (Find Place) api call failed => empty reponse'
       return -1
     elsif res['status'] != 'OK'
-      p "Google Places (Text Search) api call failed => #{res['status']}"
+      p "Google Places (Find Place) api call failed => #{res['status']}"
       return -1
     end
+
     res
   end
 
   def map_params(params)
-    @api_params << map_category_params(params)
     @api_params << "key=#{ENV['GOOGLE_API_KEY']}"
-    @api_params << 'radius=2000' # TODO: how we doing this?
-    @api_params << "location=#{map_city_to_lat_lng(params[:city])}"
-  end
-
-  def map_category_params(params)
-    value = 'attractions'
-    value = params[:q] if params[:q]
-    "query=#{value}"
+    @api_params << "input=#{params[:q]}" # TODO: how we doing this?
+    @api_params << 'inputtype=textquery'
+    @api_params << "locationbias=point:#{map_city_to_lat_lng(params[:city])}"
+    @api_params << "fields=name,rating,formatted_address,geometry,photo,place_id"
   end
 
   def map_city_to_lat_lng(city)

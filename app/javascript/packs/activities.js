@@ -11,7 +11,17 @@
   fetch("api/v1/activities?" + params)
   .then(response => response.json())
   .then((data) => {
+    actionActivitiesData(data);
+  });
+};
+
+const actionActivitiesData = (data, insert = false) => {
+  if (insert) {
+    activities.insertAdjacentHTML('afterbegin', data.html);
+  }
+  else {
     activities.innerHTML = data.html;
+  }
     data.activities.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
       const cardButton = document.getElementById(`b_${ activity.place_id}`);
@@ -24,9 +34,7 @@
       const card = document.getElementById(activity.place_id);
       card.addEventListener('click', handleShowDetails);
     });
-  });
 };
-
 
 const createAddToShortlistButton = (target) => {
   target.innerHTML = 'Shortlist <i class="fas fa-plus-square"></i>';
@@ -39,7 +47,6 @@ const createAddToShortlistButton = (target) => {
   card.classList.add('off-list');
 };
 
-
 const addToShortlist = (placeId) => {
   console.log(`Adding ${ placeId }`);
   const activity = activityIndex[placeId];
@@ -49,7 +56,6 @@ const addToShortlist = (placeId) => {
          <br>${ activity.average_rating }</li><br>`);
   const cardButton = document.getElementById(`b_${ placeId }`);
   createRemoveFromShortlistButton(cardButton);
-
 };
 
 const handleAddToShortlist = (event) => {
@@ -127,10 +133,12 @@ const fetchDetails = (place_id) => {
 const handleSearchSubmit = (event) => {
   const tempConstantSearch = 'Berliner Unterwelten'
   const endpoint = `api/v1/search?q=${tempConstantSearch}`
+  console.log(endpoint)
   fetch(endpoint)
   .then(response => response.json())
   .then((data) => {
-    window.alert(`search response => ${data.activities}`);
+    //window.alert(`search response => ${data.activities}`);
+    actionActivitiesData(data, false);
   });
 }
 

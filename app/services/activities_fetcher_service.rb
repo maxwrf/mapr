@@ -3,8 +3,10 @@ class ActivitiesFetcherService
     case params[:action]
     when 'details'
       api_fetcher = GplaceDetailsService.new
-      details = api_fetcher.fetch(params)
-      return details
+      return api_fetcher.fetch(params)
+    when 'find_place'
+      api_fetcher = GplaceFindPlaceService.new
+      return api_fetcher.fetch(params)
     else # default if multi-result fetch
       api_fetcher = case params[:src]
       when 'gnear'
