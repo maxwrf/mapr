@@ -1,0 +1,31 @@
+#modal {
+
+  h4, h5 {
+    color: $thematic;
+  }
+
+  img {
+    height: 100px;
+    width: 100px;
+  }
+
+  .modal-footer .btn {
+    color: $text-secondary;
+  }
+
+  .card-rating {
+    color:  $text-secondary;
+  }
+
+  .opening-hours {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  a.show-more {
+    color: $thematic;
+    &:hover {
+      color: $thematic;
+    }
+  }
+}

@@ -15,7 +15,8 @@
       <% end %>
       <img class="card-img-top activity-card-img" src="<%= img_src %>" alt="">
       <div class="card-body card-flex">
-        <p style="font-size: 16px;"><%= activity[:name] %></p>
+        <% name = activity[:name].length > 45 ? activity[:name].truncate(50) : activity[:name] %>
+        <p style="font-size: 16px;"><%= name %></p>
         <div class="row" style="margin-bottom: -20px">
           <div class="col-8">
             <p class="card-rating">
