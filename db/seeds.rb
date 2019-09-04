@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Category.destroy_all
+
 seeds = [{name: 'musuems', search_term: 'musuems', avg_visit_mins: 150},
          {name: 'art galleries', search_term: 'art galleries', avg_visit_mins: 120},
          {name: 'shopping', search_term: 'shopping centres', avg_visit_mins: 180},
