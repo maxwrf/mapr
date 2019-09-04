@@ -3,7 +3,9 @@
     <div class='mb-3 row align-items-start justify-content-between flex-nowrap'>
       <div class='categories-col'>
         <% @categories.each_with_index do |text, ind| %>
-        <p id="<%= ind %>" class="cat-btn btn btn-act"><%= text %></p>
+          <% first = '' %>
+          <% first = 'active' if ind == 0 %>
+          <p id="<%= ind %>" class="<%= first %> cat-btn btn btn-act"><%= text %></p>
         <% end %>
       </div>
       <div class="form-col text-right">
