@@ -1,17 +1,17 @@
-
 <div class="shortlist-col mt-3 row">
   <div class="col-sm-12">
     <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=250&photoreference=CmRaAAAAXoEu-8VlwDgjGBonHoI6m3ztOdklK1UZw9mcBlM742sZw_xYjtKRRs6zT1udqhJT3sVwo4Gdnfh_26tDHaNG8XMqBjROw9OtI7wGouCCYepfZHuChwHISpAnm4GpTomXEhBAmJ92DP5bckRfVMycp3VnGhT93jsPQpWZSQOyWloA-cXFnIQd7g&key=AIzaSyBOlf31U3nrHuWMj_pjtDcKCrhfG1RZHv0" %>
-    <div id='0000000000' class="card shortlist-card" style="background-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), url('<%= img_src %>');">
-      <!-- <img class="card-img-top" src="<%= img_src %>" alt="Card image cap"> -->
+    <div id='0000000000' class="card shortlist-card" style="background-image: linear-gradient(110deg, rgba(0,0,0,0.3) 0%, rgba(33,49,77,1) 90%), url('<%= img_src %>');">
+    <!-- <img class="card-img-top" src="<%= img_src %>" alt="Card image cap"> -->
       <div class="card-body">
-        <h5 class='card-title text-right'>French Cathedral</h5>
-        <div class="d-flex justify-content-between align-items-baseline">
-          <div class='shortlist-card-remove-button'>
-            <div id='0000000000' class="" data-place-id='0000000000'><i class="material-icons shortlist-card-btn">restore_from_trash</i></div>
+        <div class="row no-gutters pr-2 pl-2 h-100 no-wrap justify-content-between align-items-center">
+          <div class='col-10'>
+            <h5 class='m-0 card-title text-left'><%= title %></h5>
+            <div class='m-0 mini-rating'>4.5 <i class="fas fa-star"></i></div>
           </div>
-          <div>35 mins</div>
-          <div class="card-rating">4.5 <i class="fas fa-star"></i></div>
+          <div class='col-2 text-right' id='0000000000' class="" data-place-id='0000000000'>
+            <i class="material-icons remove-icon shortlist-card-btn">delete</i>
+          </div>
         </div>
       </div>
     </div>
