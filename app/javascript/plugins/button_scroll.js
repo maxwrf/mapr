@@ -1,3 +1,6 @@
+function topFunction() {
+  document.documentElement.scrollTo({top: 0, behavior: 'smooth'})
+};
 
 const initTopFunction = () => {
   const scrollToButton = document.getElementById('scroll-top-btn')
@@ -6,10 +9,6 @@ const initTopFunction = () => {
       topFunction()
     });
   }
-};
-
-function topFunction() {
-  document.documentElement.scrollTop = 0;
 };
 
 export { initTopFunction };
