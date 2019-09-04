@@ -1,17 +1,19 @@
 <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <h1 class="text-center">Choose categories</h1>
-        <div class="form-plan ">
-          <div class="col-xs-8">
-            <%= simple_form_for(@plan, url: update_categories_plan_path(@plan)) do |f| %>
-              <div class="category-choices">
-                <%= f.input :categories, collection: ['Museum', 'Park', 'Shopping', 'Art Gallery', 'Wildlife'], as: :check_boxes, input_html: { class: 'd-none'}, label_method: ->(item) { category_label(item) } %>
-              </div>
-              <%= f.submit "Save", class: "btn btn-primary bg-thematic-inv" %>
-            <% end %>
-          </div>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="section-steps">
+        <h2 class="font-weight-bold col-thematic-inv text-center mt-2"><span>Choose categories</span></h2>
+      </div>
+      <div class="form-plan mt-0">
+        <div class="col-xs-8">
+          <%= simple_form_for(@plan, url: update_categories_plan_path(@plan)) do |f| %>
+            <div class="category-choices from-pref">
+              <%= f.input :categories, collection: ['Museum', 'Park', 'Shopping', 'Art Gallery', 'Wildlife'], as: :check_boxes, input_html: { class: 'd-none'}, label_method: ->(item) { category_label(item) } %>
+            </div>
+            <%= f.submit "Select sights", class: "btn btn-primary bg-thematic mt-3 p-3" %>
+          <% end %>
         </div>
       </div>
     </div>
+  </div>
 </div>
