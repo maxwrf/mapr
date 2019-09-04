@@ -1,15 +1,15 @@
 <div class="row nested-fields">
   <div class="col">
     <%= f.label :preference_length %>
-    <%= f.number_field :preference_length, class: 'form-control', value:"1"  %>
+    <%= f.number_field :preference_length, class: 'form-control border-bottom', value:"1"  %>
   </div>
   <div class="col">
     <%= f.label :preference_window_start %>
-    <%= f.text_field :preference_window_start, class: 'form-control break-start-time', value:"12:00"  %>
+    <%= f.text_field :preference_window_start, class: 'form-control flat_timepicker_3 bg-white border-bottom' %>
   </div>
   <div class="col">
     <%= f.label :preference_window_end %>
-    <%= f.text_field :preference_window_end, class: 'form-control break-end-time', value:"15:00"  %>
+    <%= f.text_field :preference_window_end, class: 'form-control flat_timepicker_4 bg-white border-bottom' %>
   </div>
   <%= link_to_remove_association "ddelete_forever", f, class:"material-icons col-thematic" %>
 </div>
