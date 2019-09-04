@@ -16,24 +16,22 @@
 }
 
 .js-btn {
-    width: 120px;
-    height: 80px;
-    font-size: 40px !important;
-    padding: 18px;
-    background-color: white;
-    color: #05C8A6;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
-    &:hover {
-      cursor: pointer !important;
-      background-color: white;
-      opacity: 0.5;
-      color: #05C8A6;
-    }
-    &.active {
-    background: $thematic !important;
-    color: white !important;
-    opacity: 1 !important;
-    }
+  background: white !important;
+  color: #cfcfcf !important;
+  width: 120px;
+  height: 80px;
+  font-size: 40px !important;
+  padding: 18px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1) !important;
+  &:hover {
+    cursor: pointer !important;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2) !important;
+  }
+  &.active {
+    color: $thematic !important;
+    border-bottom: 5px solid $thematic !important;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2) !important;
+  }
 }
 
 .btn-act {
