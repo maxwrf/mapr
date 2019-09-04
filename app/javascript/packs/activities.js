@@ -131,20 +131,23 @@ const fetchDetails = (place_id) => {
 }
 
 const handleSearchSubmit = (event) => {
-  const tempConstantSearch = 'Berliner Unterwelten'
-  const endpoint = `api/v1/search?q=${tempConstantSearch}`
-  console.log(endpoint)
+  event.preventDefault();
+  const input = document.getElementById('search-input');
+  //const tempConstantSearch = 'Berliner Unterwelten'
+  const endpoint = `api/v1/search?q=${input.value}`;
   fetch(endpoint)
   .then(response => response.json())
   .then((data) => {
     //window.alert(`search response => ${data.activities}`);
     actionActivitiesData(data, false);
+    input.value = '';
+    input.blur();
   });
 }
 
 export const initializePage = () => {
-  const searchSubmit = document.getElementById('searchSubmit');
-  searchSubmit.addEventListener("click", handleSearchSubmit);
+  const searchForm = document.getElementById('search-form');
+  searchForm.addEventListener('submit', handleSearchSubmit);
   cat_buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
       let params = `q=${event.currentTarget.innerText}`;
