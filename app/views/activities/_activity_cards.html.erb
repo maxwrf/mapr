@@ -7,7 +7,6 @@
 
   <div class="col-sm-12 col-md-6 col-lg-4">
     <div id="<%= activity.place_id %>" class="card activity-card my-3">
-      <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
       <% if activity.image_ref %>
         <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
       <% else %>
