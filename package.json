@@ -2,7 +2,9 @@
   "name": "mapr",
   "private": true,
   "dependencies": {
+    "@material/card": "^3.1.0",
     "@rails/webpacker": "^4.0.7",
+    "aos": "^3.0.0-beta.6",
     "bootstrap": "^4.3.1",
     "daemonite-material": "^4.1.1",
     "flatpickr": "^4.6.2",

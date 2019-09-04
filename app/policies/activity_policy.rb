@@ -12,4 +12,16 @@ class ActivityPolicy < ApplicationPolicy
   def save_shortlist?
     true
   end
+
+  def destroy?
+    true
+  end
+
+  def details?
+    true
+  end
+
+  def search?
+    true
+  end
 end

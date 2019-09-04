@@ -11,7 +11,17 @@
   fetch("api/v1/activities?" + params)
   .then(response => response.json())
   .then((data) => {
+    actionActivitiesData(data);
+  });
+};
+
+const actionActivitiesData = (data, insert = false) => {
+  if (insert) {
+    activities.insertAdjacentHTML('afterbegin', data.html);
+  }
+  else {
     activities.innerHTML = data.html;
+  }
     data.activities.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
       const cardButton = document.getElementById(`b_${ activity.place_id}`);
@@ -21,10 +31,10 @@
       else {
         createAddToShortlistButton(cardButton);
       }
+      const card = document.getElementById(activity.place_id);
+      card.addEventListener('click', handleShowDetails);
     });
-  });
 };
-
 
 const createAddToShortlistButton = (target) => {
   target.innerHTML = 'add_box';
@@ -37,7 +47,6 @@ const createAddToShortlistButton = (target) => {
   // card.classList.add('off-list');
 };
 
-
 const addToShortlist = (placeId) => {
   console.log(`Adding ${ placeId }`);
   const activity = activityIndex[placeId];
@@ -47,7 +56,6 @@ const addToShortlist = (placeId) => {
          <br>${ activity.average_rating }</li><br>`);
   const cardButton = document.getElementById(`b_${ placeId }`);
   createRemoveFromShortlistButton(cardButton);
-
 };
 
 const handleAddToShortlist = (event) => {
@@ -84,8 +92,6 @@ const removeFromShortlist = (placeId) => {
   createAddToShortlistButton(cardButton);
 };
 
-
-
  const saveShortlist = (goto_url) => {
   fetch("api/v1/shortlist/save", {
       method: 'POST',
@@ -105,7 +111,40 @@ const removeFromShortlist = (placeId) => {
   });
 };
 
+const handleShowDetails = (event) => {
+  // ignore event if shortlist button was clicked
+  const excludeId = `b_${event.currentTarget.id}`;
+  if (event.target.id != excludeId) {
+    fetchDetails(event.currentTarget.id);
+  }
+};
+
+const fetchDetails = (place_id) => {
+  const endpoint = `api/v1/details?place_id=${place_id}`
+  fetch(endpoint)
+  .then(response => response.json())
+  .then((data) => {
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.innerHTML = data.html;
+    $('#modal').modal();
+  });
+}
+
+const handleSearchSubmit = (event) => {
+  const tempConstantSearch = 'Berliner Unterwelten'
+  const endpoint = `api/v1/search?q=${tempConstantSearch}`
+  console.log(endpoint)
+  fetch(endpoint)
+  .then(response => response.json())
+  .then((data) => {
+    //window.alert(`search response => ${data.activities}`);
+    actionActivitiesData(data, false);
+  });
+}
+
 export const initializePage = () => {
+  const searchSubmit = document.getElementById('searchSubmit');
+  searchSubmit.addEventListener("click", handleSearchSubmit);
   cat_buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
       let params = `q=${event.currentTarget.innerText}`;
@@ -114,5 +153,5 @@ export const initializePage = () => {
     createSubmitShortlistButton()
     //cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
   });
-  fetchActivities("api/v1/activities?" + cat_buttons[0].innerText);
+  fetchActivities("api/v1/activities?q=" + cat_buttons[0].innerText);
 };
