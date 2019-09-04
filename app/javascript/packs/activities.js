@@ -133,8 +133,6 @@ const fetchDetails = (place_id) => {
 const handleSearchSubmit = (event) => {
   event.preventDefault();
   const input = document.getElementById('search-input');
-  input.value
-  console.log(input.value);
   //const tempConstantSearch = 'Berliner Unterwelten'
   const endpoint = `api/v1/search?q=${input.value}`;
   fetch(endpoint)
@@ -142,6 +140,8 @@ const handleSearchSubmit = (event) => {
   .then((data) => {
     //window.alert(`search response => ${data.activities}`);
     actionActivitiesData(data, false);
+    input.value = '';
+    input.blur();
   });
 }
 
