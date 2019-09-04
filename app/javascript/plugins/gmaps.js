@@ -123,6 +123,8 @@ const initOverall = () => {
   drop.shift();
   drop.pop();
 
+  fitMapToMarkers(map, markers);
+
 
 
   let waypts = [];
@@ -161,6 +163,8 @@ const init = (mapElement, index) => {
           gestureHandling: 'cooperative'
         }));
 
+  fitMapToMarkers(map, markers);
+
   directionsDisplay.setMap(map);
 
   console.log(travelMode)
@@ -173,22 +177,43 @@ const init = (mapElement, index) => {
   };
   directionsService.route(request, function(response, status) {
   //Check if request is successful.
-  if (status == google.maps.DirectionsStatus.OK) {
+    if (status == google.maps.DirectionsStatus.OK) {
 
-    directionsDisplay.setDirections(response); //Display the directions result
+      directionsDisplay.setDirections(response); //Display the directions result
 
-    const start = document.getElementById(`start${index}`)
-    const end = document.getElementById(`end${index}`)
-    const time = document.getElementById(`time${index}`)
-    start.innerHTML = `Start: ${response.routes[0].legs[0].start_address}`;
-    end.innerHTML = `To: ${response.routes[0].legs[0].end_address}`;
-    time.innerHTML = `Travel duration: ${response.routes[0].legs[0].duration.text}`;
+      const start = document.getElementById(`start${index}`)
+      const end = document.getElementById(`end${index}`)
+      const time = document.getElementById(`time${index}`)
+      start.innerHTML = `Start: ${response.routes[0].legs[0].start_address}`;
+      end.innerHTML = `To: ${response.routes[0].legs[0].end_address}`;
+      time.innerHTML = `Travel duration: ${response.routes[0].legs[0].duration.text}`;
 
 
-    const steps = document.getElementById(`instructionsteps${index}`)
-    response.routes[0].legs[0].steps.forEach((step) => {steps.insertAdjacentHTML('beforeend', `<li>${step.instructions}</li>`)})
-  }
-});
+      const steps = document.getElementById(`instructionsteps${index}`)
+      response.routes[0].legs[0].steps.forEach((step) => {steps.insertAdjacentHTML('beforeend', `<li>${step.instructions}</li>`)})
+    }
+  });
+}
+
+const fitMapToMarkers = (map, markers) => {
+  const tabs = document.querySelectorAll('a[data-toggle="tab"]');
+  const nextBtns = document.querySelectorAll('a[data-slide="next"]');
+  const prevBtns = document.querySelectorAll('a[data-slide="prev"]');
+  const allTabs = [...tabs, ...nextBtns, ...prevBtns];
+  allTabs.forEach((tab) => {
+    tab.addEventListener("click", (evt) => {
+      window.setTimeout(() => {
+        var bounds = new google.maps.LatLngBounds();
+        console.log("resizing map")
+        markers.forEach((marker) => {
+          const latlng = new google.maps.LatLng(marker.lat, marker.lng);
+          bounds.extend(latlng);
+        });
+
+        map.fitBounds(bounds);
+      }, 250);
+    });
+  });
 }
 
 const initGmap = () => {

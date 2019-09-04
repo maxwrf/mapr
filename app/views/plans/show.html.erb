@@ -1,5 +1,6 @@
-<h1>This is your itinerary for your plan: <%= "#{@plan.name}" %></h1>
-
+<div class="section-steps container">
+  <h2 class="font-weight-bold col-thematic-inv text-center"><span>Enjoy your trip</span></h2>
+</div>
 
 <!-- navbar -->
 <ul class="nav nav-justified nav-tabs" id="justifiedTab" role="tablist">
@@ -54,7 +55,7 @@
                       <% counter = 0 %>
                       <% (index + 1).times do %>
                       <div class="stepper done">
-                        <div class="stepper-icon bg-secondary"><i class="material-icons">check</i></div>
+                        <div class="stepper-icon bg-thematic-inv"><i class="material-icons bg-thematic-inv">check</i></div>
                         <% if  @ordered_activities[counter].nil? %>
                           <span class="stepper-text">Home</span>
                         <% else %>
@@ -67,7 +68,7 @@
                       <!-- Add progress bar items which have not been done / visited -->
                       <% (@markers.length - 2 - index).times do %>
                       <div class="stepper active">
-                        <div class="stepper-icon"><i class="material-icons">access_time</i></div>
+                        <div class="stepper-icon bg-thematic"><i class="material-icons">access_time</i></div>
                         <% if  @ordered_activities[counter].nil? %>
                           <span class="stepper-text">Home</span>
                         <% else %>
@@ -102,7 +103,7 @@
                             <div class="card-title align-self-center mb-0"><h3 class="align-self-center">Going back home</h3></div>
                           <% end %>
                           <!-- Travel time -->
-                          <span class="badge badge-pill badge-primary p-1 w-25 text-center align-self-center" id="<%= "time#{index}" %>"></span>
+                          <span class="badge badge-pill badge-primary p-1 w-25 text-center align-self-center btn-dt" id="<%= "time#{index}" %>"></span>
                         </div>
                         <!-- Start address -->
                         <h6 class="start card-text" id="<%= "start#{index}" %>"></h6>
@@ -118,7 +119,11 @@
                             <!-- A link to the activities tab for mroe information -->
                             <a href="#" class="btn btn-primary more-info">Learn more on <%= @ordered_activities[index].name %></a>
                             <!-- An image of the activity / "visit" -->
-                            <img src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80/" alt="..." class="img-thumbnail w-25">
+                           <!--  <img src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80/" alt="..." class="img-thumbnail w-25"> -->
+<!--                               <% @ordered_activities.each do |activity| %>
+                                  <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
+                                   <img class="img-thumbnail w-25" src="<%= img_src %>" alt="Card image cap">
+                              <% end  %> -->
                           </div>
                         <% end %>
                       </div>
@@ -155,12 +160,16 @@
   <!-- activities tab -->
   <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">
     <div class="container">
+      <div class="row"></div>
         <!-- activities have been ordered and should be displayed one by one -->
         <% @ordered_activities.each do |activity| %>
           <!-- CARD FOR EACH ACTIVITY -->
-          <div class="card mt-4 mb-3" data-aos="fade-up">
+          <div class="card mt-4 mb-3 intinerary-card" data-aos="fade-up">
             <!-- picture of each activity -->
-            <img class="card-img-top" src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="Card image cap">
+            <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
+            <% p img_src %>
+            <img class="card-img-top intinerary-card-img" src="<%= img_src %>" alt="Card image cap">
+           <!--  <img class="card-img-top" src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="Card image cap"> -->
             <div class="card-body">
               <!-- activity name -->
               <h5 class="card-title"><%= activity.name %></h5>
@@ -169,7 +178,7 @@
               <!-- Category -->
               <p class="card-text"><small class="text-muted">Category</small></p>
               <!-- Possibility to delete card which redirects to plans show page -->
-                <%= link_to "Delete", plan_activity_path(@plan, activity), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+                <%= link_to "Delete", plan_activity_path(@plan, activity), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary", style:"margin-bottom: -100px;" %>
             </div>
             <!-- end of card body -->
           </div>

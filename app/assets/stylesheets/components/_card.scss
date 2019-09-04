@@ -45,3 +45,22 @@
   border-color: white;
 }
 
+.intinerary-card {
+  width: 450px;
+  height: 550px;
+}
+.intinerary-card-img {
+  height: 55%;
+  object-fit: cover;
+}
+
+
+.nav-tabs .nav-link.active {
+  color: #05C8A6 !important;
+
+}
+
+.nav-tabs .nav-link::before {
+  background-color: #05C8A6 !important;
+}
+
