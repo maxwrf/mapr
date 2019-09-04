@@ -5,17 +5,19 @@
   <%=form_for @plan do |f| -%>
     <div class="row">
       <div class="col from-pref mx-2">
+      <h5 class="mb-4">Time and address</h5>
         <%= f.label :start_date_time %>
-        <%= f.text_field :start_date_time, class: 'form-control start-time', value:"10:00"  %>
+        <%= f.text_field :start_date_time, class: 'form-control flat_timepicker_1 bg-white border-bottom' %>
         <%= f.label :end_date_time %>
-        <%= f.text_field :end_date_time, class: 'form-control end-time', value:"18:00"  %>
+        <%= f.text_field :end_date_time, class: 'form-control flat_timepicker_2 bg-white border-bottom' %>
         <%= f.label :start_address %>
-        <%= f.text_field :start_address, class: 'form-control', id:"city-point"   %>
+        <%= f.text_field :start_address, class: 'form-control border-bottom', id:"city-point"   %>
         <%= f.label :end_address %>
-        <%= f.text_field :end_address, class: 'form-control', id:"end-point" %>
+        <%= f.text_field :end_address, class: 'form-control border-bottom', id:"end-point" %>
       </div>
       <div class="col from-pref mx-2">
-          <p class="mb-4 head-label">Travel by:</p>
+          <!-- <p class="mb-4 head-label">Travel by:</p> -->
+          <h5 class="mb-5">Travel by</h5>
           <div class="btn-group-lg btn-group-toggle "    id="fromGroupTransport">
             <div>
               <div class="col d-flex justify-content-around">
@@ -34,19 +36,23 @@
           </div>
       </div>
     </div>
-  <div class="from-pref mt-3">
+<div class="row mt-3">
+  <div class="col from-pref mx-2">
     <div class="my-2">
       <%= f.fields_for :breaks, @break do |fb| %>
-         <h3>Add a break</h3>
+         <h5 class="mb-3">Add a break</h5>
          <%= render 'break_fields', f: fb %>
     </div>
       <% end %>
     <div class="links">
-      <%= link_to_add_association 'add_comment', f, :breaks, class:"material-icons col-thematic" %>
+      <%= link_to_add_association 'add', f, :breaks, class:"material-icons col-thematic" %>
     </div>
+</div>
   </div>
-  <div class="d-flex justify-content-end ">
-  <%= f.submit 'Select your categories',  class: "btn btn-primary bg-thematic mt-4"%>
+  <div class="row">
+    <div class="col mx-0 px-2 text-right">
+     <%= f.submit 'Select your categories',  class: "btn btn-primary bg-thematic mt-4"%>
+   </div>
   </div>
   <% end %>
 </div>
