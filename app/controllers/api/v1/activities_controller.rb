@@ -6,7 +6,6 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     @activities = policy_scope(Activity)
     fetcher = ActivitiesFetcherService.new
     @activities = fetcher.fetch(params).sort { |a, b|  b[:average_rating] <=> a[:average_rating] }
-
     html = render_to_string partial: 'activities/activity_cards.html.erb', locals: { activities: @activities }
     render json: { activities: @activities, html: html }
 
@@ -20,10 +19,19 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     fetcher = ActivitiesFetcherService.new
     params[:action] = 'details'
     details = fetcher.fetch(params)
-    #binding.pry
     html = render_to_string partial: 'activities/activity_details.html.erb', locals: { data: details }
-    # render json: { activities: @activities, html: html }
     render json: { details: details, html: html }
+  end
+
+  def search
+    @activity = Activity.new
+    authorize @activity
+    fetcher = ActivitiesFetcherService.new
+    params[:action] = 'find_place'
+    @activities = fetcher.fetch(params)
+    html = render_to_string partial: 'activities/activity_cards.html.erb', locals: { activities: @activities }
+    render json: { activities: @activities, html: html }
+    # render json: { activities: 'aaa', html: 'bbb' }
   end
 
   def save_shortlist

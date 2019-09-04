@@ -13,7 +13,15 @@ class ActivityPolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+    true
+  end
+
   def details?
+    true
+  end
+
+  def search?
     true
   end
 end

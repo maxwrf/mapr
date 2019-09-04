@@ -13,6 +13,10 @@ import { initTopFunction } from '../plugins/button_scroll';
 import { picker } from '../plugins/timepicker.js';
 import { classGiver } from '../plugins/class_giver.js';
 import { flatTimepicker } from '../plugins/flat_timepicker.js';
+import { AosInit } from '../plugins/aos.js'
+// import { initNavbarNavigation } from '../plugins/navbar_navigation.js'
+// import { initMapStyle } from '../plugins/mapstyle.js'
+import { toggleButtonCategories } from '../plugins/buttons.js';
 
 
 $(document).ready(function(){
@@ -28,10 +32,15 @@ initPlaces();
 homePlaces();
 picker();
 flatTimepicker();
-// initTopFunction();
+AosInit();
+// initNavbarNavigation();
+// initMapStyle();
+initTopFunction();
 classGiver();
+
 
 const activities_page = document.getElementById("activities_page");
 if (activities_page) {
   initializePage();
+  toggleButtonCategories();
 };

@@ -1,8 +1,11 @@
 
 const initTopFunction = () => {
-  document.querySelector("#scroll-top-btn").addEventListener("click", (event) => {
-    topFunction()
-  });
+  const scrollToButton = document.getElementById('scroll-top-btn')
+  if (scrollToButton) {
+    scrollToButton.addEventListener("click", (event) => {
+      topFunction()
+    });
+  }
 };
 
 function topFunction() {
