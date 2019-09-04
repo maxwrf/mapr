@@ -37,14 +37,14 @@ const actionActivitiesData = (data, insert = false) => {
 };
 
 const createAddToShortlistButton = (target) => {
-  target.innerHTML = 'Shortlist <i class="fas fa-plus-square"></i>';
-  target.classList.remove('btn-warning');
-  target.classList.add('btn-primary');
+  target.innerHTML = 'add_box';
+  target.classList.remove('col-thematic-inv');
+  // target.classList.add('btn-primary');
   target.removeEventListener('click', handleRemoveFromShortlist);
   target.addEventListener('click', handleAddToShortlist);
   const card = document.getElementById(target.dataset.placeId);
-  card.classList.remove('on-list');
-  card.classList.add('off-list');
+   card.classList.remove('on-list');
+  // card.classList.add('off-list');
 };
 
 const addToShortlist = (placeId) => {
@@ -65,14 +65,14 @@ const handleAddToShortlist = (event) => {
 // when on shortlist
 
 const createRemoveFromShortlistButton = (target) => {
-  target.innerHTML = '<i class="far fa-trash-alt"></i>';
-  target.classList.remove('btn-primary');
-  target.classList.add('btn-warning');
+  target.innerHTML = 'restore_from_trash';
+  // target.classList.remove('btn-primary');
+  target.classList.add('col-thematic-inv');
   target.removeEventListener('click', handleAddToShortlist);
   target.addEventListener('click', handleRemoveFromShortlist);
   const card = document.getElementById(target.dataset.placeId);
-  card.classList.remove('off-list');
-  card.classList.add('on-list');
+  // card.classList.remove('off-list');
+   card.classList.add('on-list');
 };
 
 const handleRemoveFromShortlist = (event) => {

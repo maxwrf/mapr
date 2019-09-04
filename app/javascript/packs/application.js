@@ -17,6 +17,7 @@ import { initPicker } from '../plugins/flatpickr';
 import { initTopFunction } from '../plugins/button_scroll';
 
 import { classGiver} from '../plugins/class_giver.js';
+import { toggleButtonCategories } from '../plugins/buttons.js';
 
 
 $(document).ready(function(){
@@ -39,8 +40,8 @@ initTopFunction();
 classGiver();
 
 
-
 const activities_page = document.getElementById("activities_page");
 if (activities_page) {
   initializePage();
+  toggleButtonCategories();
 };
