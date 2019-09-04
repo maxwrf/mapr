@@ -7,16 +7,15 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { initMapbox } from '../plugins/init_mapbox';
 import { initGmap } from '../plugins/gmaps';
 import { initPlaces } from '../plugins/init_autocomplete.js';
-
+import { homePlaces } from '../plugins/init_autocomplete.js';
+import { initPicker } from '../plugins/flatpickr';
+import { initTopFunction } from '../plugins/button_scroll';
 import { picker } from '../plugins/timepicker.js';
+import { classGiver } from '../plugins/class_giver.js';
+import { flatTimepicker } from '../plugins/flat_timepicker.js';
 import { AosInit } from '../plugins/aos.js'
 // import { initNavbarNavigation } from '../plugins/navbar_navigation.js'
 // import { initMapStyle } from '../plugins/mapstyle.js'
-
-import { initPicker } from '../plugins/flatpickr';
-import { initTopFunction } from '../plugins/button_scroll';
-
-import { classGiver} from '../plugins/class_giver.js';
 import { toggleButtonCategories } from '../plugins/buttons.js';
 
 
@@ -30,12 +29,12 @@ initPicker();
 initMapbox();
 initGmap();
 initPlaces();
+homePlaces();
 picker();
-initPicker();
+flatTimepicker();
 AosInit();
 // initNavbarNavigation();
 // initMapStyle();
-
 initTopFunction();
 classGiver();
 

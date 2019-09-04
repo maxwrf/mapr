@@ -7,17 +7,7 @@
     margin: 30px 0px;
   }
 
-  .grid-container {
-    width: 100%;
-    display: grid;
-    grid-template: 25% 75% / 75% 25%;
-  }
-
-  .current-cat {
-    color: red;
-  }
-
-  .shortlisted-activity-card {
+  .shortlist-card {
     height: 100px;
     radius: 5px;
     color: #fff;
@@ -26,10 +16,6 @@
     h5 {
       font-size: 18px;
     }
-  }
-
-  .activities-page-subcontainer {
-    margin: 20px;
   }
 
   .shortlist-card-remove-button {
@@ -47,4 +33,35 @@
     border-color: #05C8A6;
   }
 
+  .shortlist-col {
+    min-width: 200px;
+    max-width: 300px;
+  }
+
+  .categories-col {
+    padding-left: 20px;
+    padding-rght: 20px;
+  }
+
+  .form-col {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+
+  .cat-btn {
+    margin-bottom: 10px;
+  }
+
+  form {
+    margin-bottom: 10px;
+    label {
+      margin-right: 10px;
+      color: $thematic;
+      font-size: 16px
+    }
+    input.form-control {
+      width: 300px;
+    }
+  }
 }

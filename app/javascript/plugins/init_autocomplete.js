@@ -14,6 +14,12 @@ const endAutocomplete = () => {
   }
 };
 
+const homeAutocomplete = () => {
+  const addressInput = document.getElementById('plan-city');
+  if (addressInput) {
+    places({ container: addressInput, type: "city" });
+  }
+};
 
 const initPlaces = () => {
 if (document.getElementById('end-point') && document.getElementById('city-point')) {
@@ -22,5 +28,14 @@ if (document.getElementById('end-point') && document.getElementById('city-point'
   }
 }
 
+const homePlaces = () => {
+if (document.getElementById('plan-city')) {
+  homeAutocomplete();
+  }
+}
+
 export { initPlaces };
+export { homePlaces };
+
+
 
