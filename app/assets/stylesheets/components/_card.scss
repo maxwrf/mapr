@@ -1,7 +1,46 @@
-.adctivity-card {
-  background-color: #eee;
-  h5 {
-    font-size: 16px;
-    font-weight: bold;
+.activity-card {
+  height: 350px;
+  position: relative;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  border-radius: 4px;
   }
+
+.activity-card-img {
+  height: 68%;
+  object-fit: cover;
+}
+
+.shortlist-btn {
+  background-color: transparent;
+  color: #05C8A6;
+  cursor: pointer;
+}
+
+.card-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.card-select {
+  color: #05C8A6;
+  border-style: solid;
+  border-color: #05C8A6;
+}
+
+
+.shortlist-card-btn {
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.shortlist-card-btn:hover {
+  background-color: transparent;
+  color: #21314d;
+  cursor: pointer;
+  border-style: solid;
+  border-color: white;
 }

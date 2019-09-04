@@ -10,6 +10,7 @@ import { initGmap } from '../plugins/gmaps';
 import { initPlaces } from '../plugins/init_autocomplete.js';
 import { picker } from '../plugins/timepicker.js';
 import { classGiver} from '../plugins/class_giver.js';
+import { toggleButtonCategories } from '../plugins/buttons.js';
 
 $(document).ready(function(){
   $(".category-choice").click(function(){
@@ -23,6 +24,8 @@ initPlaces();
 picker();
 initPicker();
 classGiver();
+
+toggleButtonCategories();
 
 const activities_page = document.getElementById("activities_page");
 if (activities_page) {
