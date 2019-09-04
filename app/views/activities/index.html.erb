@@ -10,7 +10,7 @@
       </div>
       <div class="form-col text-right">
         <form id='search-form' class='form-inline'>
-          <label for="search">Search</label>
+          <label for="search"><i class="material-icons">search</i></label>
           <input type="text" class="form-control" id='search-input' name='query' placeholder="e.g. Natural History Museum">
         </form>
       </div>
@@ -18,22 +18,20 @@
     </div>
     <div class="row">
       <div class='col'>
-        <h3>ACTIVITIES</h3>
+        <h3>Available Activities</h3>
         <div id="activities">
         </div>
       </div>
       <div class='col shortlist-col'>
-        <h3>SHORTLIST</h3>
-        <div class="d-flex flex-column">
-          <%= render partial: 'activities/shortlisted_activity_card.html.erb' %>
-          <%= render partial: 'activities/shortlisted_activity_card.html.erb' %>
-          <%= render partial: 'activities/shortlisted_activity_card.html.erb' %>
-          <ul id="shortlist">
-          </ul>
+        <h3>Selected</h3>
+          <%#= render partial: 'activities/shortlisted_activity_card.html.erb', locals: {title: 'Some Place'} %>
+          <%#= render partial: 'activities/shortlisted_activity_card.html.erb', locals: {title: 'The Big Castle Shed'}  %>
+          <%#= render partial: 'activities/shortlisted_activity_card.html.erb', locals: {title: 'The Giant Longed Name Cathedral of Berlin'}  %>
+            <div id="shortlist" class="shortlist-col mt-3 row">
+            </div>
           <div class='mt-2 col text-centre'>
-            <p id="submit_shortlist" class="btn btn-primary">Continue to Itinerary</p>
+            <p id="submit_shortlist" class="d-none opac-0 btn btn-primary">Continue to Itinerary</p>
           </div>
-        </div>
       </div>
     </div>
   </div>
