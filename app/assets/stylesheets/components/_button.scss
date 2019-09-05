@@ -26,6 +26,7 @@
   &:hover {
     cursor: pointer !important;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2) !important;
+    color: $thematic !important;
   }
   &.active {
     color: $thematic !important;
@@ -38,7 +39,7 @@
     color: #e0e0e0;
     border-color: #e0e0e0;
     border-style: solid;
-    border-width: medium;
+    border-width: thin;
     border-radius: 4px;
     //transition-property: box-shadow;
     //transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -57,22 +58,23 @@
     user-select: none;
     vertical-align: middle;
     white-space: nowrap;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.0) !important;
 }
 
 .btn-act:hover {
   background-color: white !important;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15) !important;
-  color: #e0e0e0;
-  border-color: #e0e0e0;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0) !important;
+  color: #cccccc;
+  border-color: #cccccc;
   background: white !important;
 }
 
 .btn-act.active {
-  background-color: #05C8A5 !important;
-  color: white;
+  background-color: white !important;
+  border-width: medium;
+  color: #05C8A6;
   border-color: #05C8A5;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.0) !important;
 
 }
 
@@ -95,5 +97,12 @@
     opacity: 1;
     background: #04c8a6;
     margin-right: 0px;
+}
+
+#submit_shortlist {
+  &:hover {
+    background: #05C8A5;
+    opacity: 1.1;
+  }
 }
 

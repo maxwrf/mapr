@@ -3,40 +3,48 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h4 class="modal-title"><%= data['name'] %></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <% if data['photos'] %>
+            <% data['photos'].take(1).each do |photo| %>
+              <% ref = photo['photo_reference'] %>
+              <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=#{ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
+              <div class="large m-0 p-0 w-100" style="background-image: linear-gradient(160deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 100%), url('<%= img_src %>')">
+                <h4 class="modal-title font-weight-bold"><%= data['name'] %></h4>
+              </div>
+            <% end %>
+          <% end %>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button> -->
       </div>
       <div class="mb-2 modal-body">
       <% if data['photos'] %>
-          <h5 class="mt-2">Photos</h5>
-          <% data['photos'].take(8).each do |photo| %>
+          <h5 class="mt-4 mb-2 font-weight-bold">Photos</h5>
+          <% data['photos'].take(9).slice(1,8).each do |photo| %>
             <% ref = photo['photo_reference'] %>
             <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photoreference=#{ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
-            <img class="card-img-top activity-card-img" src="<%= img_src %>" alt="">
+            <img class="card-img-top activity-card-img mini" src="<%= img_src %>" alt="">
           <% end %>
         <% end %>
         <% if data['price_level'] %>
           <p><%= data['price_level'] %></p>
         <% end %>
         <% if data['opening_hours'] %>
-        <h5 class="mt-2">Opening hours</h5>
+        <h5 class="mt-2 font-weight-bold">Opening hours</h5>
         <ul>
           <% data['opening_hours']['weekday_text'].each do |weekday| %>
            <li class="opening-hours"><%= weekday %></li>
           <% end %>
         </ul>
         <% end %>
-         <div class="mt-2 row align-items-center">
-           <h5 class="col">Latest Reviews</h5>
-            <p class="col card-rating text-right">
+         <div class="mt-4 mb-2 row align-items-center">
+           <h5 class="col font-weight-bold">Latest Reviews</h5>
+            <!-- <p class="col card-rating text-right">
               Overall <%= data['rating'] %>
-            </p>
+            </p> -->
          </div>
         <% data['reviews'].each do |review|  %>
         <div class="row">
-          <p class='col-2'><%= review['rating'] %><i class="fas fa-star"></i></p>
+          <p class='col-2'><%= review['rating'] %><i class="fas fa-star ml-2" style="color: #ffc107"></i></p>
           <% truncated = false %>
           <% text = review['text'] %>
           <% if text.length > 150 %>
@@ -50,6 +58,7 @@
             <% end %>
           </p>
         </div>
+
         <% end %>
       </div>
       <div class="modal-footer">

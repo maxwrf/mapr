@@ -10,7 +10,7 @@
             <div class="category-choices from-pref">
               <%= f.input :categories, collection: ['Museum', 'Park', 'Shopping', 'Art Gallery', 'Wildlife', 'Nightlife'], as: :check_boxes, input_html: { class: 'd-none'}, collection_wrapper_tag: :div, collection_wrapper_class: 'plan-categories-item-wrapper', label_method: ->(item) { category_label(item) } %>
             </div>
-            <%= f.submit "Select sights", class: "btn btn-primary bg-thematic mt-3 p-3" %>
+            <%= f.submit "Select activities", class: "btn btn-primary bg-thematic mt-3 p-3" %>
           <% end %>
         </div>
       </div>
