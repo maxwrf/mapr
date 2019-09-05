@@ -19,8 +19,8 @@
         <% p "\n***** G , img_src = #{img_src} *****" %>
       <% else %>
         <% p "\n***** H, no image, going placeholder... *****" %>
-        <% img_src = 'https://via.placeholder.com/350x150' %>
-        <%# img_src = image_path('card_image_placeholder.jpeg') %>
+        <%# img_src = 'https://via.placeholder.com/350x150' %>
+        <% img_src = image_url('card_image_placeholder.jpeg') %>
         <% p "\n***** H.2 , img_src = #{img_src} *****" %>
       <% end %>
       <img class="card-img-top activity-card-img" src="<%= img_src %>" alt="">
