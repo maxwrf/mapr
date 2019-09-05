@@ -38,7 +38,7 @@ class GplaceFetcherService < ApisFetcherService
     @api_params << "key=#{ENV['GOOGLE_API_KEY']}"
     @api_params << 'radius=10000' #TODO: how we doing this?
     #@api_params << 'type=museum' # too restrictive, prefer keyword    @api_params << map_location_params(params)
-    @api_params << map_location_params(params)
+    @api_params << get_coord_string(params)
     @api_params << map_category_params(params)
   end
 

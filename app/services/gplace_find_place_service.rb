@@ -46,7 +46,7 @@ class GplaceFindPlaceService < ApisFetcherService
     @api_params << "key=#{ENV['GOOGLE_API_KEY']}"
     @api_params << "input=#{params[:q]}" # TODO: how we doing this?
     @api_params << 'inputtype=textquery'
-    @api_params << "locationbias=point:#{map_city_to_lat_lng(params[:city])}"
+    @api_params << "locationbias=point:#{get_coord_string(params)}"
     @api_params << "fields=name,rating,formatted_address,geometry,photo,place_id"
   end
 

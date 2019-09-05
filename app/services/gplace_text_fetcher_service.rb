@@ -44,7 +44,7 @@ class GplaceTextFetcherService < ApisFetcherService
     @api_params << map_category_params(params)
     @api_params << "key=#{ENV['GOOGLE_API_KEY']}"
     @api_params << 'radius=2000' # TODO: how we doing this?
-    @api_params << "location=#{map_city_to_lat_lng(params[:city])}"
+    @api_params << "location=#{get_coord_string(params)}"
   end
 
   def map_category_params(params)

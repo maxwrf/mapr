@@ -28,6 +28,9 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     authorize @activity
     fetcher = ActivitiesFetcherService.new
     params[:action] = 'find_place'
+    city = Plan.find(params[:plan_id])[:city]
+    params[:q] += ", #{city.capitalize}"
+    p "================= #{params[:q]}"
     @activities = fetcher.fetch(params)
     html = render_to_string partial: 'activities/activity_cards.html.erb', locals: { activities: @activities }
     render json: { activities: @activities, html: html }
