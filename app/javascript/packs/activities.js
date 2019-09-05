@@ -144,6 +144,7 @@ const fetchDetails = (place_id) => {
   fetch(endpoint)
   .then(response => response.json())
   .then((data) => {
+    console.log(data);
     const modalContainer = document.getElementById('modal-container');
     modalContainer.innerHTML = data.html;
     $('#modal').modal();
