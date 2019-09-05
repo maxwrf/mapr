@@ -62,16 +62,13 @@ const addToShortlist = (placeId) => {
 };
 
 const toggleItineraryButton = () => {
-  if (submitShortlistButton.classList.contains('d-none')) {
-    submitShortlistButton.classList.remove('d-none');
-    window.setTimeout( () => {
-      submitShortlistButton.classList.add('opac-1-fadein');
-      submitShortlistButton.classList.remove('opac-0');
-    },10 );
+  if (submitShortlistButton.classList.contains('disabled')) {
+    submitShortlistButton.classList.remove('disabled');
+
   }
   else {
-    submitShortlistButton.classList.add('opac-0', 'd-none');
-    submitShortlistButton.classList.remove('opac-1-fadein');
+    submitShortlistButton.classList.add('disabled');
+
   }
 }
 
