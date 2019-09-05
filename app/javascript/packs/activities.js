@@ -203,11 +203,11 @@ export const initializePage = () => {
   searchForm.addEventListener('submit', handleSearchSubmit);
   cat_buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
-      let params = `q=${event.currentTarget.innerText}`;
+      let params = `q=${event.currentTarget.innerHTML}`;
         fetchActivities(params);
     });
     createSubmitShortlistButton()
     //cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
   });
-  fetchActivities("api/v1/activities?q=" + cat_buttons[0].innerText);
+  fetchActivities(`q=${cat_buttons[0].innerHTML}`);
 };
