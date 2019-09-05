@@ -35,13 +35,13 @@
 }
 
 .btn-act {
-    color: #05C8A5;
+    color: #cfcfcf  ;
     border-color: #05C8A6;
     border-style: solid;
     border-width: thin;
     border-radius: 5px;
-    transition-property: box-shadow;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    //transition-property: box-shadow;
+    //transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     background-image: none;
     display: inline-block;
     font-size: 0.875rem;
@@ -60,16 +60,16 @@
 }
 
 .btn-act:hover {
-  background-color: #21314d;
-  border-width: medium;
+  background-color: white !important;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   color: #05C8A5;
-
 }
 
 .btn-act.active {
-  background-color: #21314d;
+  background-color: white !important;
   border-width: medium;
   color: #05C8A5;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2) !important;
 
 }
 

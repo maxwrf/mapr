@@ -5,7 +5,7 @@
         <% @categories.each_with_index do |text, ind| %>
           <% first = '' %>
           <% first = 'active' if ind == 0 %>
-          <p id="<%= ind %>" class="<%= first %> cat-btn btn btn-act"><%= text %></p>
+          <p id="<%= ind %>" class="<%= first %> cat-btn btn btn-act mx-1"><%= text %></p>
         <% end %>
       </div>
       <div class="form-col text-right">
