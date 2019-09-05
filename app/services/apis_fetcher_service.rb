@@ -25,6 +25,7 @@ class ApisFetcherService
     @api_params.join('&')
   end
 
+  # DEPRECATED - REMOVE ONCE CONFIRMED NOT IN USE
   def map_city_to_lat_lng(city)
     city = 'berlin' if city.nil?
     value = case city.downcase
@@ -36,6 +37,11 @@ class ApisFetcherService
               '48.8566,2.3522'
             end
     value
+  end
+
+  def get_coord_string(params)
+    plan = Plan.find(params[:plan_id])
+    "#{plan[:latitude]},#{plan[:longitude]}"
   end
 
   # CHILD METHODS ---------

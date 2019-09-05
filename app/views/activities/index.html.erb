@@ -18,20 +18,24 @@
     </div>
     <div class="row">
       <div class='col'>
-        <h3>Available Activities</h3>
+        <div class="section-steps-1">
+          <h2 class="font-weight-bold col-thematic-inv text-center"><span>Available activities</span></h2>
+        </div>
         <div id="activities">
         </div>
       </div>
       <div class='col shortlist-col'>
+        <div class="from-pref-1">
         <h3>Selected</h3>
           <%#= render partial: 'activities/shortlisted_activity_card.html.erb', locals: {title: 'Some Place'} %>
           <%#= render partial: 'activities/shortlisted_activity_card.html.erb', locals: {title: 'The Big Castle Shed'}  %>
           <%#= render partial: 'activities/shortlisted_activity_card.html.erb', locals: {title: 'The Giant Longed Name Cathedral of Berlin'}  %>
             <div id="shortlist" class="shortlist-col mt-3 row">
             </div>
-          <div class='mt-2 col text-centre'>
-            <p id="submit_shortlist" class="d-none opac-0 btn btn-primary">Continue to Itinerary</p>
+          <div class=''>
+            <p id="submit_shortlist" class="c-position disabled btn btn-primary">Continue to Itinerary</p>
           </div>
+        </div>
       </div>
     </div>
   </div>
