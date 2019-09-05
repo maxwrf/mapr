@@ -21,10 +21,10 @@
             <p class="card-rating">
               <%= activity[:average_rating] %>
               <% full_stars.times do %>
-              <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               <% end %>
-              <% if half_star %>
-              <i class="fas fa-star-half"></i>
+              <% (5 - full_stars).times do %>
+                <i class="fas fa-star grey"></i>
               <% end %>
             </p>
           </div>
