@@ -1,25 +1,44 @@
 
 <div class="row">
+  <% p "\n***** A *****" %>
   <% activities.each do |activity| %>
 
+  <% p "\n***** B , activity = #{activity} *****" %>
   <% full_stars = activity[:average_rating].to_i %>
   <% half_star = true if activity[:average_rating] - full_stars >= 0.5 %>
 
+  <% p "\n***** C , full_stars = #{full_stars} *****" %>
+  <% p "\n***** D , half_star = #{half_star} *****" %>
+
   <div class="col-sm-12 col-md-6 col-lg-4">
     <div id="<%= activity.place_id %>" class="card activity-card my-3">
+      <% p "\n***** E , place_id = #{activity.place_id} *****" %>
       <% if activity.image_ref %>
+      <% p "\n***** F , image_ref = #{activity.image_ref} *****" %>
         <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
+        <% p "\n***** G , img_src = #{img_src} *****" %>
       <% else %>
+        <% p "\n***** H, no image, going placeholder... *****" %>
         <% img_src = image_path('card_image_placeholder.jpeg') %>
+        <% p "\n***** H.2 , img_src = #{img_src} *****" %>
       <% end %>
       <img class="card-img-top activity-card-img" src="<%= img_src %>" alt="">
       <div class="card-body card-flex">
-        <% name = activity[:name].length > 45 ? activity[:name].truncate(50) : activity[:name] %>
+        <% p "\n***** I, activity[:name]... *****" %>
+        <% p "\n***** I.2 , activity[:name] = #{activity[:name]} *****" %>
+        <% p "\n***** J, activity[:name].length... *****" %>
+        <% p "\n***** J.2 , activity[:name].length = #{activity[:name].length} *****" %>
+        <% p "\n*****K, (final) name... *****" %>
+        <% name = activity[:name].length > 45 ? activity[:name].truncate(45) : activity[:name] %>
+        <% p "\n***** K.2, (final) name = #{name} *****" %>
         <p style="font-size: 16px;"><%= name %></p>
         <div class="row" style="margin-bottom: -20px">
           <div class="col-8">
             <p class="card-rating">
+              <% p "\n***** L, activity[:average_rating]... *****" %>
+              <% p "\n***** L.2 , activity[:average_rating] = #{activity[:average_rating]} *****" %>
               <%= activity[:average_rating] %>
+              <% p "\n***** M, doing stars... *****" %>
               <% full_stars.times do %>
                 <i class="fas fa-star"></i>
               <% end %>
@@ -28,6 +47,7 @@
               <% end %>
             </p>
           </div>
+          <% p "\n***** N, doing button... *****" %>
           <div class="col">
             <p id="b_<%= activity.place_id %>" data-place-id='<%= activity.place_id %>'class=" shortlist-btn material-icons"></p>
           </div>
@@ -35,7 +55,7 @@
       </div>
     </div>
   </div>
-
+   <% p "\n***** O, end of each *****" %>
   <% end %>
 </div>
 
