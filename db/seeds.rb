@@ -21,4 +21,3 @@ seeds = [{name: 'museum', search_term: 'musuems', avg_visit_mins: 150},
          {name: 'nightlife', search_term: 'nightlife', avg_visit_mins: 0}]
 
 categories = Category.create(seeds)
-u
