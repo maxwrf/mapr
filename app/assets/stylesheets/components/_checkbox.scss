@@ -12,16 +12,16 @@
   border-radius: 5px;
   flex: 0 0 30%;
   text-align: center;
-  width: 100%;
+  width: 130px;
   font-weight: bold;
-  font-size: 18px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.1);
   .fas {
-    font-size: 35px;
+    font-size: 20px;
   }
   &:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.15);
   }
   &.active {
   color: $thematic;
@@ -32,4 +32,11 @@
 .collection_check_boxes {
   width: 100%;
   padding: 0px 20px;
+}
+
+.plan-categories-item-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
 }

@@ -2,6 +2,9 @@
   <div class='container'>
     <div class='mb-3 row align-items-start justify-content-between flex-nowrap'>
       <div class='categories-col'>
+        <div class="section-steps-1 text-align-center">
+          <h2 class="font-weight-bold col-thematic-inv text-center"><span>Available activities</span></h2>
+        </div>
         <% @categories.each_with_index do |text, ind| %>
           <% first = '' %>
           <% first = 'active' if ind == 0 %>
@@ -18,9 +21,7 @@
     </div>
     <div class="row">
       <div class='col'>
-        <div class="section-steps-1">
-          <h2 class="font-weight-bold col-thematic-inv text-center"><span>Available activities</span></h2>
-        </div>
+
         <div id="activities">
         </div>
       </div>
@@ -33,7 +34,7 @@
             <div id="shortlist" class="shortlist-col mt-3 row">
             </div>
           <div class=''>
-            <p id="submit_shortlist" class="c-position disabled btn btn-primary">Continue to Itinerary</p>
+            <p id="submit_shortlist" class="c-position disabled btn btn-primary" style="font-weight: bold; color: white;">Continue to Itinerary</p>
           </div>
         </div>
       </div>

@@ -5,7 +5,8 @@ module PlansHelper
       'wildlife' => 'paw',
       'museum' => 'landmark',
       'park' => 'tree',
-      'art gallery' => 'palette'
+      'art gallery' => 'palette',
+      'nightlife' => 'glass-cheers'
     }
 
     tag.div class: "category-choice col-xs-12 col-sm-#{col_size}" do
