@@ -20,14 +20,12 @@
 
   <!-- TAB OVERVIEW -->
   <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
-    <div class="container">
       <div
         id="mapall"
         style="width: 100%; height: 600px;"
         data-markers="<%= @markers.to_json %>"
         data-travelmode="<%= @travel_mode.to_json %>"
       ></div>
-    </div>
   </div>
 
   <!-- TAB STEP BY STEP NAVIGATION -->
@@ -110,9 +108,9 @@
                         <!-- Destination address  -->
                         <h6 class="end card-text" id="<%= "end#{index}" %>"></h6>
                         <!-- Instrcution steps -->
-                        <div class="card-text"><ul id="<%= "instructionsteps#{index}" %>"></ul></div>
+                        <div class="card-text"><ol id="<%= "instructionsteps#{index}" %>"></ol></div>
                         <!-- TBD -->
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <p class="card-text"><small class="text-muted">Last updated 2 mins ago</small></p>
                         <!-- Info related to visit ("Activity") -->
                         <% unless  index == @markers.length - 2 %>
                           <div class="d-flex align-items-end justify-content-between">
@@ -160,31 +158,35 @@
   <!-- activities tab -->
   <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">
     <div class="container">
-      <div class="row"></div>
+      <div class="row">
+
         <!-- activities have been ordered and should be displayed one by one -->
         <% @ordered_activities.each do |activity| %>
           <!-- CARD FOR EACH ACTIVITY -->
-          <div class="card mt-4 mb-3 intinerary-card" data-aos="fade-up">
-            <!-- picture of each activity -->
-            <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
-            <% p img_src %>
-            <img class="card-img-top intinerary-card-img" src="<%= img_src %>" alt="Card image cap">
-           <!--  <img class="card-img-top" src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="Card image cap"> -->
-            <div class="card-body">
-              <!-- activity name -->
-              <h5 class="card-title"><%= activity.name %></h5>
-              <!-- TBD -->
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <!-- Category -->
-              <p class="card-text"><small class="text-muted">Category</small></p>
-              <!-- Possibility to delete card which redirects to plans show page -->
-                <%= link_to "Delete", plan_activity_path(@plan, activity), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary", style:"margin-bottom: -100px;" %>
+          <div class="col-xs-12 col-sm-6 ">
+            <div class="card mt-4 mb-3 intinerary-card " data-aos="fade-up">
+              <!-- picture of each activity -->
+              <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
+              <% p img_src %>
+              <img class="card-img-top intinerary-card-img" src="<%= img_src %>" alt="Card image cap">
+             <!--  <img class="card-img-top" src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="Card image cap"> -->
+              <div class="card-body">
+                <!-- activity name -->
+                <h5 class="card-title"><%= activity.name %></h5>
+                <!-- TBD -->
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <!-- Category -->
+                <p class="card-text"><small class="text-muted">Category</small></p>
+                <!-- Possibility to delete card which redirects to plans show page -->
+                  <%= link_to "Delete", plan_activity_path(@plan, activity), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary", style:"margin-bottom: -100px;" %>
+              </div>
+              <!-- end of card body -->
             </div>
-            <!-- end of card body -->
           </div>
           <!-- end of card -->
         <% end %>
         <!-- end of loop through the array of ordered activities -->
+      </div>
     </div>
     <!-- end of wrapping container -->
   </div>
