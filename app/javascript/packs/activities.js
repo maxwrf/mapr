@@ -22,7 +22,7 @@ const actionActivitiesData = (data, insert = false) => {
   else {
     activities.innerHTML = data.html;
   }
-  console.log(data);
+  //console.log(data);
     data.activities.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
       const cardButton = document.getElementById(`b_${ activity.place_id}`);
@@ -203,7 +203,7 @@ export const initializePage = () => {
   searchForm.addEventListener('submit', handleSearchSubmit);
   cat_buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
-      let params = `q=${event.currentTarget.innerHTML}`;
+      let params = `q=${event.currentTarget.dataset.searchTerm}`;
         fetchActivities(params);
     });
     createSubmitShortlistButton()

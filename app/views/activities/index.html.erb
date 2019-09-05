@@ -8,7 +8,9 @@
         <% @categories.each_with_index do |text, ind| %>
           <% first = '' %>
           <% first = 'active' if ind == 0 %>
-          <p id="<%= ind %>" class="<%= first %> cat-btn btn btn-act mx-1"><%= text %></p>
+          <% cat = Category.find_by(name: text.downcase) %>
+          <% cat = cat[:search_term] %>
+          <p id="<%= ind %>" class="<%= first %> cat-btn btn btn-act mx-1" data-search-term="<%= cat %>"><%= text %></p>
         <% end %>
       </div>
       <div class="form-col text-right">
