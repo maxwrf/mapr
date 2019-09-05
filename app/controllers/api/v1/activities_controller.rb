@@ -3,13 +3,14 @@
 class Api::V1::ActivitiesController < Api::V1::BaseController
   def index
     # e.g. url http://localhost:3000/plans/1/api/v1/activities
-    @activities = policy_scope(Activity)
+    activities = policy_scope(Activity)
     fetcher = ActivitiesFetcherService.new
     p "*********** PARAMS = #{params}"
-    @activities = fetcher.fetch(params).sort { |a, b|  b[:average_rating] <=> a[:average_rating] }
-    p "*********** ACTIVITIES = #{@activities}"
-    html = render_to_string partial: 'activities/activity_cards.html.erb', locals: { activities: @activities }
-    render json: { activities: @activities, html: html }
+    activities = fetcher.fetch(params).sort { |a, b|  b[:average_rating] <=> a[:average_rating] }
+    p "*********** ACTIVITIES = #{activities}"
+    html = render_to_string partial: 'activities/activity_cards.html.erb', locals: { activities: activities }
+    p "*********** HTML = #{html}"
+    render json: { activities: activities, html: html }
 
     # option instead of json...
     #
