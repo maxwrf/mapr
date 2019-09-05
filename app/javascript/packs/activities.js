@@ -22,6 +22,7 @@ const actionActivitiesData = (data, insert = false) => {
   else {
     activities.innerHTML = data.html;
   }
+  console.log(data);
     data.activities.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
       const cardButton = document.getElementById(`b_${ activity.place_id}`);
