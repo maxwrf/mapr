@@ -17,8 +17,8 @@ seeds = [{name: 'museum', search_term: 'musuems', avg_visit_mins: 150},
          {name: 'zoo', search_term: 'zoos', avg_visit_mins: 180},
          {name: 'amusement park', search_term: 'amusement parks', avg_visit_mins: 300},
          {name: 'theater', search_term: 'theaters', avg_visit_mins: 180},
-         {name: 'wildlife', search_term: 'theaters', avg_visit_mins: 0},
-         {name: 'nightlife', search_term: 'theaters', avg_visit_mins: 0}]
+         {name: 'wildlife', search_term: 'wildlife', avg_visit_mins: 0},
+         {name: 'nightlife', search_term: 'nightlife', avg_visit_mins: 0}]
 
 categories = Category.create(seeds)
 u
