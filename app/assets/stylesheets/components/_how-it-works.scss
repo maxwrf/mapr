@@ -8,12 +8,26 @@
 .section-steps {
   h2 {
   padding: 53px 23px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 20px;
-    font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 20px;
+  font-weight: 400;
     span {
       box-shadow: inset 0px -8px #05c8a6;
     }
   }
- }
+}
+
+.section-steps-1 {
+  h2 {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 20px;
+  font-weight: 400;
+    span {
+      box-shadow: inset 0px -8px #05c8a6;
+    }
+  }
+}
