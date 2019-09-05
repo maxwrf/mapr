@@ -46,10 +46,11 @@
 
 .intinerary-card {
   // width: 450px;
-  height: 550px;
+  height: 400px;
+      box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1) !important;
 }
 .intinerary-card-img {
-  height: 55%;
+  height: 70%;
   object-fit: cover;
 }
 

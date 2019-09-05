@@ -28,6 +28,16 @@
     i {
       color: #FFC107 !important;
     }
+
+  .search-not-found-start {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+
+  .search-not-found-end {
+    color: #FF4081;
+    opacity: 0;
+    transition: opacity 2000ms ease-in;
   }
 
   .opac-0 {

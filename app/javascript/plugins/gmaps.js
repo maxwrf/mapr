@@ -186,7 +186,7 @@ const init = (mapElement, index) => {
       const time = document.getElementById(`time${index}`)
       start.innerHTML = `Start: ${response.routes[0].legs[0].start_address}`;
       end.innerHTML = `To: ${response.routes[0].legs[0].end_address}`;
-      time.innerHTML = `Travel duration: ${response.routes[0].legs[0].duration.text}`;
+      time.innerHTML = `<bold>Time: ${response.routes[0].legs[0].duration.text}</bold>`;
 
 
       const steps = document.getElementById(`instructionsteps${index}`)

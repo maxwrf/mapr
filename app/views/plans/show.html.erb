@@ -1,5 +1,5 @@
 <div class="section-steps container">
-  <h2 class="font-weight-bold col-thematic-inv text-center"><span>Enjoy your trip</span></h2>
+  <h2 class="font-weight-bold col-thematic-inv text-center" style="padding: 20px !important;"><span>Enjoy your trip</span></h2>
 </div>
 
 <!-- navbar -->
@@ -45,6 +45,7 @@
               <% else %>
                 <div class="carousel-item">
               <% end %>
+
                   <!-- the content of each carousel item is nested in a container -->
                   <div class="container mt-4 mb-2">
                     <!-- progress bar -->
@@ -52,12 +53,16 @@
                       <!-- Create progress bar items that have been done / visited -->
                       <% counter = 0 %>
                       <% (index + 1).times do %>
-                      <div class="stepper done">
+                      <div id="stepper-<%= index %> " class="stepper done">
                         <div class="stepper-icon bg-thematic-inv"><i class="material-icons bg-thematic-inv">check</i></div>
                         <% if  @ordered_activities[counter].nil? %>
                           <span class="stepper-text">Home</span>
                         <% else %>
+                        <!--<a href="" class="slider-items" data-tab-id='<%= @ordered_activities[counter].id %>'>-->
+                        <!--<a href="">-->
                           <span class="stepper-text"><%= @ordered_activities[counter].name %></span>
+                        <!--</a>-->
+                        <!--</a>-->
                       <% end %>
                       </div>
                       <% counter += 1 %>
@@ -65,12 +70,20 @@
 
                       <!-- Add progress bar items which have not been done / visited -->
                       <% (@markers.length - 2 - index).times do %>
-                      <div class="stepper active">
+                      <div id="stepper-<%= index %> " class="stepper active">
                         <div class="stepper-icon bg-thematic"><i class="material-icons">access_time</i></div>
                         <% if  @ordered_activities[counter].nil? %>
                           <span class="stepper-text">Home</span>
                         <% else %>
                           <span class="stepper-text"><%= @ordered_activities[counter].name %></span>
+
+
+
+
+
+
+
+
                         <% end %>
                       </div>
                       <% counter += 1 %>
@@ -81,7 +94,7 @@
                   <!-- card map-->
                     <% markers = [marker, @markers[index + 1]] %>
                     <!-- the actual content of one carousel slide is displayed on a card -->
-                    <div class="card mb-3">
+                    <div class="card mb-3 mx-5">
                       <!-- GMAPS -->
                       <div
                           class="map card-img-top"
@@ -104,11 +117,11 @@
                           <span class="badge badge-pill badge-primary p-1 w-25 text-center align-self-center btn-dt" id="<%= "time#{index}" %>"></span>
                         </div>
                         <!-- Start address -->
-                        <h6 class="start card-text" id="<%= "start#{index}" %>"></h6>
-                        <!-- Destination address  -->
-                        <h6 class="end card-text" id="<%= "end#{index}" %>"></h6>
+                        <h6 class="start card-text" id="<%= "start#{index}" %>" style="font-weight: bold;"></h6>
                         <!-- Instrcution steps -->
-                        <div class="card-text"><ol id="<%= "instructionsteps#{index}" %>"></ol></div>
+                        <div class="card-text" style="opacity: 0.6"><ol id="<%= "instructionsteps#{index}" %>"></ol></div>
+                        <!-- Destination address  -->
+                        <h6 class="end card-text" style="font-weight: bold;" id="<%= "end#{index}" %>"></h6>
                         <!-- TBD -->
                         <p class="card-text"><small class="text-muted">Last updated 2 mins ago</small></p>
                         <!-- Info related to visit ("Activity") -->
@@ -139,11 +152,11 @@
               <!-- end of inner carousel  -->
 
           <!-- carousell navigation control -->
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <a id="custom-control-left" class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <a id="custom-control-right" class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -172,13 +185,9 @@
              <!--  <img class="card-img-top" src="https://images.unsplash.com/photo-1546726747-421c6d69c929?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="Card image cap"> -->
               <div class="card-body">
                 <!-- activity name -->
-                <h5 class="card-title"><%= activity.name %></h5>
-                <!-- TBD -->
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <!-- Category -->
-                <p class="card-text"><small class="text-muted">Category</small></p>
+                <h5 class=""><%= activity.name %></h5>
                 <!-- Possibility to delete card which redirects to plans show page -->
-                  <%= link_to "Delete", plan_activity_path(@plan, activity), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary", style:"margin-bottom: -100px;" %>
+                <p class ="btn btn-primary", style="margin-bottom: -25px;">Delete</p>
               </div>
               <!-- end of card body -->
             </div>

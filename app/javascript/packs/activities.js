@@ -22,6 +22,7 @@ const actionActivitiesData = (data, insert = false) => {
   else {
     activities.innerHTML = data.html;
   }
+  console.log(data);
     data.activities.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
       const cardButton = document.getElementById(`b_${ activity.place_id}`);
@@ -155,10 +156,25 @@ const handleSearchSubmit = (event) => {
   fetch(endpoint)
   .then(response => response.json())
   .then((data) => {
-    //window.alert(`search response => ${data.activities}`);
-    actionActivitiesData(data, false);
-    input.value = '';
-    input.blur();
+    if (data.activities) {
+      console.log(data);
+      //window.alert(`search response => ${data.activities}`);
+      actionActivitiesData(data, false);
+      input.value = '';
+      input.blur();
+    }
+    else {
+      input.value = "No matching activity found";
+      input.classList.add('search-not-found-end');
+      input.classList.remove('search-not-found-start');
+      window.setTimeout( () => {
+      input.value = '';
+      input.classList.remove('search-not-found-end');
+      input.classList.add('search-not-found-start');
+      input.blur();
+    },2500 );
+    }
+
   });
 }
 

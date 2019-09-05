@@ -80,7 +80,20 @@
   background-color: white;
     padding: 8px !important;
     color: #05C8A5;
-    border-style: solid;
-    border-width: thin;
-    padding-left: 37px !important;
+    padding-left: 70px !important;
 }
+
+#custom-control-left {
+    position: fixed;
+    opacity: 1;
+    background: #04c8a6;
+    margin-left: 0px;
+}
+
+#custom-control-right {
+    position: fixed;
+    opacity: 1;
+    background: #04c8a6;
+    margin-right: 0px;
+}
+
