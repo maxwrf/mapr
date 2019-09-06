@@ -8,14 +8,16 @@
 
 Category.destroy_all
 
-seeds = [{name: 'musuems', search_term: 'musuems', avg_visit_mins: 150},
-         {name: 'art galleries', search_term: 'art galleries', avg_visit_mins: 120},
+seeds = [{name: 'museum', search_term: 'musuems', avg_visit_mins: 150},
+         {name: 'art gallery', search_term: 'art galleries', avg_visit_mins: 120},
          {name: 'shopping', search_term: 'shopping centres', avg_visit_mins: 180},
-         {name: 'stadiums', search_term: 'stadiums', avg_visit_mins: 100},
-         {name: 'landmarks', search_term: 'landmarks', avg_visit_mins: 30},
-         {name: 'parks', search_term: 'parks', avg_visit_mins: 180},
-         {name: 'zoos', search_term: 'zoos', avg_visit_mins: 180},
-         {name: 'amusement parks', search_term: 'amusement parks', avg_visit_mins: 300},
-         {name: 'theaters', search_term: 'theaters', avg_visit_mins: 180}]
+         {name: 'stadium', search_term: 'stadiums', avg_visit_mins: 100},
+         {name: 'landmark', search_term: 'landmarks', avg_visit_mins: 30},
+         {name: 'park', search_term: 'parks', avg_visit_mins: 180},
+         {name: 'zoo', search_term: 'zoos', avg_visit_mins: 180},
+         {name: 'amusement park', search_term: 'amusement parks', avg_visit_mins: 300},
+         {name: 'theater', search_term: 'theaters', avg_visit_mins: 180},
+         {name: 'wildlife', search_term: 'wildlife', avg_visit_mins: 0},
+         {name: 'nightlife', search_term: 'nightlife', avg_visit_mins: 0}]
 
 categories = Category.create(seeds)

@@ -1,20 +1,22 @@
 
 <div class="row">
-  <% @activities.each do |activity| %>
-
+  <% activities.each do |activity| %>
   <% full_stars = activity[:average_rating].to_i %>
   <% half_star = true if activity[:average_rating] - full_stars >= 0.5 %>
-
   <div class="col-sm-12 col-md-6 col-lg-4">
     <div id="<%= activity.place_id %>" class="card activity-card my-3">
       <% if activity.image_ref %>
         <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
+        <img class="card-img-top activity-card-img" src="<%= img_src %>" alt="">
       <% else %>
-        <% img_src = image_path('card_image_placeholder.jpeg') %>
+        <%# img_src = 'https://via.placeholder.com/350x150' %>
+        <%# img_src = image_url('card_image_placeholder.jpeg') %>
+        <%# p "\n***** H.2 , img_src = #{img_src} *****" %>
+        <%= image_tag("card_image_placeholder.jpeg", class: "card-img-top activity-card-img") %>
       <% end %>
-      <img class="card-img-top activity-card-img" src="<%= img_src %>" alt="">
+
       <div class="card-body card-flex">
-        <% name = activity[:name].length > 45 ? activity[:name].truncate(50) : activity[:name] %>
+        <% name = activity[:name].length > 45 ? activity[:name].truncate(45) : activity[:name] %>
         <p style="font-size: 16px;"><%= name %></p>
         <div class="row" style="margin-bottom: -20px">
           <div class="col-8">
@@ -35,7 +37,7 @@
       </div>
     </div>
   </div>
-
+   <% p "\n***** O, end of each *****" %>
   <% end %>
 </div>
 

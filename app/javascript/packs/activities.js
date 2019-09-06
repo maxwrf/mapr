@@ -22,7 +22,7 @@ const actionActivitiesData = (data, insert = false) => {
   else {
     activities.innerHTML = data.html;
   }
-  console.log(data);
+  //console.log(data);
     data.activities.forEach((activity) => {
       activityIndex[activity.place_id] = activity;
       const cardButton = document.getElementById(`b_${ activity.place_id}`);
@@ -80,7 +80,7 @@ const handleAddToShortlist = (event) => {
 // when on shortlist
 
 const createRemoveFromShortlistButton = (target) => {
-  target.innerHTML = 'restore_from_trash';
+  target.innerHTML = 'delete';
   // target.classList.remove('btn-primary');
   target.classList.add('col-thematic-inv');
   target.removeEventListener('click', handleAddToShortlist);
@@ -203,11 +203,11 @@ export const initializePage = () => {
   searchForm.addEventListener('submit', handleSearchSubmit);
   cat_buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
-      let params = `q=${event.currentTarget.innerText}`;
+      let params = `q=${event.currentTarget.dataset.searchTerm}`;
         fetchActivities(params);
     });
     createSubmitShortlistButton()
     //cat_buttons[0].classList.add('current-cat'); // TODO: make this change with cat chnages
   });
-  fetchActivities("api/v1/activities?q=" + cat_buttons[0].innerText);
+  fetchActivities(`q=${cat_buttons[0].innerHTML}`);
 };
