@@ -1,5 +1,5 @@
-<div class="section-steps container">
-  <h2 class="font-weight-bold col-thematic-inv text-center" style="padding: 20px !important;"><span>Enjoy your trip</span></h2>
+<div class="section-steps container" id="itinerary_page">
+  <h2 class="font-weight-bold col-thematic-inv text-center" style="padding: 20px !important"><span>Enjoy your trip</span></h2>
 </div>
 
 <!-- navbar -->
@@ -41,9 +41,9 @@
           <% break if index == @markers.length - 1  %>
               <!-- Declare carousel items -->
               <% if index.zero? %>
-                <div class="carousel-item active">
+                <div class="carousel-item active carousel-<%= index + 1 %>">
               <% else %>
-                <div class="carousel-item">
+                <div class="carousel-item carousel-<%= index + 1 %>">
               <% end %>
 
                   <!-- the content of each carousel item is nested in a container -->
@@ -53,7 +53,9 @@
                       <!-- Create progress bar items that have been done / visited -->
                       <% counter = 0 %>
                       <% (index + 1).times do %>
-                      <div id="stepper-<%= index %> " class="stepper done">
+                      <!-- NEVER ADD A FUCKING CLASS TO THIS SHIT!!!!! -->
+                      <!-- I AM NOT JOKING -->
+                      <div  class="stepper done stepper-<%= index %>" style="cursor: pointer;">
                         <div class="stepper-icon bg-thematic-inv"><i class="material-icons bg-thematic-inv">check</i></div>
                         <% if  @ordered_activities[counter].nil? %>
                           <span class="stepper-text">Home</span>
@@ -70,7 +72,8 @@
 
                       <!-- Add progress bar items which have not been done / visited -->
                       <% (@markers.length - 2 - index).times do %>
-                      <div id="stepper-<%= index %> " class="stepper active">
+                      <div class="marker-length" style="display: none"><%= @markers.length.to_i - 1 %></div>
+                      <div  class="stepper active stepper-<%= index %>" style="cursor: pointer;">
                         <div class="stepper-icon bg-thematic"><i class="material-icons">access_time</i></div>
                         <% if  @ordered_activities[counter].nil? %>
                           <span class="stepper-text">Home</span>
@@ -114,7 +117,7 @@
                             <div class="card-title align-self-center mb-0"><h3 class="align-self-center">Going back home</h3></div>
                           <% end %>
                           <!-- Travel time -->
-                          <span class="badge badge-pill badge-primary p-1 w-25 text-center align-self-center btn-dt" id="<%= "time#{index}" %>"></span>
+                          <span class="badge badge-pill badge-primary p-1 w-25 text-center align-self-center btn-dt"  style="font-weight: 700;" id="<%= "time#{index}" %>"></span>
                         </div>
                         <!-- Start address -->
                         <h6 class="start card-text" id="<%= "start#{index}" %>" style="font-weight: bold;"></h6>

@@ -38,7 +38,14 @@
 
 *:focus {
   outline: 0 !important;
+  border-color: #e0e0e0 !important;
+  box-shadow: none !important;
   }
+
+#plan-city {
+  border-color: #e0e0e0 !important;
+  box-shadow: none !important;
+}
 
 .form-check {
   padding: 0px;
@@ -72,6 +79,11 @@ input[type=number]::-webkit-outer-spin-button {
   /* border-color: #f0f0f0; */
   /* border-style: solid; */
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+  h5 {
+    color: #05c8a6;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
 }
 
 .c-position {
@@ -84,21 +96,29 @@ input[type=number]::-webkit-outer-spin-button {
 
 .from-pref-1 {
     border-radius: 7px;
-    min-height: 69%;
+    min-height: 69vh;
     background: white;
     width: 262px;
     padding: 14px;
+    position: sticky;
+    top: 10px;
     /* border-color: #f0f0f0; */
     /* border-style: solid; */
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    margin-top: 1rem;
     h3 {
       text-align: center;
       font-size: 16px;
       /* text-transform: uppercase; */
       /* letter-spacing: 3px; */
       color: #a4a4a4;
+      text-transform: uppercase;
+      color: #05c8a6;
+      font-weight: bold;
     }
 }
 
+.delete_break {
+  text-decoration: none !important;
+}
 
