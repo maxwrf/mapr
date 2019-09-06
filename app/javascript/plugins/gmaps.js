@@ -199,7 +199,8 @@ const fitMapToMarkers = (map, markers) => {
   const tabs = document.querySelectorAll('a[data-toggle="tab"]');
   const nextBtns = document.querySelectorAll('a[data-slide="next"]');
   const prevBtns = document.querySelectorAll('a[data-slide="prev"]');
-  const allTabs = [...tabs, ...nextBtns, ...prevBtns];
+  const step = document.querySelectorAll('.stepper');
+  const allTabs = [...tabs, ...nextBtns, ...prevBtns, ...step];
   allTabs.forEach((tab) => {
     tab.addEventListener("click", (evt) => {
       window.setTimeout(() => {
