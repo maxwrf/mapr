@@ -17,6 +17,7 @@ import { AosInit } from '../plugins/aos.js'
 // import { initNavbarNavigation } from '../plugins/navbar_navigation.js'
 // import { initMapStyle } from '../plugins/mapstyle.js'
 import { toggleButtonCategories } from '../plugins/buttons.js';
+import { sliderInti } from '../plugins/selector.js';
 
 
 $(document).ready(function(){
@@ -39,8 +40,18 @@ initTopFunction();
 classGiver();
 
 
+
 const activities_page = document.getElementById("activities_page");
 if (activities_page) {
   initializePage();
   toggleButtonCategories();
 };
+
+const itinerary_page = document.getElementById('itinerary_page');
+if (itinerary_page) {
+  sliderInti();
+};
+
+
+
+
