@@ -20,6 +20,16 @@
     }
   }
 
+  .card-rating {
+    .grey {
+      color: lightgrey !important;
+    }
+    color:  $text-secondary;
+    i {
+      color: #FFC107 !important;
+    }
+  }
+
   .search-not-found-start {
     opacity: 1;
     transition: opacity 500ms ease-in;
@@ -64,7 +74,7 @@
 
 
   .cat-btn {
-    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   form {

@@ -7,9 +7,21 @@
     border: none;
   }
 
-  img {
+  img.mini {
     height: 100px;
     width: 100px;
+  }
+
+  .large {
+    height: 250px !important;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .modal-title {
+    font-size: 32px;
+    color: white;
+    padding: 20px;
   }
 
   .modal-footer .btn {
@@ -18,6 +30,9 @@
 
   .card-rating {
     color:  $text-secondary;
+    i {
+      color: #FFC107 !important;
+    }
   }
 
   .opening-hours {
@@ -31,4 +46,8 @@
       color: $thematic;
     }
   }
+}
+
+.modal-header {
+  padding: 0;
 }

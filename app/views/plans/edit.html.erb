@@ -30,7 +30,7 @@
                 <%= f.check_box :permit_cycle, class:"js-value-updater",id:"option3" %>
                 <%= f.label :permit_cycle, 'directions_bike', class:"btn btn-secondary js-btn material-icons" %>
                 <%= f.check_box :permit_public_transport, class:"js-value-updater",id:"option4" %>
-                <%= f.label :permit_public_transport, 'tram', class:"btn btn-secondary js-btn material-icons " %>
+                <%= f.label :permit_public_transport, 'tram', class:"btn btn-secondary js-btn material-icons" %>
               </div>
             </div>
           </div>
@@ -45,14 +45,14 @@
     </div>
       <% end %>
     <div class="links row align-items-center mt-2 ">
-      <%= link_to_add_association 'add_box', f, :breaks, class:"material-icons col-thematic ml-3 mr-1" %>
+      <%= link_to_add_association 'add_box', f, :breaks, class:"material-icons col-thematic ml-3 mr-1 delete_break" %>
       <p class="m-0 col-thematic" id="p-break">Add break</p>
     </div>
 </div>
   </div>
   <div class="row">
     <div class="col mx-0 px-2 text-right">
-     <%= f.submit 'Select your categories',  class: "btn btn-primary bg-thematic mt-4"%>
+     <%= f.submit 'Select categories',  class: "btn btn-primary bg-thematic mt-3 p-3", style: "font-weight: bold"%>
    </div>
   </div>
   <% end %>

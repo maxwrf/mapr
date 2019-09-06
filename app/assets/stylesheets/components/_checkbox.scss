@@ -1,9 +1,14 @@
-// .category-choices {
-//   display: flex;
-//   justify-content: space-between;
-//   flex-wrap: wrap;
-//   margin: 20px 0;
-// }
+.category-choices {
+  fieldset {
+    margin: 0 !important;
+  }
+  label {
+    margin-top: 0.5rem;
+  }
+  .form-check {
+    margin-top: 0.5rem;
+  }
+}
 
 .category-choice {
   background: white;
@@ -12,16 +17,17 @@
   border-radius: 5px;
   flex: 0 0 30%;
   text-align: center;
-  width: 100%;
+  width: 130px;
   font-weight: bold;
-  font-size: 18px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   .fas {
-    font-size: 35px;
+    font-size: 25px;
   }
   &:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    color: $thematic;
   }
   &.active {
   color: $thematic;
@@ -32,4 +38,11 @@
 .collection_check_boxes {
   width: 100%;
   padding: 0px 20px;
+}
+
+.plan-categories-item-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
 }
