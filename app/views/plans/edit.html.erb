@@ -20,17 +20,17 @@
           <h5 class="mb-5">Travel by</h5>
           <div class="btn-group-lg btn-group-toggle "    id="fromGroupTransport">
             <div>
-              <div class="col d-flex justify-content-around">
+              <div class="col d-flex justify-content-around" style="padding: 0px 70px 10px 70px;">
                 <%= f.check_box :permit_walk, class:"js-value-updater", id:"option1" %>
-                <%= f.label :permit_walk, 'directions_walk', class:"btn btn-secondary js-btn material-icons"%>
+                <%= f.label :permit_walk, 'directions_walk', class:"btn btn-secondary js-btn material-icons" %>
                 <%= f.check_box :permit_car, class:"js-value-updater", id:"option2"%>
                 <%= f.label :permit_car, 'directions_car', class:"btn btn-secondary js-btn  material-icons" %>
               </div>
-              <div class="col d-flex justify-content-around mt-4">
+              <div class="col d-flex justify-content-around mt-4" style="padding: 10px 70px;">
                 <%= f.check_box :permit_cycle, class:"js-value-updater",id:"option3" %>
                 <%= f.label :permit_cycle, 'directions_bike', class:"btn btn-secondary js-btn material-icons" %>
                 <%= f.check_box :permit_public_transport, class:"js-value-updater",id:"option4" %>
-                <%= f.label :permit_public_transport, 'tram', class:"btn btn-secondary js-btn material-icons" %>
+                <%= f.label :permit_public_transport, 'directions_subway', class:"btn btn-secondary js-btn material-icons" %>
               </div>
             </div>
           </div>
