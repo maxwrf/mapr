@@ -80,7 +80,7 @@ const handleAddToShortlist = (event) => {
 // when on shortlist
 
 const createRemoveFromShortlistButton = (target) => {
-  target.innerHTML = 'restore_from_trash';
+  target.innerHTML = 'delete';
   // target.classList.remove('btn-primary');
   target.classList.add('col-thematic-inv');
   target.removeEventListener('click', handleAddToShortlist);
