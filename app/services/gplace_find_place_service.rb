@@ -43,7 +43,7 @@ class GplaceFindPlaceService < ApisFetcherService
   end
 
   def map_params(params)
-    @api_params << "key=#{ENV['GOOGLE_API_KEY']}"
+    @api_params << "key=#{ENV['GOOGLE_PLACES_API_FRONTEND_KEY']}"
     @api_params << "input=#{params[:q]}" # TODO: how we doing this?
     @api_params << 'inputtype=textquery'
     @api_params << "locationbias=point:#{get_coord_string(params)}"

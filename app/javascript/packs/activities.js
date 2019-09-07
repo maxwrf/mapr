@@ -179,8 +179,7 @@ const handleSearchSubmit = (event) => {
 }
 
 const buildShortlistCard = (placeId, activity) => {
-  const name = activity.name.length > 45 ? `${activity.name.slice(0, 50)}...` : activity.name;
-  const imgSrc = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${activity.image_ref}&key=AIzaSyBOlf31U3nrHuWMj_pjtDcKCrhfG1RZHv0`
+  const name = activity.name.length > 40 ? `${activity.name.slice(0, 40)}...` : activity.name;
   return `<div id='s_${ placeId }' class="mt-2 col-sm-12">
             <div class="card shortlist-card" style="background-color: white; box-shadow: 0px 0px 5px rgba(0,0,0,0.1)!important;">
               <div class="card-body">
