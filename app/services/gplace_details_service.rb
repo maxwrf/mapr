@@ -29,7 +29,7 @@ class GplaceDetailsService < ApisFetcherService
   end
 
   def map_params(params)
-    @api_params << "key=#{ENV['GOOGLE_API_KEY']}"
+    @api_params << "key=#{ENV['GOOGLE_PLACES_API_BACKEND_KEY']}"
     @api_params << "placeid=#{params[:place_id]}"
     @api_params << 'fields=name,photo,opening_hours,price_level,rating,review'
   end

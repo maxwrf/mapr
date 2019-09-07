@@ -6,7 +6,7 @@
   <div class="col-sm-12 col-md-6 col-lg-4">
     <div id="<%= activity.place_id %>" class="card activity-card my-3">
       <% if activity.image_ref %>
-        <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_API_KEY']}" %>
+        <% img_src = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=#{activity.image_ref}&key=#{ENV['GOOGLE_PLACES_API_FRONTEND_KEY']}" %>
         <img class="card-img-top activity-card-img" src="<%= img_src %>" alt="">
       <% else %>
         <%# img_src = 'https://via.placeholder.com/350x150' %>
@@ -16,7 +16,7 @@
       <% end %>
 
       <div class="card-body card-flex">
-        <% name = activity[:name].length > 45 ? activity[:name].truncate(45) : activity[:name] %>
+        <% name = activity[:name].length > 40 ? activity[:name].truncate(40) : activity[:name] %>
         <p style="font-size: 16px;"><%= name %></p>
         <div class="row" style="margin-bottom: -20px">
           <div class="col-8">
