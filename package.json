@@ -9,7 +9,7 @@
     "daemonite-material": "^4.1.1",
     "flatpickr": "^4.6.2",
     "gmaps": "^0.4.24",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mapbox-gl": "^1.2.1",
     "pickerjs": "^1.2.1",
     "places.js": "^1.16.4",
